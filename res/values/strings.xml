@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">KPlannder</string>
+    <string name="app_name">KPlanner</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <!-- Expenses -->
+    <string name="title_activity_expenses">ExpensesActivity</string>
+    <string name="expenses_edit_name"> Name/Type of Expense</string>
+    <string name="expenses_edit_amount"> Amount </string>
+    <string name="expenses_text_dollarsign"> $ </string>
+    <string name="expenses_text_reminder"> Reminders </string>
+    
 
 </resources>

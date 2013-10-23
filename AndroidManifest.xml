@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hornets.kplannder"
+    package="com.hornets.kplanner"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -21,6 +21,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hornets.kplanner.ExpensesActivity"
+            android:label="@string/title_activity_expenses" >
         </activity>
     </application>
 
