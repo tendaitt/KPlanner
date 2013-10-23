@@ -1,4 +1,6 @@
-package com.hornets.kplannder;
+package com.hornets.kplanner;
+
+import com.hornets.kplannder.R;
 
 import android.os.Bundle;
 import android.app.Activity;
