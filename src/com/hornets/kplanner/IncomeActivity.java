@@ -17,7 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @version October 23 2013
+ *
+ */
 public class IncomeActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
