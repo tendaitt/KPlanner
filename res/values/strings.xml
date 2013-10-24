@@ -19,5 +19,7 @@
     <string name="title_section1">On Campus</string>
     <string name="title_section2">Off Campus</string>
     <string name="title_section3">Other</string>
+    <string name="otherHoursButton">Enter Hours</string>
+    <string name="otherRatesButton">Enter Rate</string>
 
 </resources>

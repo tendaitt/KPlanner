@@ -11,12 +11,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 /**
  * 
  * @author Tendai T.T. Mudyiwa
@@ -139,13 +139,13 @@ public class IncomeActivity extends FragmentActivity implements
 		@Override
 		public Fragment getItem(int position) {
 			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
+			// Return a OnCampusSectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
+			Fragment onCampusFrag = new Fragment();
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			args.putInt(OnCampusSectionFragment.ARG_SECTION_NUMBER, position + 1);
+			onCampusFrag.setArguments(args);
+			return onCampusFrag;
 		}
 
 		@Override
@@ -170,28 +170,68 @@ public class IncomeActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
+	 * A fragment representing the on campus section
 	 */
-	public static class DummySectionFragment extends Fragment {
+	public static class OnCampusSectionFragment extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
-		public DummySectionFragment() {
+		public OnCampusSectionFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_income_dummy,
+			View rootView = inflater.inflate(R.layout.fragment_income_on_campus,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			return rootView;
+		}
+	}
+
+	/**
+	 * A fragment representing the on campus section
+	 */
+	public static class OffCampusSectionFragment extends Fragment {
+		/**
+		 * The fragment argument representing the section number for this
+		 * fragment.
+		 */
+		public static final String ARG_SECTION_NUMBER = "section_number";
+
+		public OffCampusSectionFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_income_on_campus,
+					container, false);
+			return rootView;
+		}
+	}
+
+	/**
+	 * A fragment representing the on campus section
+	 */
+	public static class OtherSectionFragment extends Fragment {
+		/**
+		 * The fragment argument representing the section number for this
+		 * fragment.
+		 */
+		public static final String ARG_SECTION_NUMBER = "section_number";
+
+		public OtherSectionFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			Log.d("Inflater", "inflating layout");
+			View rootView = inflater.inflate(R.layout.fragment_income_other,
+					container, false);
 			return rootView;
 		}
 	}
