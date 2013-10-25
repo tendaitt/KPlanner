@@ -1,6 +1,5 @@
 package com.hornets.kplanner;
 
-import com.hornets.kplanner.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,18 +7,18 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
-public class PlannerActivity extends Activity {
+public class HomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_planner);
+        setContentView(R.layout.activity_home);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.planner, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
     
@@ -31,5 +30,13 @@ public class PlannerActivity extends Activity {
 		Intent intent = new Intent(this, ExpensesActivity.class);
 		startActivity(intent);
 	}
+	/*
+	 * method to test my Income button.
+	 */
+	
+	public void testIncomeCall(View view) {
+		Intent intent = new Intent(this, IncomeActivity.class);
+		startActivity(intent);		
+	}
     
-}
+}	
