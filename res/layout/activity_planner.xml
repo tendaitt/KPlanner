@@ -21,6 +21,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:text="Mehmet&apos;s test button" />
+        android:text="Mehmet&apos;s test button" 
+        android:onClick="testMehmet"/>
 
 </RelativeLayout>

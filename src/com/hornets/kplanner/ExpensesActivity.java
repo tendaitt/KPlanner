@@ -23,5 +23,4 @@ public class ExpensesActivity extends Activity {
 		getMenuInflater().inflate(R.menu.expenses, menu);
 		return true;
 	}
-
 }
