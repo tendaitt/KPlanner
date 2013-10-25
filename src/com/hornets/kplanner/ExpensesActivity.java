@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.DatePicker;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version October 24 2013
+ *
+ */
+
 public class ExpensesActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expenses);
-		
 
 		//get rid of the calendar view of the DatePicker
 		DatePicker dp = (DatePicker) findViewById(R.id.expenses_datePicker);
