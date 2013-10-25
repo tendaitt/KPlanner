@@ -2,8 +2,10 @@ package com.hornets.kplanner;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
-import android.widget.DatePicker;
+import android.view.View;
 
 /**
  * 
@@ -12,7 +14,7 @@ import android.widget.DatePicker;
  *
  */
 
-public class ExpensesActivity extends Activity {
+public class ExpensesActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,8 @@ public class ExpensesActivity extends Activity {
 		setContentView(R.layout.activity_expenses);
 
 		//get rid of the calendar view of the DatePicker
-		DatePicker dp = (DatePicker) findViewById(R.id.expenses_datePicker);
-		dp.setCalendarViewShown(false);
+//		DatePicker dp = (DatePicker) findViewById(R.id.expenses_datePicker);
+//		dp.setCalendarViewShown(false);
 	}
 
 	@Override
@@ -29,5 +31,10 @@ public class ExpensesActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.expenses, menu);
 		return true;
+	}
+	
+	public void showDatePickerDialog(View v){
+		DialogFragment newFragment = new DatePickerFragment();
+	    newFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 }

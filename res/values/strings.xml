@@ -13,6 +13,7 @@
     <string name="expenses_edit_amount"> Amount </string>
     <string name="expenses_text_dollarsign"> $ </string>
     <string name="expenses_text_reminder"> Reminders </string>
+    <string name="expenses_button_datepicker"> Date</string>
 
     <!-- Income -->
     <string name="title_activity_income">IncomeActivity</string>

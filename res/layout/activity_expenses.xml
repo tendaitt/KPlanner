@@ -26,11 +26,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-
-            <DatePicker
-                android:id="@+id/expenses_datePicker"
+            
+            <Button 
+                android:id="@+id/expenses_button_datepicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="showDatePickerDialog" />
 
             <TextView
                 android:id="@+id/expenses_text_dollarsign"
