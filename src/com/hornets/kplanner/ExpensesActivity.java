@@ -1,6 +1,5 @@
 package com.hornets.kplanner;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
