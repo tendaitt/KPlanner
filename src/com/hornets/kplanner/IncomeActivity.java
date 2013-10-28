@@ -141,11 +141,33 @@ public class IncomeActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a OnCampusSectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment onCampusFrag = new Fragment();
-			Bundle args = new Bundle();
-			args.putInt(OnCampusSectionFragment.ARG_SECTION_NUMBER, position + 1);
-			onCampusFrag.setArguments(args);
-			return onCampusFrag;
+			
+			Fragment fragment = null;
+			switch(position){
+			
+			case 0:
+				fragment = new OnCampusSectionFragment();
+				Bundle args = new Bundle();
+				args.putInt(OnCampusSectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
+				
+			case 1:
+				fragment = new OffCampusSectionFragment();
+				Bundle args2 = new Bundle();
+				args2.putInt(OffCampusSectionFragment.ARG_SECTION_NUMBER, position + 2);
+				fragment.setArguments(args2);
+				return fragment;
+			case 2:
+				fragment = new OtherSectionFragment();
+				Bundle args3 = new Bundle();
+				args3.putInt(OtherSectionFragment.ARG_SECTION_NUMBER, position + 3);
+				fragment.setArguments(args3);
+				return fragment;
+			default:
+				return null;
+			}
+			
 		}
 
 		@Override
