@@ -1,10 +1,12 @@
 package com.hornets.kplanner;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * 
@@ -13,16 +15,12 @@ import android.view.View;
  *
  */
 
-public class ExpensesActivity extends FragmentActivity {
-
+public class ExpensesActivity extends FragmentActivity 
+implements DatePickerFragment.DatePickerListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expenses);
-
-		//get rid of the calendar view of the DatePicker
-//		DatePicker dp = (DatePicker) findViewById(R.id.expenses_datePicker);
-//		dp.setCalendarViewShown(false);
 	}
 
 	@Override
@@ -33,7 +31,14 @@ public class ExpensesActivity extends FragmentActivity {
 	}
 	
 	public void showDatePickerDialog(View v){
-		DialogFragment newFragment = new DatePickerFragment();
-	    newFragment.show(getSupportFragmentManager(), "datePicker");
+		DatePickerFragment datePickerFragment = new DatePickerFragment();
+		datePickerFragment.show(getSupportFragmentManager(), "datePicker");
+	}
+
+	@Override
+	public void onDateSet(DialogFragment dialog, int year, int month, int day) {
+		// TODO Auto-generated method stub
+		Button pickADateBtn = (Button) findViewById(R.id.expenses_button_datepicker);
+		pickADateBtn.setText(month + "/" + day + "/" + year);
 	}
 }
