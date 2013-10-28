@@ -2,8 +2,6 @@ package com.hornets.kplanner.activities;
 
 import java.util.Locale;
 
-import com.hornets.kplanner.R;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -19,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hornets.kplanner.R;
 /**
  * 
  * @author Tendai T.T. Mudyiwa
@@ -259,5 +259,6 @@ public class IncomeActivity extends FragmentActivity implements
 			return rootView;
 		}
 	}
+	
 
 }

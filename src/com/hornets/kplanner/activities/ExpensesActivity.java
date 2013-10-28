@@ -1,15 +1,17 @@
 package com.hornets.kplanner.activities;
 
-import com.hornets.kplanner.R;
-import com.hornets.kplanner.fragments.DatePickerFragment;
 
-import android.app.DatePickerDialog;
+
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import com.hornets.kplanner.R;
+import com.hornets.kplanner.fragments.DatePickerFragment;
 
 /**
  * 
@@ -18,7 +20,7 @@ import android.widget.Button;
  *
  */
 
-public class ExpensesActivity extends FragmentActivity 
+public class ExpensesActivity extends FragmentActivity
 implements DatePickerFragment.DatePickerListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +46,5 @@ implements DatePickerFragment.DatePickerListener{
 		Button pickADateBtn = (Button) findViewById(R.id.expenses_button_datepicker);
 		pickADateBtn.setText(month + "/" + day + "/" + year);
 	}
+
 }

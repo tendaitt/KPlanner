@@ -1,12 +1,12 @@
 package com.hornets.kplanner.activities;
 
-import com.hornets.kplanner.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+
+import com.hornets.kplanner.R;
 
 public class HomeActivity extends Activity {
 
@@ -40,4 +40,5 @@ public class HomeActivity extends Activity {
 		startActivity(intent);		
 	}
     
+	//I made it...hahaha
 }	
