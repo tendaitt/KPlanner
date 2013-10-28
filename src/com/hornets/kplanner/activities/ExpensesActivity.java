@@ -1,4 +1,7 @@
-package com.hornets.kplanner;
+package com.hornets.kplanner.activities;
+
+import com.hornets.kplanner.R;
+import com.hornets.kplanner.fragments.DatePickerFragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

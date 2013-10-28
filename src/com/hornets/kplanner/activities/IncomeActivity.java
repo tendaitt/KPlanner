@@ -1,6 +1,8 @@
-package com.hornets.kplanner;
+package com.hornets.kplanner.activities;
 
 import java.util.Locale;
+
+import com.hornets.kplanner.R;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;

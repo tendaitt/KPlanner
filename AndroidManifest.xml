@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.hornets.kplanner.HomeActivity"
+            android:name="com.hornets.kplanner.activities.HomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hornets.kplanner.ExpensesActivity"
+            android:name="com.hornets.kplanner.activities.ExpensesActivity"
             android:label="@string/title_activity_expenses" >
         </activity>
         <activity
-            android:name="com.hornets.kplanner.IncomeActivity"
+            android:name="com.hornets.kplanner.activities.IncomeActivity"
             android:label="@string/title_activity_income"
-            android:parentActivityName="com.hornets.kplanner.HomeActivity" >
+            android:parentActivityName="com.hornets.kplanner.activities.HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hornets.kplanner.PlannerActivity" />
