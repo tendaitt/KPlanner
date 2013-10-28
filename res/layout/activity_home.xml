@@ -40,6 +40,17 @@
         android:layout_alignRight="@+id/button2"
         android:layout_below="@+id/button2"
         android:layout_marginTop="30dp"
+        android:text="@string/edit"
+        android:onClick="Edit" />
+    
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="30dp"
         android:text="@string/howMuch"
         android:onClick="HowMuch" />
 
