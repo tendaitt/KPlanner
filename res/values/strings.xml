@@ -7,7 +7,7 @@
     <string name="incomeButton">Income</string>
     <string name="expensesButton">Expenses</string>
     <string name="edit">Edit</string>
-    <string name = "howMuch">HowMuch</string>
+    <string name="howMuch">HowMuch</string>
 
     <!-- Expenses -->
     <string name="title_activity_expenses">ExpensesActivity</string>
@@ -16,6 +16,8 @@
     <string name="expenses_text_dollarsign"> $ </string>
     <string name="expenses_text_reminder"> Reminders </string>
     <string name="expenses_button_datepicker"> Date</string>
+    <string name="expenses_button_add"> Add </string>
+    <string name="expenses_button_done"> Done </string>
 
     <!-- Income -->
     <string name="title_activity_income">IncomeActivity</string>
