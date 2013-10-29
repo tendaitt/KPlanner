@@ -18,7 +18,7 @@ import android.widget.TextView;
 /**
  * 
  * @author Mehmet Kologlu
- * @version October 24 2013
+ * @version October 28 2013
  *
  */
 
@@ -38,7 +38,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//get current date
 		final Calendar c = Calendar.getInstance();
 		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH);
+		month = c.get(Calendar.MONTH) + 1;
 		day = c.get(Calendar.DAY_OF_MONTH);
 
 		//define the date button
