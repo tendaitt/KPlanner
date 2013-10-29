@@ -4,12 +4,16 @@ import java.util.Calendar;
 
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.DatePickerFragment;
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
 
 /**
  * 
@@ -64,7 +68,32 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 * onclick of the reminders switch
 	 */
 	public void onSwitchClicked(View v) {
+		//test
+		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
+			//switch is turned on
+			
+			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" on ");			
+		}
+		else //switch is turned off
+			
+			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" off ");
+	}
+
+	/*
+	 * onclick of the add button
+	 */
+	public void onClickAdd(View v) {
+		//add input to database
 		
+		//reset
+		
+	}
+
+	/*
+	 * onclick of the done button
+	 */
+	public void onClickDone(View v) {
+		NavUtils.navigateUpFromSameTask(this);
 	}
 
 	/*

@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name="com.hornets.kplanner.activities.ExpensesActivity"
-            android:label="@string/title_activity_expenses" >
+            android:label="@string/title_activity_expenses" 
+            android:parentActivityName="com.hornets.kplanner.activities.HomeActivity" >
         </activity>
         <activity
             android:name="com.hornets.kplanner.activities.IncomeActivity"

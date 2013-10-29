@@ -92,14 +92,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/expenses_button_add" />
+                android:text="@string/expenses_button_add" 
+                android:onClick="onClickAdd" />
 
             <Button
                 android:id="@+id/expenses_button_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/expenses_button_done" />
+                android:text="@string/expenses_button_done" 
+                android:onClick="onClickDone" />
         </LinearLayout>
     </LinearLayout>
 
