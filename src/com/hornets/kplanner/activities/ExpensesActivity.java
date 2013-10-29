@@ -72,20 +72,23 @@ implements DatePickerFragment.DatePickerDialogListener{
 		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
 			//switch is turned on
 			
-			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" on ");			
+			//INFALTE REMINDER INPUT LAYOUT ELEMENTS
+			
+			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" on "); //test function			
 		}
 		else //switch is turned off
 			
-			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" off ");
+			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" off "); //test function
 	}
 
 	/*
 	 * onclick of the add button
 	 */
 	public void onClickAdd(View v) {
-		//add input to database
 		
-		//reset
+		//ADD INPUT TO DATABASE
+
+		//RESET
 		
 	}
 
