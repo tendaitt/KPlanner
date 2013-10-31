@@ -6,7 +6,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @version October 31 2013
+ *
+ */
 public class KPlannerSQLHelper extends SQLiteOpenHelper {
 
 	private static final String TEXT_TYPE = " TEXT";
