@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name="com.hornets.kplanner.activities.ExpensesActivity"
-            android:label="@string/title_activity_expenses" >
+            android:label="@string/title_activity_expenses"
+            android:parentActivityName="com.hornets.kplanner.activities.HomeActivity" >
         </activity>
         <activity
             android:name="com.hornets.kplanner.activities.IncomeActivity"
@@ -33,6 +34,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hornets.kplanner.PlannerActivity" />
+        </activity>
+        <activity
+            android:name="com.hornets.kplanner.activities.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.hornets.kplanner.activities.NewUserActivity"
+            android:label="@string/title_activity_new_user"
+            android:parentActivityName="com.hornets.kplanner.activities.LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hornets.kplanner.activities.LoginActivity" />
         </activity>
     </application>
 
