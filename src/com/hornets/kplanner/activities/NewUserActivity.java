@@ -1,10 +1,15 @@
 package com.hornets.kplanner.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.hornets.kplanner.R;
 /**
@@ -53,6 +58,15 @@ public class NewUserActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@SuppressLint("ShowToast")
+	public void done(View view){
+		Toast toast = Toast.makeText(getApplicationContext(), "Aww Yeah, Go Nets!!!", 3);
+		toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+		toast.show();
+		Intent goHome = new Intent(this, HomeActivity.class);
+		startActivity(goHome);
 	}
 
 }

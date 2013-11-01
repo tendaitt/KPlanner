@@ -1,11 +1,13 @@
 package com.hornets.kplanner.database;
 
-import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
-
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
+
+import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 /**
  * 
  * @author Tendai T.T. Mudyiwa
@@ -24,7 +26,7 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 					KPlannerEntry.COLUMN_USER_NAME + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.COLUMN_PASSWORD + TEXT_TYPE+ ")";
 
-
+	//SQL command to drop (delete) the users table
 	private static final String SQL_DELETE_USERS = 
 			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_USERS;
 
@@ -56,6 +58,22 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_USERS);
 	}
 
+	public Cursor getUser(SQLiteDatabase db,String username, String password)
+	{
+		String[] columns = {BaseColumns._ID, KPlannerEntry.COLUMN_USER_NAME, KPlannerEntry.COLUMN_PASSWORD};
+		Cursor dbCursor = db.query(KPlannerEntry.TABLE_NAME_USERS,columns, KPlannerEntry.COLUMN_USER_NAME + "='" + username + "' AND " +   
+				KPlannerEntry.COLUMN_PASSWORD + "='" + password + "'", null, null, null, null);  
 
+		if (dbCursor != null) {  
+			dbCursor.moveToFirst();  
+		}  
+		return dbCursor;  
+	}  
+	
+	public void insertUser(SQLiteDatabase db, String username, String password)
+	{
+		String sql="INSERT INTO"+KPlannerEntry.TABLE_NAME_USERS+"("+KPlannerEntry.COLUMN_USER_NAME+","+KPlannerEntry.COLUMN_PASSWORD+") VALUES('"+username+"','"+password+"')";
+		db.execSQL(sql);
+	}
 
 }
