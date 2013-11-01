@@ -7,7 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hornets.kplanner.R;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ *
+ */
 public class NewUserActivity extends Activity {
 
 	@Override

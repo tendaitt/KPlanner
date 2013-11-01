@@ -33,6 +33,7 @@
     <string name="title_activity_new_user">Set Up Account</string>
     <string name="user_name_prompt">Enter Username: </string>
     <string name="enter_password_prompt">Enter Password: </string>
+    <string name="new_user_link"><i><u>New to KPlanner?</u></i></string>
     <string name="confirm_passwoard_prompt">Confirm Password: </string>
     <string name="login_button">Login</string>
 
