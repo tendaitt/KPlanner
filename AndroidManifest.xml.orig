@@ -20,7 +20,11 @@
         </activity>
         <activity
             android:name="com.hornets.kplanner.activities.ExpensesActivity"
+<<<<<<< HEAD
+            android:label="@string/title_activity_expenses" 
+=======
             android:label="@string/title_activity_expenses"
+>>>>>>> b17d9d5e68977c4b68aa78e4b8b29e67cdcab5b9
             android:parentActivityName="com.hornets.kplanner.activities.HomeActivity" >
         </activity>
         <activity
