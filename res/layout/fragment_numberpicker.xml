@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <NumberPicker
-        android:id="@+id/numberPicker1"
+        android:id="@+id/numberPicker"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

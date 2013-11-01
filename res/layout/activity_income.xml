@@ -42,17 +42,38 @@
             android:onClick="onHourClicked"
             android:text="@string/income_enter_hour_button" />
 
+        <TextView
+            android:id="@+id/incomeHoursView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hours"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
         <Button
             android:id="@+id/enterRateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onRateClicked"
             android:text="@string/income_enter_rate_button" />
 
-    </LinearLayout>
-    <Button
-            android:id="@+id/saveIncomeButton"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_income_button" />
+            android:text="@string/rate"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveIncomeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_income_button" />
 
 </LinearLayout>

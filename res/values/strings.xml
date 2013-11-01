@@ -18,7 +18,7 @@
     <string name="expenses_button_datepicker"> Date</string>
     <string name="expenses_button_add"> Add </string>
     <string name="expenses_button_done"> Done </string>
-    
+
     <!-- Income -->
     <string name="title_activity_income">Income</string>
     <string name="income_enter_hour_button">Hours</string>
@@ -27,8 +27,8 @@
     <string name="off_campus_radio_button">Off Campus</string>
     <string name="other_type_radio_button">Other</string>
     <string name="save_income_button">Save</string>
-    
-
+    <string name="hours">0</string>
+    <string name="rate">0.00</string>
 
     <!-- New User & Login -->
     <string name="title_activity_login">Login</string>
@@ -43,5 +43,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="pickHours">Hours Per Week</string>
-    
+    <string name="enterRate">Rate per Hour</string>
+
 </resources>
