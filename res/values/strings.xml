@@ -42,4 +42,6 @@
     <!-- Fragments -->
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="pickHours">Hours Per Week</string>
+    
 </resources>

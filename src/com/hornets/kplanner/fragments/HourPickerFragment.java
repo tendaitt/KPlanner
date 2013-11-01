@@ -30,7 +30,8 @@ public class HourPickerFragment extends DialogFragment {
              public void onClick(DialogInterface dialog, int id) {
                  HourPickerFragment.this.getDialog().cancel();
              }
-         });      
+         }).setTitle(R.string.pickHours);      
   return builder.create();
 	}
+	
 }
