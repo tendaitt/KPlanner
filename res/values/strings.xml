@@ -8,6 +8,7 @@
     <string name="expensesButton">Expenses</string>
     <string name="edit">Edit</string>
     <string name="howMuch">HowMuch</string>
+    <string name="exit">Exit</string>
 
     <!-- Expenses -->
     <string name="title_activity_expenses">Expenses</string>
