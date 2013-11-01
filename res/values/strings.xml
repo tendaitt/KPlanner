@@ -10,7 +10,7 @@
     <string name="howMuch">HowMuch</string>
 
     <!-- Expenses -->
-    <string name="title_activity_expenses">ExpensesActivity</string>
+    <string name="title_activity_expenses">Expenses</string>
     <string name="expenses_edit_name"> Name/Type of Expense</string>
     <string name="expenses_edit_amount"> Amount </string>
     <string name="expenses_text_dollarsign"> $ </string>
@@ -18,23 +18,28 @@
     <string name="expenses_button_datepicker"> Date</string>
     <string name="expenses_button_add"> Add </string>
     <string name="expenses_button_done"> Done </string>
-
+    
     <!-- Income -->
-    <string name="title_activity_income">IncomeActivity</string>
-    <string name="title_section1">On Campus</string>
-    <string name="title_section2">Off Campus</string>
-    <string name="title_section3">Other</string>
-    <string name="otherHoursButton">Enter Hours</string>
-    <string name="otherRatesButton">Enter Rate</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_income">Income</string>
+    <string name="income_enter_hour_button">Hours</string>
+    <string name="income_enter_rate_button">Rate</string>
+    <string name="on_campus_radio_button">On Campus</string>
+    <string name="off_campus_radio_button">Off Campus</string>
+    <string name="other_type_radio_button">Other</string>
+    <string name="save_income_button">Save</string>
     
-    
-    <!-- New User & Login-->
+
+
+    <!-- New User & Login -->
+    <string name="title_activity_login">Login</string>
     <string name="title_activity_new_user">Set Up Account</string>
-    <string name="user_name_prompt">Enter Username: </string>
-    <string name="enter_password_prompt">Enter Password: </string>
+    <string name="user_name_prompt">Username: </string>
+    <string name="enter_password_prompt">Password: </string>
     <string name="new_user_link"><i><u>New to KPlanner?</u></i></string>
     <string name="confirm_passwoard_prompt">Confirm Password: </string>
     <string name="login_button">Login</string>
 
+    <!-- Fragments -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

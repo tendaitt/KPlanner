@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/expenses_button_done"
+        android:onClick="done"
         android:layout_marginTop="50dp" />
 
 </LinearLayout>
