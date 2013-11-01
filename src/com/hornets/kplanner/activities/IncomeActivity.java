@@ -83,8 +83,8 @@ public class IncomeActivity extends FragmentActivity {
 	}
 	
 	public void onRateClicked() {
-		RatePickerFragment ratePicker = new RatePickerFragment();
-		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
+	//	RatePickerFragment ratePicker = new RatePickerFragment();
+	//	ratePicker.show(getSupportFragmentManager(), "rate_dialog");
 		
 	}
 
