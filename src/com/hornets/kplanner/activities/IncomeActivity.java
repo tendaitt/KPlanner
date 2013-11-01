@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.HourPickerFragment;
+import com.hornets.kplanner.fragments.RatePickerFragment;
 
 public class IncomeActivity extends FragmentActivity {
 	private RadioButton onCampusRadioButton;
@@ -28,7 +29,6 @@ public class IncomeActivity extends FragmentActivity {
 		
 		
 	}
-
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
@@ -80,6 +80,12 @@ public class IncomeActivity extends FragmentActivity {
 	public void onHourClicked(View view){
 		HourPickerFragment hourPicker = new HourPickerFragment();
 		hourPicker.show(getSupportFragmentManager(), "hourpicker");
+	}
+	
+	public void onRateClicked() {
+		RatePickerFragment ratePicker = new RatePickerFragment();
+		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
+		
 	}
 
 }
