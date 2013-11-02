@@ -1,21 +1,25 @@
 package com.hornets.kplanner.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
 
-public class IncomeActivity extends FragmentActivity {
+public class IncomeActivity extends FragmentActivity implements HourPickerFragment.IHourPickerListener, RatePickerFragment.IRatePickerListener{
 	private RadioButton onCampusRadioButton;
 	private RadioButton offCampusRadioButton;
 	private RadioButton otherIncomeButton;
+	private TextView hourView;
+	private TextView rateView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,9 @@ public class IncomeActivity extends FragmentActivity {
 		onCampusRadioButton = (RadioButton) findViewById(R.id.onCampusIncomeButton);
 		offCampusRadioButton = (RadioButton) findViewById(R.id.offCampusIncomeButton);
 		otherIncomeButton = (RadioButton) findViewById(R.id.otherIncomeButton);
+		hourView = (TextView) findViewById(R.id.incomeHoursView);
+		rateView = (TextView) findViewById(R.id.ratesView);
+		
 		
 		
 	}
@@ -82,9 +89,29 @@ public class IncomeActivity extends FragmentActivity {
 		hourPicker.show(getSupportFragmentManager(), "hourpicker");
 	}
 	
-	public void onRateClicked() {
-	//	RatePickerFragment ratePicker = new RatePickerFragment();
-	//	ratePicker.show(getSupportFragmentManager(), "rate_dialog");
+	public void enterRate(View view) {
+		RatePickerFragment ratePicker = new RatePickerFragment();
+		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
+		
+	}
+	@Override
+	public void onHourSet(int value) {
+		hourView.setText(""+value);
+		
+		
+	}
+	@Override
+	public void onHourCancel(DialogFragment dialog) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onRateSet(String rate) {
+		rateView.setText(rate);
+	}
+	@Override
+	public void onRateCancel(DialogFragment dialog) {
+		// TODO Auto-generated method stub
 		
 	}
 

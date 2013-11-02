@@ -59,11 +59,11 @@
             android:id="@+id/enterRateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRateClicked"
+            android:onClick="enterRate"
             android:text="@string/income_enter_rate_button" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/ratesView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rate"
