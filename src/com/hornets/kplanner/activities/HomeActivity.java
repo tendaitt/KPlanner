@@ -45,6 +45,12 @@ public class HomeActivity extends Activity {
 		finish();
 		System.exit(0);
 	}
+	
+	public void Edit(View view)
+	{
+		Intent intent = new Intent(this, EditActivity.class);
+		startActivity(intent);
+	}
     
 	//I made it...hahaha
 }	

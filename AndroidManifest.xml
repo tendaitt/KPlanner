@@ -55,6 +55,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hornets.kplanner.activities.HomeActivity" />
         </activity>
+        <activity
+            android:name="com.hornets.kplanner.activities.EditActivity"
+            android:label="@string/title_activity_edit" >
+        </activity>
     </application>
 
 </manifest>

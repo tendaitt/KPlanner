@@ -45,5 +45,7 @@
     <string name="cancel">Cancel</string>
     <string name="pickHours">Hours Per Week</string>
     <string name="enterRate">Rate per Hour</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
