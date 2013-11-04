@@ -5,14 +5,18 @@ import java.util.Calendar;
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -30,6 +34,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 	int year;
 	int month;
 	int day;
+	LinearLayout reminderLinearLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +92,22 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void onSwitchClicked(View v) {
 		//test
+		
+		reminderLinearLayout = (LinearLayout) findViewById(R.id.expneses_linearayout_reminderentry);
+		
 		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
 			//switch is turned on
 			
 			//INFALTE REMINDER INPUT LAYOUT ELEMENTS
 			
-			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" on "); //test function			
-		}
-		else //switch is turned off
+			EditText et = new EditText(this);
+			et.setHint("asd");
+			reminderLinearLayout.addView(et);
+			reminderLinearLayout.invalidate();
 			
-			((TextView) findViewById(R.id.expenses_text_reminder)).setText(" off "); //test function
+		}
+//		else //switch is turned off
+			
 	}
 
 	/*

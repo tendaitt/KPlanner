@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_weight="1"
                 android:layout_marginRight="15dp"
+                android:layout_weight="1"
                 android:onClick="showDatePickerDialog" />
 
             <TextView
@@ -79,7 +79,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:onClick="onSwitchClicked" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/expneses_linearayout_reminderentry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
         </LinearLayout>
 
         <LinearLayout
@@ -93,16 +99,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/expenses_button_add" 
-                android:onClick="onClickAdd" />
+                android:onClick="onClickAdd"
+                android:text="@string/expenses_button_add" />
 
             <Button
                 android:id="@+id/expenses_button_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/expenses_button_done" 
-                android:onClick="onClickDone" />
+                android:onClick="onClickDone"
+                android:text="@string/expenses_button_done" />
         </LinearLayout>
     </LinearLayout>
 
