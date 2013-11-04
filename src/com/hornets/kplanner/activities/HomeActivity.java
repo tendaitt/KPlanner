@@ -39,6 +39,18 @@ public class HomeActivity extends Activity {
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);		
 	}
+	
+	public void Exit (View view)
+	{
+		finish();
+		System.exit(0);
+	}
+	
+	public void Edit(View view)
+	{
+		Intent intent = new Intent(this, EditActivity.class);
+		startActivity(intent);
+	}
     
 	//I made it...hahaha
 }	

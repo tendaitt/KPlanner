@@ -1,5 +1,6 @@
 package com.hornets.kplanner.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,6 +14,32 @@ import com.hornets.kplanner.R;
 
 public class HourPickerFragment extends DialogFragment {
 
+	private NumberPicker np;
+	 /* The activity that creates an instance of this dialog fragment must
+     * implement this interface in order to receive event callbacks.
+     * Each method passes the DialogFragment in case the host needs to query it. */
+    public interface IHourPickerListener {
+        public void onHourSet(int i);
+        public void onHourCancel(DialogFragment dialog);
+    }
+    
+    // Use this instance of the interface to deliver action events
+    IHourPickerListener mListener;
+    
+    // Override the Fragment.onAttach() method to instantiate the IHourPickerListener
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // Verify that the host activity implements the callback interface
+        try {
+            // Instantiate the IHourPickerListener so we can send events to the host
+            mListener = (IHourPickerListener) activity;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                    + " must implement IHourPickerListener");
+        }
+    }
 	public Dialog onCreateDialog(Bundle savedInstanceState){
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -27,6 +54,8 @@ public class HourPickerFragment extends DialogFragment {
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int id) {
+				
+				mListener.onHourSet(np.getValue());
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -38,7 +67,7 @@ public class HourPickerFragment extends DialogFragment {
 	}
 
 	private void setHourPicker(View dialogView) {
-		NumberPicker np = (NumberPicker) dialogView.findViewById(R.id.numberPicker);
+		np = (NumberPicker) dialogView.findViewById(R.id.numberPicker);
 		np.setMinValue(0);
         np.setMaxValue(50);
        np.setValue(30);
