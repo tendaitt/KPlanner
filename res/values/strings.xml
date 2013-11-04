@@ -19,6 +19,11 @@
     <string name="expenses_button_datepicker"> Date</string>
     <string name="expenses_button_add"> Add </string>
     <string name="expenses_button_done"> Done </string>
+    <string name="expenses_edit_reminder"> 1 </string>
+    <string name="expenses_button_plus"> + </string>
+    <string name="expenses_button_minus"> - </string>
+    <string name="expeneses_daysButton_radio"> Day </string>
+    <string name="expeneses_weeksButton_radio"> Week </string>
 
     <!-- Income -->
     <string name="title_activity_income">Income</string>
@@ -45,6 +50,8 @@
     <string name="cancel">Cancel</string>
     <string name="pickHours">Hours Per Week</string>
     <string name="enterRate">Rate per Hour</string>
+    
+    <!-- Edit -->
     <string name="title_activity_edit">EditActivity</string>
     <string name="hello_world">Hello world!</string>
 

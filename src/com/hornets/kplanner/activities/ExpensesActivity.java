@@ -10,13 +10,19 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -77,7 +83,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	/*
 	 * onclick of the pick a date button, 
 	 * displays the datepicker fragment
@@ -92,33 +98,91 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void onSwitchClicked(View v) {
 		//test
-		
+
 		reminderLinearLayout = (LinearLayout) findViewById(R.id.expneses_linearayout_reminderentry);
-		
+
 		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
 			//switch is turned on
+
+			//ADD REMINDER INPUT LAYOUT ELEMENTS
 			
-			//INFALTE REMINDER INPUT LAYOUT ELEMENTS
+			//define elements
+			final TextView numberEdit = new TextView(this);
+			Button minusButton = new Button(this);
+			RadioGroup reminderRadioGroup = new RadioGroup(this);
+			Button plusButton = new Button(this);
+			final RadioButton daysButton = new RadioButton(this);
+			final RadioButton weeksButton = new RadioButton(this);
 			
-			EditText et = new EditText(this);
-			et.setHint("asd");
-			reminderLinearLayout.addView(et);
-			reminderLinearLayout.invalidate();
+			//the integer
+			numberEdit.setText(R.string.expenses_edit_reminder);
+			numberEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
 			
+			//minus button
+			minusButton.setText(R.string.expenses_button_minus);
+			minusButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v){
+					int current = Integer.parseInt(numberEdit.getText().toString());
+					//decrease by 1
+					if(current != 1){
+						//if the value is not 1, decrease it by 1
+						current--;
+						numberEdit.setText("" + current);
+					}
+					if(current == 1){
+						daysButton.setText(R.string.expeneses_daysButton_radio);
+						weeksButton.setText(R.string.expeneses_weeksButton_radio);
+					}
+				}
+			});
+
+			//plus button
+			plusButton.setText(R.string.expenses_button_plus);
+			plusButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v){
+					//increase by 1
+					int current = Integer.parseInt(numberEdit.getText().toString());
+					if(current == 1)
+					{
+						daysButton.setText("Days");
+						weeksButton.setText("Weeks");
+					}
+					current++;
+					numberEdit.setText("" + current);
+				}
+			});
+			
+			//Day & Week Radio Buttons
+			reminderRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
+			reminderRadioGroup.setPadding(0, 10, 0, 0);
+			daysButton.setText(R.string.expeneses_daysButton_radio);
+			weeksButton.setText(R.string.expeneses_weeksButton_radio);
+			//add radio buttons to the radio group
+			reminderRadioGroup.addView(daysButton);
+			reminderRadioGroup.addView(weeksButton);
+
+			//add all to the view
+			reminderLinearLayout.addView(minusButton);
+			reminderLinearLayout.addView(numberEdit);
+			reminderLinearLayout.addView(plusButton);
+			reminderLinearLayout.addView(reminderRadioGroup);
 		}
-//		else //switch is turned off
-			
+		else //switch is turned off
+		{
+			reminderLinearLayout.removeAllViews();
+		}
+
 	}
 
 	/*
 	 * onclick of the add button
 	 */
 	public void onClickAdd(View v) {
-		
+
 		//ADD INPUT TO DATABASE
 
 		//RESET
-		
+
 	}
 
 	/*
