@@ -70,7 +70,7 @@ public class HourPickerFragment extends DialogFragment {
 		np = (NumberPicker) dialogView.findViewById(R.id.numberPicker);
 		np.setMinValue(0);
         np.setMaxValue(50);
-       np.setValue(30);
+       np.setValue(15);
 		
 	}
 	

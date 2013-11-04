@@ -1,19 +1,23 @@
 package com.hornets.kplanner.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
 
+@SuppressLint("ShowToast")
 public class IncomeActivity extends FragmentActivity implements HourPickerFragment.IHourPickerListener, RatePickerFragment.IRatePickerListener{
 	private RadioButton onCampusRadioButton;
 	private RadioButton offCampusRadioButton;
@@ -112,6 +116,25 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	@Override
 	public void onRateCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void onSave(View view) {		
+		
+		if(onCampusRadioButton.isChecked()){
+			
+		}
+		else if (offCampusRadioButton.isChecked()) {
+			
+		}
+		else if (otherIncomeButton.isChecked()){
+			
+		}
+		else{
+			Toast toast = Toast.makeText(getApplicationContext(),"Please check an income type!", 4);
+			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+			toast.show();
+		}
 		
 	}
 

@@ -35,7 +35,7 @@ public class HomeActivity extends Activity {
 	 * method to test my Income button.
 	 */
 	
-	public void testIncomeCall(View view) {
+	public void loadIncomePage(View view) {
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);		
 	}
