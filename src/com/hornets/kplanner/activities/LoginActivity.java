@@ -36,6 +36,8 @@ public class LoginActivity extends Activity {
 	public void dummyToHome(View view){
 		Intent goHome = new Intent(this, HomeActivity.class);
 		startActivity(goHome);
+		
+		this.finish();
 	}
 
 }
