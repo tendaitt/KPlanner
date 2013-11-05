@@ -1,5 +1,13 @@
 package com.hornets.kplanner.activities;
 
+/*
+ * 
+ * Author: Rana Hayajneh
+ * 
+ * Version: Oct 20, 2013
+ * 
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +22,7 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-    }
+     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,7 +43,7 @@ public class HomeActivity extends Activity {
 	 * method to test my Income button.
 	 */
 	
-	public void testIncomeCall(View view) {
+	public void loadIncomePage(View view) {
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);		
 	}
@@ -51,6 +59,7 @@ public class HomeActivity extends Activity {
 		Intent intent = new Intent(this, EditActivity.class);
 		startActivity(intent);
 	}
-    
+	
+	
 	//I made it...hahaha
 }	

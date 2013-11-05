@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:text="@string/incomeButton"
-        android:onClick="testIncomeCall" />
+        android:onClick="loadIncomePage" />
 
     <Button
         android:id="@+id/button2"
@@ -52,7 +52,7 @@
         android:layout_below="@+id/button2"
         android:layout_marginTop="30dp"
         android:text="@string/howMuch"
-        android:onClick="HowMuch" />
+         />
 
  <Button
         android:id="@+id/button5"
