@@ -50,7 +50,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//get current date
 		final Calendar c = Calendar.getInstance();
 		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH) + 1;
+		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
 
 		//define the date button
@@ -154,14 +154,14 @@ implements DatePickerFragment.DatePickerDialogListener{
 			
 			//Day & Week Radio Buttons
 			reminderRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
-			reminderRadioGroup.setPadding(0, 10, 0, 0);
+			reminderRadioGroup.setPadding(0, 10, 0, 0); //padding so it's in the middle
 			daysButton.setText(R.string.expeneses_daysButton_radio);
 			weeksButton.setText(R.string.expeneses_weeksButton_radio);
 			//add radio buttons to the radio group
 			reminderRadioGroup.addView(daysButton);
 			reminderRadioGroup.addView(weeksButton);
 
-			//add all to the view
+			//add all views to the layout
 			reminderLinearLayout.addView(minusButton);
 			reminderLinearLayout.addView(numberEdit);
 			reminderLinearLayout.addView(plusButton);
