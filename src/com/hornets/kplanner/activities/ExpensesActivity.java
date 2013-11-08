@@ -5,21 +5,16 @@ import java.util.Calendar;
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.text.InputType;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -37,9 +32,9 @@ public class ExpensesActivity extends FragmentActivity
 implements DatePickerFragment.DatePickerDialogListener{
 
 	Button dateBtn;
-	int year;
-	int month;
-	int day;
+	public static int YEAR;
+	public static int MONTH;
+	public static int DAY;
 	LinearLayout reminderLinearLayout;
 
 	@Override
@@ -49,9 +44,9 @@ implements DatePickerFragment.DatePickerDialogListener{
 
 		//get current date
 		final Calendar c = Calendar.getInstance();
-		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH);
-		day = c.get(Calendar.DAY_OF_MONTH);
+		YEAR = c.get(Calendar.YEAR);
+		MONTH = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
+		DAY = c.get(Calendar.DAY_OF_MONTH);
 
 		//define the date button
 		dateBtn = (Button) this.findViewById(R.id.expenses_button_datepicker);
@@ -197,19 +192,21 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void updateDateButtonText()
 	{
-		dateBtn.setText(month + "/" + day + "/" + year);
+		dateBtn.setText(MONTH + "/" + DAY + "/" + YEAR);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see com.hornets.kplanner.fragments.DatePickerFragment.DatePickerDialogListener#onDateSelect(android.support.v4.app.DialogFragment, int, int, int)
 	 * 
+	 * called when the users closes the date picker dialog
+	 * 
 	 */
 	@Override
 	public void onDateSelect(DialogFragment dialog, int y, int monthOfYear, int dayOfMonth) {
-		year = y;
-		month = monthOfYear;
-		day = dayOfMonth;
+		YEAR = y;
+		MONTH = monthOfYear;
+		DAY = dayOfMonth;
 		updateDateButtonText();
 	}
 
