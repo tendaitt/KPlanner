@@ -31,11 +31,13 @@ import android.widget.TextView;
 public class ExpensesActivity extends FragmentActivity
 implements DatePickerFragment.DatePickerDialogListener{
 
-	Button dateBtn;
 	public static int YEAR;
 	public static int MONTH;
 	public static int DAY;
+	
+	Button dateBtn;
 	LinearLayout reminderLinearLayout;
+	Switch reminderSwitch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,9 @@ implements DatePickerFragment.DatePickerDialogListener{
 		MONTH = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
 		DAY = c.get(Calendar.DAY_OF_MONTH);
 
-		//define the date button
+		//initializing the layout elements
 		dateBtn = (Button) this.findViewById(R.id.expenses_button_datepicker);
+		reminderSwitch = (Switch) findViewById(R.id.expenses_switch_reminder);
 
 		//update the date picker button to display the date which is the current date
 		updateDateButtonText();
@@ -96,11 +99,11 @@ implements DatePickerFragment.DatePickerDialogListener{
 
 		reminderLinearLayout = (LinearLayout) findViewById(R.id.expneses_linearayout_reminderentry);
 
-		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
+		if(reminderSwitch.isChecked()){
 			//switch is turned on
 
 			//ADD REMINDER INPUT LAYOUT ELEMENTS
-			
+
 			//define elements
 			final TextView numberEdit = new TextView(this);
 			Button minusButton = new Button(this);
@@ -108,11 +111,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			Button plusButton = new Button(this);
 			final RadioButton daysButton = new RadioButton(this);
 			final RadioButton weeksButton = new RadioButton(this);
-			
-			//the integer
-			numberEdit.setText(R.string.expenses_edit_reminder);
-			numberEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
-			
+
 			//minus button
 			minusButton.setText(R.string.expenses_button_minus);
 			minusButton.setOnClickListener(new OnClickListener() {
@@ -131,6 +130,10 @@ implements DatePickerFragment.DatePickerDialogListener{
 				}
 			});
 
+			//the integer
+			numberEdit.setText(R.string.expenses_edit_reminder);
+			numberEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+			
 			//plus button
 			plusButton.setText(R.string.expenses_button_plus);
 			plusButton.setOnClickListener(new OnClickListener() {
@@ -146,7 +149,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 					numberEdit.setText("" + current);
 				}
 			});
-			
+
 			//Day & Week Radio Buttons
 			reminderRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
 			reminderRadioGroup.setPadding(0, 10, 0, 0); //padding so it's in the middle
@@ -177,6 +180,12 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//ADD INPUT TO DATABASE
 
 		//RESET
+		
+		//turn the switch off
+		reminderSwitch.setChecked(false);
+		reminderLinearLayout.removeAllViews();
+		
+		
 
 	}
 
