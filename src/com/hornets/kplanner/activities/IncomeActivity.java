@@ -101,8 +101,6 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	@Override
 	public void onHourSet(int value) {
 		hourView.setText(""+value);
-		
-		
 	}
 	@Override
 	public void onHourCancel(DialogFragment dialog) {
