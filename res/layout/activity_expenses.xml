@@ -15,13 +15,28 @@
         android:gravity="top"
         android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/expenses_edit_name"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:id="@+id/expenses_linearlaout_name_and_type"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/expenses_edit_name" >
-        </EditText>
+            android:layout_marginBottom="10dp" >
+
+            <EditText
+                android:id="@+id/expenses_edit_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/expenses_edit_name" >
+            </EditText>
+
+            <Spinner
+                android:id="@+id/expenses_spinner_type"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/expense_type_array" >
+            </Spinner>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/expenses_linearlayout_date_and_amount"
@@ -86,7 +101,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-
         </LinearLayout>
 
         <LinearLayout

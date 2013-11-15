@@ -11,7 +11,8 @@ import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 /**
  * 
  * @author Tendai T.T. Mudyiwa
- * @version October 31 2013
+ * @author Mehmet Kologlu
+ * @version November 15 2013
  *
  */
 public class KPlannerSQLHelper extends SQLiteOpenHelper {
@@ -19,17 +20,30 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String COMMA_SEP = ",";
 
-	//SQL command to create users table
-	private static final String SQL_CREATE_USERS=
-			"CREATE TABLE " + KPlannerEntry.TABLE_NAME_USERS + " (" +
+	//SQL command to create INCOME table
+	private static final String SQL_CREATE_INCOME=
+			"CREATE TABLE " + KPlannerEntry.TABLE_NAME_INCOME + " (" +
 					KPlannerEntry._ID + " INTEGER PRIMARY KEY," +
-					KPlannerEntry.COLUMN_USER_NAME + TEXT_TYPE + COMMA_SEP +
-					KPlannerEntry.COLUMN_PASSWORD + TEXT_TYPE+ ")";
+					KPlannerEntry.INCOME_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.INCOME_COLUMN_HOUR + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.INCOME_COLUMN_RATE + TEXT_TYPE + ")";
+	
+	//SQL command to create EXPENSE table
+	private static final String SQL_CREATE_EXPENSE=
+			"CREATE TABLE " + KPlannerEntry.TABLE_NAME_INCOME + " (" +
+					KPlannerEntry._ID + " INTEGER PRIMARY KEY," +
+					KPlannerEntry.EXPENSE_COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.EXPENSE_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.EXPENSE_COLUMN_DATE + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.EXPENSE_COLUMN_AMOUNT + TEXT_TYPE + ")";
 
-	//SQL command to drop (delete) the users table
-	private static final String SQL_DELETE_USERS = 
-			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_USERS;
-
+	//SQL command to drop (delete) the income table
+	private static final String SQL_DELETE_INCOME = 
+			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_INCOME;
+	
+	//SQL command to drop (delete) the expense table
+	private static final String SQL_DELETE_EXPENSE =
+			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_EXPENSE;
 
 	private static final String DATABASE_NAME = "KPlannerUsers.db";
 	private static final int DATABASE_VERSION = 1;
@@ -46,7 +60,8 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(SQL_CREATE_USERS);
+		db.execSQL(SQL_CREATE_INCOME);
+		db.execSQL(SQL_CREATE_EXPENSE);
 	}
 
 
@@ -55,25 +70,7 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL(SQL_DELETE_USERS);
+		db.execSQL(SQL_DELETE_INCOME);
+		db.execSQL(SQL_DELETE_EXPENSE);
 	}
-
-	public Cursor getUser(SQLiteDatabase db,String username, String password)
-	{
-		String[] columns = {BaseColumns._ID, KPlannerEntry.COLUMN_USER_NAME, KPlannerEntry.COLUMN_PASSWORD};
-		Cursor dbCursor = db.query(KPlannerEntry.TABLE_NAME_USERS,columns, KPlannerEntry.COLUMN_USER_NAME + "='" + username + "' AND " +   
-				KPlannerEntry.COLUMN_PASSWORD + "='" + password + "'", null, null, null, null);  
-
-		if (dbCursor != null) {  
-			dbCursor.moveToFirst();  
-		}  
-		return dbCursor;  
-	}  
-	
-	public void insertUser(SQLiteDatabase db, String username, String password)
-	{
-		String sql="INSERT INTO"+KPlannerEntry.TABLE_NAME_USERS+"("+KPlannerEntry.COLUMN_USER_NAME+","+KPlannerEntry.COLUMN_PASSWORD+") VALUES('"+username+"','"+password+"')";
-		db.execSQL(sql);
-	}
-
 }
