@@ -1,69 +1,80 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".HomeActivity" >
+<?xml version="1.0"?>
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".HomeActivity" >
 
 
-    
-   
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="@string/incomeButton"
-        android:onClick="loadIncomePage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2" >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="30dp"
-        android:text="@string/expensesButton" 
-        android:onClick="testMehmet" />
-       
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="30dp"
-        android:text="@string/edit"
-        android:onClick="Edit" />
-    
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="30dp"
-        android:text="@string/howMuch"
-         />
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:onClick="testIncomeCall"
+                android:text="@string/incomeButton" />
 
- <Button
-        android:id="@+id/button5"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="30dp"
-        android:text="@string/exit"
-        android:onClick="Exit" />
-   
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:onClick="testMehmet"
+                android:text="@string/expensesButton" />
+        </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:onClick="Edit"
+                android:text="@string/edit" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:text="@string/howMuch" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:text="@string/summary" 
+                android:onClick="Summary"/>
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dip"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:onClick="Exit"
+                android:text="@string/exit" />
+        </LinearLayout>
 </LinearLayout>

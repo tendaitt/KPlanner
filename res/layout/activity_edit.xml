@@ -50,6 +50,15 @@
                     android:text="Tab1 income"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textView1"
+                    android:text="Income" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -67,6 +76,16 @@
                     android:text="Tab2 expenses"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+                
+                  <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textView2"
+                    android:text="Expenses" />
+
+                
             </RelativeLayout>
         </FrameLayout>
     </LinearLayout>

@@ -43,7 +43,7 @@ public class HomeActivity extends Activity {
 	 * method to test my Income button.
 	 */
 	
-	public void loadIncomePage(View view) {
+	public void testIncomeCall(View view) {
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);		
 	}
@@ -57,6 +57,12 @@ public class HomeActivity extends Activity {
 	public void Edit(View view)
 	{
 		Intent intent = new Intent(this, EditActivity.class);
+		startActivity(intent);
+	}
+	
+	public void Summary(View view)
+	{
+		Intent intent = new Intent(this, SummaryActivity.class);
 		startActivity(intent);
 	}
 	
