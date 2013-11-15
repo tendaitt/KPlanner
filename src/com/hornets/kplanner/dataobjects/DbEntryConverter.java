@@ -77,10 +77,9 @@ public class DbEntryConverter {
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)));
+			return income;
 			}
-			c.moveToNext();
 		}
-		return asd;
 	}
 
 }
