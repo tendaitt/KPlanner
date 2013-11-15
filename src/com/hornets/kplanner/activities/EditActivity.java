@@ -1,12 +1,5 @@
 package com.hornets.kplanner.activities;
 
-/*
- * Author: Rana Hayajneh
- * 
- * Version: Oct 30, 2013
- * 
- */
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +12,12 @@ import android.widget.TextView;
 
 import com.hornets.kplanner.R;
 
+/**
+ * 
+ * @author Rana Hayajneh
+ * @version Oct 30, 2013
+ *
+ */
 public class EditActivity extends Activity {
 
 	@Override
