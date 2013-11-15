@@ -52,5 +52,35 @@ public class DbEntryConverter {
 		return expenseArray;
 	}
 
+	public OnCampusIncome getOnCampusIncome(){
+		
+		//Columns required
+		String[] projection = {
+				KPlannerEntry._ID,
+				KPlannerEntry.INCOME_COLUMN_TYPE,
+				KPlannerEntry.INCOME_COLUMN_HOUR,
+				KPlannerEntry.INCOME_COLUMN_RATE,
+		};
+
+		String sortOrder = KPlannerEntry._ID + " DESC";
+		Cursor c = db.query(
+				KPlannerEntry.EXPENSE_TABLE_NAME,
+				projection, 
+				null, null, null, null, sortOrder);
+
+		c.moveToFirst();
+
+		while(!c.isAfterLast()){
+			if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equals("ON"))
+			{
+			OnCampusIncome income = new OnCampusIncome(
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)));
+			}
+			c.moveToNext();
+		}
+		return asd;
+	}
 
 }
