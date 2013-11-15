@@ -22,7 +22,7 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 
 	//SQL command to create INCOME table
 	private static final String SQL_CREATE_INCOME=
-			"CREATE TABLE " + KPlannerEntry.TABLE_NAME_INCOME + " (" +
+			"CREATE TABLE " + KPlannerEntry.INCOME_TABLE_NAME + " (" +
 					KPlannerEntry._ID + " INTEGER PRIMARY KEY," +
 					KPlannerEntry.INCOME_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.INCOME_COLUMN_HOUR + TEXT_TYPE + COMMA_SEP +
@@ -30,7 +30,7 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 	
 	//SQL command to create EXPENSE table
 	private static final String SQL_CREATE_EXPENSE=
-			"CREATE TABLE " + KPlannerEntry.TABLE_NAME_INCOME + " (" +
+			"CREATE TABLE " + KPlannerEntry.EXPENSE_TABLE_NAME + " (" +
 					KPlannerEntry._ID + " INTEGER PRIMARY KEY," +
 					KPlannerEntry.EXPENSE_COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.EXPENSE_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
@@ -39,11 +39,11 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 
 	//SQL command to drop (delete) the income table
 	private static final String SQL_DELETE_INCOME = 
-			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_INCOME;
+			"DROP TABLE IF EXISTS " + KPlannerEntry.INCOME_TABLE_NAME;
 	
 	//SQL command to drop (delete) the expense table
 	private static final String SQL_DELETE_EXPENSE =
-			"DROP TABLE IF EXISTS " + KPlannerEntry.TABLE_NAME_EXPENSE;
+			"DROP TABLE IF EXISTS " + KPlannerEntry.EXPENSE_TABLE_NAME;
 
 	private static final String DATABASE_NAME = "KPlannerUsers.db";
 	private static final int DATABASE_VERSION = 1;
