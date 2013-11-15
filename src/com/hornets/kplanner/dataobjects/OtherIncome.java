@@ -1,8 +1,10 @@
+
+
 package com.hornets.kplanner.dataobjects;
 
 public class OtherIncome extends Income {
 
-	public OtherIncome(String date, double rate, int hours) {
+	public OtherIncome(String date, String rate, String hours) {
 		super(date, rate, hours);
 	}
 

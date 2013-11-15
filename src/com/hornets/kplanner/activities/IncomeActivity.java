@@ -1,5 +1,7 @@
 package com.hornets.kplanner.activities;
 
+import java.util.Calendar;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -120,13 +122,13 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	public void onSave(View view) {		
 		
 		if(onCampusRadioButton.isChecked()){
-			
+			updateDB("ON");
 		}
 		else if (offCampusRadioButton.isChecked()) {
-			
+			updateDB("OFF");
 		}
 		else if (otherIncomeButton.isChecked()){
-			
+			updateDB("OTHER");
 		}
 		else{
 			Toast toast = Toast.makeText(getApplicationContext(),"Please check an income type!", 4);
@@ -134,6 +136,35 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 			toast.show();
 		}
 		
+	}
+	
+	public void updateDB(String type){
+		//retrive the values
+		String hours = hourView.getText().toString();
+		String rate = rateView.getText().toString();
+		
+		
+		
+//		//get the values for everything
+//				tableNumber = tableID.getText().toString();
+//				seatNumber = seatID.getText().toString();
+//				meal = menuSpinner.getSelectedItem().toString();
+//
+//				//update database
+//				PatronDbSQLHelper dbHelper = new PatronDbSQLHelper(this.getApplicationContext(), meal, null, 0);
+//				SQLiteDatabase patronDB = dbHelper.getWritableDatabase();
+//				//map of values
+//				ContentValues values = new ContentValues();
+//				values.put(PatronEntry.COLUMN_TABLE_ID, tableNumber);
+//				values.put(PatronEntry.COLUMN_MEAL, meal);
+//				values.put(PatronEntry.COLUMN_SEAT_ID, seatNumber);
+//
+//				//Insert the new row
+//				@SuppressWarnings("unused")
+//				long newRowId;
+//				newRowId = patronDB.insert(PatronEntry.TABLE_NAME, null, values);
+
+
 	}
 
 }

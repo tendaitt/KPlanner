@@ -3,10 +3,10 @@ package com.hornets.kplanner.dataobjects;
 public abstract class Income {
 	
 	private String date;
-	private double rate;
-	private int hours;
+	private String rate;
+	private String hours;
 	
-	public Income(String date, double rate, int hours){
+	public Income(String date, String rate, String hours){
 		
 		this.date = date;
 		this.rate = rate;
@@ -18,11 +18,12 @@ public abstract class Income {
 	}
 
 	public int getHours() {
-		return hours;
+		return 0;
 	}
 
 	public double getRate() {
-		return rate;
+		return 0;
 	}
+	
 	
 }
