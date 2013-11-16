@@ -18,7 +18,8 @@ public abstract class Income {
 	}
 
 	public int getHours() {
-		return 0;
+		Integer myHour = new Integer(hours);
+		return myHour;
 	}
 
 	public double getRate() {

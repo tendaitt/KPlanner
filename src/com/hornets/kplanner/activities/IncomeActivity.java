@@ -1,8 +1,8 @@
 package com.hornets.kplanner.activities;
 
-import java.util.Calendar;
-
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hornets.kplanner.R;
+import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
 
@@ -38,9 +40,9 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		otherIncomeButton = (RadioButton) findViewById(R.id.otherIncomeButton);
 		hourView = (TextView) findViewById(R.id.incomeHoursView);
 		rateView = (TextView) findViewById(R.id.ratesView);
-		
-		
-		
+
+
+
 	}
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -74,31 +76,31 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void onCampus(View view){
 		offCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 	}
-	
+
 	public void offCampus(View view){
 		onCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 	}
-	
+
 	public void otherIncome(View view){
 		onCampusRadioButton.setChecked(false);
 		offCampusRadioButton.setChecked(false);
 	}
-	
+
 	public void onHourClicked(View view){
 		HourPickerFragment hourPicker = new HourPickerFragment();
 		hourPicker.show(getSupportFragmentManager(), "hourpicker");
 	}
-	
+
 	public void enterRate(View view) {
 		RatePickerFragment ratePicker = new RatePickerFragment();
 		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
-		
+
 	}
 	@Override
 	public void onHourSet(int value) {
@@ -107,7 +109,7 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	@Override
 	public void onHourCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void onRateSet(String rate) {
@@ -116,11 +118,11 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	@Override
 	public void onRateCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void onSave(View view) {		
-		
+
 		if(onCampusRadioButton.isChecked()){
 			updateDB("ON");
 		}
@@ -135,34 +137,29 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
 			toast.show();
 		}
-		
+
 	}
-	
+
 	public void updateDB(String type){
 		//retrive the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		
-		
-		
-//		//get the values for everything
-//				tableNumber = tableID.getText().toString();
-//				seatNumber = seatID.getText().toString();
-//				meal = menuSpinner.getSelectedItem().toString();
-//
-//				//update database
-//				PatronDbSQLHelper dbHelper = new PatronDbSQLHelper(this.getApplicationContext(), meal, null, 0);
-//				SQLiteDatabase patronDB = dbHelper.getWritableDatabase();
-//				//map of values
-//				ContentValues values = new ContentValues();
-//				values.put(PatronEntry.COLUMN_TABLE_ID, tableNumber);
-//				values.put(PatronEntry.COLUMN_MEAL, meal);
-//				values.put(PatronEntry.COLUMN_SEAT_ID, seatNumber);
-//
-//				//Insert the new row
-//				@SuppressWarnings("unused")
-//				long newRowId;
-//				newRowId = patronDB.insert(PatronEntry.TABLE_NAME, null, values);
+		String initialPayDate = "";
+
+		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		//map of values
+		ContentValues values = new ContentValues();
+		values.put(KPlannerEntry.INCOME_COLUMN_TYPE, type);
+		values.put(KPlannerEntry.INCOME_COLUMN_RATE, rate);
+		values.put(KPlannerEntry.INCOME_COLUMN_HOUR, hours);
+
+
+		//Insert the new row
+		@SuppressWarnings("unused")
+		long newRowId;
+		newRowId = db.insert(KPlannerEntry.INCOME_TABLE_NAME, null, values);
 
 
 	}

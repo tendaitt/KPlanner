@@ -1,15 +1,10 @@
 package com.hornets.kplanner.activities;
 
-import com.hornets.kplanner.R;
-import com.hornets.kplanner.R.layout;
-import com.hornets.kplanner.R.menu;
-import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
-import com.hornets.kplanner.database.KPlannerSQLHelper;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.hornets.kplanner.R;
 
 public class SummaryActivity extends Activity {
 
