@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
-import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.hornets.kplanner.R;
@@ -18,6 +17,7 @@ import com.hornets.kplanner.R;
  * 
  * @author Rana Hayajneh
  * @version Oct 30, 2013
+<<<<<<< HEAD
  * 
  *          EditActivity allows the user to access their saved data and change
  *          it or delete it.

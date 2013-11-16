@@ -13,7 +13,7 @@
 
     <!-- Expenses -->
     <string name="title_activity_expenses">Expenses</string>
-    <string name="expenses_edit_name"> Name/Type of Expense</string>
+    <string name="expenses_edit_name"> Name</string>
     <string name="expenses_edit_amount"> Amount </string>
     <string name="expenses_text_dollarsign"> $ </string>
     <string name="expenses_text_reminder"> Reminders </string>
@@ -25,6 +25,13 @@
     <string name="expenses_button_minus"> - </string>
     <string name="expeneses_daysButton_radio"> Day </string>
     <string name="expeneses_weeksButton_radio"> Week </string>
+    <string-array name="expense_type_array">
+        <item>Rent</item>
+        <item>Utilities</item>
+        <item>Entertainment</item>
+        <item>Insurance</item>
+        <item>Transportation</item>
+    </string-array>
 
     <!-- Income -->
     <string name="title_activity_income">Income</string>
@@ -38,11 +45,8 @@
     <string name="rate">0.00</string>
 
     <!-- New User & Login -->
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_new_user">Set Up Account</string>
     <string name="user_name_prompt">Username: </string>
     <string name="enter_password_prompt">Password: </string>
-    <string name="new_user_link"><i><u>New to KPlanner?</u></i></string>
     <string name="confirm_passwoard_prompt">Confirm Password: </string>
     <string name="login_button">Login</string>
 

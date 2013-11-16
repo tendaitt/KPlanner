@@ -53,6 +53,7 @@
                 android:layout_weight="1"
                 android:text="@string/howMuch" 
                 android:onClick="LoadHowMuch"/>
+
         </LinearLayout>
 
 
@@ -69,6 +70,7 @@
                 android:layout_weight="1"
                 android:text="@string/summary" 
                 android:onClick="LoadSummary"/>
+                
 
             <Button
                 android:id="@+id/button6"

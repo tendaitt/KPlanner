@@ -1,6 +1,8 @@
 package com.hornets.kplanner.activities;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hornets.kplanner.R;
+import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
 
@@ -36,9 +40,9 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		otherIncomeButton = (RadioButton) findViewById(R.id.otherIncomeButton);
 		hourView = (TextView) findViewById(R.id.incomeHoursView);
 		rateView = (TextView) findViewById(R.id.ratesView);
-		
-		
-		
+
+
+
 	}
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -72,42 +76,40 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void onCampus(View view){
 		offCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 	}
-	
+
 	public void offCampus(View view){
 		onCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 	}
-	
+
 	public void otherIncome(View view){
 		onCampusRadioButton.setChecked(false);
 		offCampusRadioButton.setChecked(false);
 	}
-	
+
 	public void onHourClicked(View view){
 		HourPickerFragment hourPicker = new HourPickerFragment();
 		hourPicker.show(getSupportFragmentManager(), "hourpicker");
 	}
-	
+
 	public void enterRate(View view) {
 		RatePickerFragment ratePicker = new RatePickerFragment();
 		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
-		
+
 	}
 	@Override
 	public void onHourSet(int value) {
 		hourView.setText(""+value);
-		
-		
 	}
 	@Override
 	public void onHourCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void onRateSet(String rate) {
@@ -116,26 +118,59 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 	@Override
 	public void onRateCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void onSave(View view) {		
-		
+
 		if(onCampusRadioButton.isChecked()){
-			
+			updateDB("ON");
 		}
 		else if (offCampusRadioButton.isChecked()) {
-			
+			updateDB("OFF");
 		}
 		else if (otherIncomeButton.isChecked()){
-			
+			updateDB("OTHER");
 		}
 		else{
 			Toast toast = Toast.makeText(getApplicationContext(),"Please check an income type!", 4);
 			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
 			toast.show();
 		}
+		Toast toast = Toast.makeText(getApplicationContext(),"Saved!", 2);
+		toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+		toast.show();
+	}
+
+	public void updateDB(String type){
+		//retrive the values
+		String hours = hourView.getText().toString();
+		String rate = rateView.getText().toString();
 		
+		
+		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		//remove previous entries
+		if(KPlannerSQLHelper.INITIALIZED){
+			db.execSQL("DELETE FROM " + KPlannerEntry.INCOME_TABLE_NAME +
+					" WHERE " + KPlannerEntry.INCOME_COLUMN_TYPE +" = '" + type+"';");
+		}
+		
+		//map of values
+		ContentValues values = new ContentValues();
+		values.put(KPlannerEntry.INCOME_COLUMN_TYPE, type);
+		values.put(KPlannerEntry.INCOME_COLUMN_RATE, rate);
+		values.put(KPlannerEntry.INCOME_COLUMN_HOUR, hours);
+
+
+		//Insert the new row
+		@SuppressWarnings("unused")
+		long newRowId;
+		newRowId = db.insert(KPlannerEntry.INCOME_TABLE_NAME, null, values);
+		KPlannerSQLHelper.INITIALIZED = true;
+
+
 	}
 
 }

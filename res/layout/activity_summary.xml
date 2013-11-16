@@ -49,4 +49,6 @@
         android:layout_marginTop="20dp"
         android:hint="@string/list_of_expenses" />
 
+=======
+>>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
 </RelativeLayout>

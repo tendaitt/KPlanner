@@ -2,6 +2,7 @@ package com.hornets.kplanner.activities;
 
 
 import com.hornets.kplanner.R;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import android.view.Menu;
  *
  */
 public class SummaryActivity extends Activity {
-	//obj var = new obj();
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,18 @@ public class SummaryActivity extends Activity {
 	SQLiteDatabase dbase = dbHelper.getReadableDatabase();
 	
 	String[] projection = {
+<<<<<<< HEAD
 	KPlannerEntry.COLUMN_INCOME,
 	KPlannerEntry.COLUMN_EXPENSES
+=======
+	KPlannerEntry.COLUMN_USER_NAME,
+	KPlannerEntry.COLUMN_PASSWORD
+>>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
 	//KPlannerEntry.Column_saved_data
 	};
  
 	//how to sort results
+<<<<<<< HEAD
 	// sorting data
 	try {
 		String sortOrder = KPlannerSQLHelper.COLUMN_NAME_CT + " DESC";
@@ -76,5 +83,13 @@ public void viewdb(View v) {
 	((TextView) findViewById(R.id.view)).setTextSize(15);
 	((TextView) findViewById(R.id.view)).setText(" " + this.printDb());
 }
+=======
+	try{
+		String sortedOrder="";
+	}
+	
+	
+	}
+>>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
 */
 }

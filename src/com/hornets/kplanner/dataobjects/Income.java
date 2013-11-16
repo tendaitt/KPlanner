@@ -1,0 +1,33 @@
+package com.hornets.kplanner.dataobjects;
+
+import java.sql.Timestamp;
+
+public abstract class Income {
+	
+	private Timestamp date;
+	private String rate;
+	@SuppressWarnings("unused")
+	private String hours;
+	
+	public Income(Timestamp date, String rate, String hours){
+		
+		this.date = date;
+		this.rate = rate;
+		this.hours = hours;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public int getHours() {
+	//	Integer myHour = new Integer(hours);
+		return 0;
+	}
+
+	public double getRate() {
+		return Double.parseDouble(rate);
+	}
+	
+	
+}

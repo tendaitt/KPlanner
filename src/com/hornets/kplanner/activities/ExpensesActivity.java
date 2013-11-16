@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,25 +32,39 @@ import android.widget.TextView;
 public class ExpensesActivity extends FragmentActivity
 implements DatePickerFragment.DatePickerDialogListener{
 
-	Button dateBtn;
 	public static int YEAR;
 	public static int MONTH;
 	public static int DAY;
+
+	Button dateBtn;
 	LinearLayout reminderLinearLayout;
+	Switch reminderSwitch;
+	EditText edittextName;
+	EditText edittextAmount;
+	
+	Calendar c;
+	
+	int currentYear;
+	int currentMonth;
+	int currentDay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expenses);
 
-		//get current date
-		final Calendar c = Calendar.getInstance();
-		YEAR = c.get(Calendar.YEAR);
-		MONTH = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
-		DAY = c.get(Calendar.DAY_OF_MONTH);
+		//initializing the layout elements
+		dateBtn = (Button) findViewById(R.id.expenses_button_datepicker);
+		reminderSwitch = (Switch) findViewById(R.id.expenses_switch_reminder);
+		edittextName = (EditText) findViewById(R.id.expenses_edit_name);
+		edittextAmount = (EditText) findViewById(R.id.expenses_edit_amount);
 
-		//define the date button
-		dateBtn = (Button) this.findViewById(R.id.expenses_button_datepicker);
+		//get a calendar
+		c = Calendar.getInstance();
+		currentYear = c.get(Calendar.YEAR);
+		currentMonth = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
+		currentDay = c.get(Calendar.DAY_OF_MONTH);
+		resetDate();
 
 		//update the date picker button to display the date which is the current date
 		updateDateButtonText();
@@ -96,11 +111,11 @@ implements DatePickerFragment.DatePickerDialogListener{
 
 		reminderLinearLayout = (LinearLayout) findViewById(R.id.expneses_linearayout_reminderentry);
 
-		if(((Switch) findViewById(R.id.expenses_switch_reminder)).isChecked()){
+		if(reminderSwitch.isChecked()){
 			//switch is turned on
 
 			//ADD REMINDER INPUT LAYOUT ELEMENTS
-			
+
 			//define elements
 			final TextView numberEdit = new TextView(this);
 			Button minusButton = new Button(this);
@@ -108,11 +123,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			Button plusButton = new Button(this);
 			final RadioButton daysButton = new RadioButton(this);
 			final RadioButton weeksButton = new RadioButton(this);
-			
-			//the integer
-			numberEdit.setText(R.string.expenses_edit_reminder);
-			numberEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
-			
+
 			//minus button
 			minusButton.setText(R.string.expenses_button_minus);
 			minusButton.setOnClickListener(new OnClickListener() {
@@ -131,6 +142,10 @@ implements DatePickerFragment.DatePickerDialogListener{
 				}
 			});
 
+			//the integer
+			numberEdit.setText(R.string.expenses_edit_reminder);
+			numberEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+
 			//plus button
 			plusButton.setText(R.string.expenses_button_plus);
 			plusButton.setOnClickListener(new OnClickListener() {
@@ -146,7 +161,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 					numberEdit.setText("" + current);
 				}
 			});
-			
+
 			//Day & Week Radio Buttons
 			reminderRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
 			reminderRadioGroup.setPadding(0, 10, 0, 0); //padding so it's in the middle
@@ -177,7 +192,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//ADD INPUT TO DATABASE
 
 		//RESET
-
+		resetView();
 	}
 
 	/*
@@ -194,6 +209,17 @@ implements DatePickerFragment.DatePickerDialogListener{
 	{
 		dateBtn.setText(MONTH + "/" + DAY + "/" + YEAR);
 	}
+	
+	/*
+	 * sets the text of the pick a date button to the current date
+	 */
+	public void resetDate()
+	{
+		YEAR = currentYear;
+		MONTH = currentMonth;
+		DAY = currentDay;
+		updateDateButtonText();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -208,6 +234,21 @@ implements DatePickerFragment.DatePickerDialogListener{
 		MONTH = monthOfYear;
 		DAY = dayOfMonth;
 		updateDateButtonText();
+	}
+
+	/*
+	 * 
+	 */
+	public void resetView() {
+		//clear the data entered
+		edittextName.setText("");
+		edittextAmount.setText("");
+
+		//reset the date
+		resetDate();
+		//turn the switch off and remove the reminder layout
+		reminderSwitch.setChecked(false);
+		reminderLinearLayout.removeAllViews();
 	}
 
 }
