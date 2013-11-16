@@ -8,6 +8,7 @@
     <string name="expensesButton">Expenses</string>
     <string name="edit">Edit</string>
     <string name="howMuch">HowMuch</string>
+    <string name="summary">Summary</string>
     <string name="exit">Exit</string>
 
     <!-- Expenses -->
@@ -50,9 +51,19 @@
     <string name="cancel">Cancel</string>
     <string name="pickHours">Hours Per Week</string>
     <string name="enterRate">Rate per Hour</string>
-    
+
     <!-- Edit -->
     <string name="title_activity_edit">EditActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_summary">SummaryActivity</string>
+    <string name="title_activity_how_much">HowMuch</string>
 
+    <!-- HowMuch -->
+    <string name="value_Of_HowMuch">HowMuch$</string>
+
+    <!-- Summary -->
+    <string name="onCampusValue">OnCampusVal</string>
+    <string name="offCampus">OffCampusVal</string>
+    <string name="othersValue">OthersVal</string>
+    <string name="list_of_expenses">List Of Expenses</string>
 </resources>

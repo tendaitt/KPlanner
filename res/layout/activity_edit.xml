@@ -8,68 +8,86 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-   <TabHost 
-    android:id="@+id/tabhost"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    >
-
-    <LinearLayout
+    <TabHost
+        android:id="@+id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
 
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        </TabWidget>
-
-        <FrameLayout
-            android:id="@android:id/tabcontent"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            android:orientation="vertical" >
 
-            <RelativeLayout
-                android:id="@+id/Income"
+            <TabWidget
+                android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-            >
+                android:layout_height="wrap_content" >
+            </TabWidget>
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Tab1 income"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/Expenses"
+            <FrameLayout
+                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Tab2 expenses"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-        </FrameLayout>
-    </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/Income"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
 
-</TabHost>
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Income"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button1"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textView1"
+                        android:layout_marginTop="27dp"
+                        android:onClick="Income"
+                        android:text="Edit" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/Expenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Expenses"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textView2"
+                        android:layout_marginTop="27dp"
+                        android:onClick="Expenses"
+                        android:text="Edit" />
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
 </RelativeLayout>
