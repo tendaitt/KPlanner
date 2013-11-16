@@ -1,5 +1,6 @@
 package com.hornets.kplanner.dataobjects;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -51,6 +52,99 @@ public class DbEntryConverter {
 		
 		return expenseArray;
 	}
+	
+	public OtherIncome getOtherIncome(){
+		OtherIncome otherIncome = null;
+		//Columns required
+				String[] projection = {
+						KPlannerEntry._ID,
+						KPlannerEntry.INCOME_COLUMN_TYPE,
+						KPlannerEntry.INCOME_COLUMN_HOUR,
+						KPlannerEntry.INCOME_COLUMN_RATE,
+						KPlannerEntry.TIMESTAMP
+				};
 
+				String sortOrder = KPlannerEntry._ID + " DESC";
+				Cursor c = db.query(
+						KPlannerEntry.INCOME_TABLE_NAME,
+						projection, 
+						null, null, null, null, sortOrder);
+
+				c.moveToFirst();
+
+				while(!c.isAfterLast()){
+					if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("other")){
+						
+					otherIncome = new OtherIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
+							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
+						c.moveToNext();
+					}
+				}
+				
+				return otherIncome;
+	}
+
+	public OnCampusIncome getOnCampusIncome(){
+		OnCampusIncome onCampusIncome = null;
+		//Columns required
+		String[] projection = {
+				KPlannerEntry._ID,
+				KPlannerEntry.INCOME_COLUMN_TYPE,
+				KPlannerEntry.INCOME_COLUMN_HOUR,
+				KPlannerEntry.INCOME_COLUMN_RATE,
+				KPlannerEntry.TIMESTAMP
+		};
+
+		String sortOrder = KPlannerEntry._ID + " DESC";
+		Cursor c = db.query(
+				KPlannerEntry.INCOME_TABLE_NAME,
+				projection, 
+				null, null, null, null, sortOrder);
+
+		c.moveToFirst();
+		while(!c.isAfterLast()){
+			if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("on")){
+				
+			onCampusIncome = new OnCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
+				c.moveToNext();
+			}
+		}
+		
+		return onCampusIncome;
+	}
+	
+	public OffCampusIncome getOffCampusIncome(){
+		OffCampusIncome offCampusIncome = null;
+		//Columns required
+		String[] projection = {
+				KPlannerEntry._ID,
+				KPlannerEntry.INCOME_COLUMN_TYPE,
+				KPlannerEntry.INCOME_COLUMN_HOUR,
+				KPlannerEntry.INCOME_COLUMN_RATE,
+				KPlannerEntry.TIMESTAMP
+		};
+
+		String sortOrder = KPlannerEntry._ID + " DESC";
+		Cursor c = db.query(
+				KPlannerEntry.INCOME_TABLE_NAME,
+				projection, 
+				null, null, null, null, sortOrder);
+
+		c.moveToFirst();
+		while(!c.isAfterLast()){
+			if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("off")){
+				
+			offCampusIncome = new OffCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
+				c.moveToNext();
+			}
+		}
+		
+		return offCampusIncome;
+	}
 
 }

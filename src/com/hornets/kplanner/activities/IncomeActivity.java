@@ -137,18 +137,26 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 			toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
 			toast.show();
 		}
-
+		Toast toast = Toast.makeText(getApplicationContext(),"Saved!", 2);
+		toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 
 	public void updateDB(String type){
 		//retrive the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		String initialPayDate = "";
-
+		
+		
 		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+		//remove previous entries
+		if(KPlannerSQLHelper.INITIALIZED){
+			db.execSQL("DELETE FROM " + KPlannerEntry.INCOME_TABLE_NAME +
+					" WHERE " + KPlannerEntry.INCOME_COLUMN_TYPE +" = '" + type+"';");
+		}
+		
 		//map of values
 		ContentValues values = new ContentValues();
 		values.put(KPlannerEntry.INCOME_COLUMN_TYPE, type);
@@ -160,6 +168,7 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		@SuppressWarnings("unused")
 		long newRowId;
 		newRowId = db.insert(KPlannerEntry.INCOME_TABLE_NAME, null, values);
+		KPlannerSQLHelper.INITIALIZED = true;
 
 
 	}
