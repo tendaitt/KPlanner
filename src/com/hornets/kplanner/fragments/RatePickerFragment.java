@@ -38,6 +38,7 @@ public class RatePickerFragment extends DialogFragment {
         }
     }
     
+	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceBundle){
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -53,6 +54,7 @@ public class RatePickerFragment extends DialogFragment {
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int id) {
 				RatePickerFragment.this.getDialog().cancel();
 			}

@@ -4,11 +4,19 @@ import java.sql.Timestamp;
 
 public class OnCampusIncome extends Income{
 
+	private double amount;
+	
 	public OnCampusIncome(Timestamp date, String rate, String hours) {
 		super(date, rate, hours);
 	}
 
-	public double calculate(){
-		return 0.0;
+	public double getAmount(){
+		return amount;
+	}
+	
+	@Override
+	public String toString(){
+		
+		return "On Campus Income:"+'\t'+ this.getRate()+'\n';
 	}
 }

@@ -29,5 +29,4 @@ public abstract class Income {
 		return Double.parseDouble(rate);
 	}
 	
-	
 }

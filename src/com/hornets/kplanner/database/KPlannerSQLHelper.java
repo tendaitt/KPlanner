@@ -46,8 +46,8 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 			"DROP TABLE IF EXISTS " + KPlannerEntry.EXPENSE_TABLE_NAME;
 
 	private static final String DATABASE_NAME = "KPlannerUsers.db";
-	private static final int DATABASE_VERSION = 1;
-
+	private static final int DATABASE_VERSION = 2;
+	
 	/**
 	 * @param context
 	 * @param name - The name of the database
