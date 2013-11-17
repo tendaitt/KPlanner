@@ -19,7 +19,7 @@
                 android:layout_width="0dip"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:onClick="testIncomeCall"
+                android:onClick="LoadIncome"
                 android:text="@string/incomeButton" />
 
             <Button
@@ -27,7 +27,7 @@
                 android:layout_width="0dip"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:onClick="testMehmet"
+                android:onClick="LoadExpenses"
                 android:text="@string/expensesButton" />
         </LinearLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_width="0dip"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:onClick="Edit"
+                android:onClick="LoadEdit"
                 android:text="@string/edit" />
 
             <Button
@@ -51,7 +51,9 @@
                 android:layout_width="0dip"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:text="@string/howMuch" />
+                android:text="@string/howMuch" 
+                android:onClick="LoadHowMuch"/>
+
         </LinearLayout>
 
 
@@ -67,7 +69,8 @@
                 android:layout_height="150dp"
                 android:layout_weight="1"
                 android:text="@string/summary" 
-                android:onClick="Summary"/>
+                android:onClick="LoadSummary"/>
+                
 
             <Button
                 android:id="@+id/button6"

@@ -8,4 +8,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SummaryActivity" >
 
+    <TextView
+        android:id="@+id/onCampus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/onCampusValue" />
+
+    <TextView
+        android:id="@+id/others"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/onCampus"
+        android:layout_below="@+id/onCampus"
+        android:layout_marginTop="42dp"
+        android:hint="@string/othersValue" />
+
+    <TextView
+        android:id="@+id/offCampus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/others"
+        android:layout_alignLeft="@+id/others"
+        android:layout_marginBottom="30dp"
+        android:hint="@string/offCampus" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/others"
+        android:layout_below="@+id/others"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:id="@+id/spinnerName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner1"
+        android:layout_below="@+id/others"
+        android:layout_marginTop="20dp"
+        android:hint="@string/list_of_expenses" />
+
+=======
+>>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
 </RelativeLayout>

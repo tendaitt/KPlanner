@@ -1,11 +1,9 @@
 package com.hornets.kplanner.database;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 /**
@@ -19,6 +17,7 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String COMMA_SEP = ",";
+	public static boolean INITIALIZED = false;
 
 	//SQL command to create INCOME table
 	private static final String SQL_CREATE_INCOME=
@@ -26,7 +25,8 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 					KPlannerEntry._ID + " INTEGER PRIMARY KEY," +
 					KPlannerEntry.INCOME_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.INCOME_COLUMN_HOUR + TEXT_TYPE + COMMA_SEP +
-					KPlannerEntry.INCOME_COLUMN_RATE + TEXT_TYPE + ")";
+					KPlannerEntry.INCOME_COLUMN_RATE + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.TIMESTAMP +" TIMESTAMP DEFAULT CURRENT_TIMESTAMP"+")";
 	
 	//SQL command to create EXPENSE table
 	private static final String SQL_CREATE_EXPENSE=

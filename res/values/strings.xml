@@ -45,11 +45,8 @@
     <string name="rate">0.00</string>
 
     <!-- New User & Login -->
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_new_user">Set Up Account</string>
     <string name="user_name_prompt">Username: </string>
     <string name="enter_password_prompt">Password: </string>
-    <string name="new_user_link"><i><u>New to KPlanner?</u></i></string>
     <string name="confirm_passwoard_prompt">Confirm Password: </string>
     <string name="login_button">Login</string>
 
@@ -63,5 +60,14 @@
     <string name="title_activity_edit">EditActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_summary">SummaryActivity</string>
+    <string name="title_activity_how_much">HowMuch</string>
 
+    <!-- HowMuch -->
+    <string name="value_Of_HowMuch">HowMuch$</string>
+
+    <!-- Summary -->
+    <string name="onCampusValue">OnCampusVal</string>
+    <string name="offCampus">OffCampusVal</string>
+    <string name="othersValue">OthersVal</string>
+    <string name="list_of_expenses">List Of Expenses</string>
 </resources>
