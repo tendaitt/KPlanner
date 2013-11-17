@@ -80,6 +80,8 @@ public class DbEntryConverter {
 			return income;
 			}
 		}
+		//if no on-campus income exists
+		return null;
 	}
 
 }
