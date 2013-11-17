@@ -127,6 +127,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			//minus button
 			minusButton.setText(R.string.expenses_button_minus);
 			minusButton.setOnClickListener(new OnClickListener() {
+				@Override
 				public void onClick(View v){
 					int current = Integer.parseInt(numberEdit.getText().toString());
 					//decrease by 1
@@ -149,6 +150,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			//plus button
 			plusButton.setText(R.string.expenses_button_plus);
 			plusButton.setOnClickListener(new OnClickListener() {
+				@Override
 				public void onClick(View v){
 					//increase by 1
 					int current = Integer.parseInt(numberEdit.getText().toString());

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.database.KPlannerSQLHelper;
@@ -26,14 +27,14 @@ public class DbEntryConverter {
 
 		//Columns required
 		String[] projection = {
-				KPlannerEntry._ID,
+				BaseColumns._ID,
 				KPlannerEntry.EXPENSE_COLUMN_NAME,
 				KPlannerEntry.EXPENSE_COLUMN_TYPE,
 				KPlannerEntry.EXPENSE_COLUMN_DATE,
 				KPlannerEntry.EXPENSE_COLUMN_AMOUNT
 		};
 
-		String sortOrder = KPlannerEntry._ID + " DESC";
+		String sortOrder = BaseColumns._ID + " DESC";
 		Cursor c = db.query(
 				KPlannerEntry.EXPENSE_TABLE_NAME,
 				projection, 
@@ -57,14 +58,14 @@ public class DbEntryConverter {
 		OtherIncome otherIncome = null;
 		//Columns required
 				String[] projection = {
-						KPlannerEntry._ID,
+						BaseColumns._ID,
 						KPlannerEntry.INCOME_COLUMN_TYPE,
 						KPlannerEntry.INCOME_COLUMN_HOUR,
 						KPlannerEntry.INCOME_COLUMN_RATE,
 						KPlannerEntry.TIMESTAMP
 				};
 
-				String sortOrder = KPlannerEntry._ID + " DESC";
+				String sortOrder = BaseColumns._ID + " DESC";
 				Cursor c = db.query(
 						KPlannerEntry.INCOME_TABLE_NAME,
 						projection, 
@@ -78,8 +79,9 @@ public class DbEntryConverter {
 					otherIncome = new OtherIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
 							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
 							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
-						c.moveToNext();
+						
 					}
+					c.moveToNext();
 				}
 				
 				return otherIncome;
@@ -89,14 +91,14 @@ public class DbEntryConverter {
 		OnCampusIncome onCampusIncome = null;
 		//Columns required
 		String[] projection = {
-				KPlannerEntry._ID,
+				BaseColumns._ID,
 				KPlannerEntry.INCOME_COLUMN_TYPE,
 				KPlannerEntry.INCOME_COLUMN_HOUR,
 				KPlannerEntry.INCOME_COLUMN_RATE,
 				KPlannerEntry.TIMESTAMP
 		};
 
-		String sortOrder = KPlannerEntry._ID + " DESC";
+		String sortOrder = BaseColumns._ID + " DESC";
 		Cursor c = db.query(
 				KPlannerEntry.INCOME_TABLE_NAME,
 				projection, 
@@ -109,8 +111,9 @@ public class DbEntryConverter {
 			onCampusIncome = new OnCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
-				c.moveToNext();
+				
 			}
+			c.moveToNext();
 		}
 		
 		return onCampusIncome;
@@ -120,14 +123,14 @@ public class DbEntryConverter {
 		OffCampusIncome offCampusIncome = null;
 		//Columns required
 		String[] projection = {
-				KPlannerEntry._ID,
+				BaseColumns._ID,
 				KPlannerEntry.INCOME_COLUMN_TYPE,
 				KPlannerEntry.INCOME_COLUMN_HOUR,
 				KPlannerEntry.INCOME_COLUMN_RATE,
 				KPlannerEntry.TIMESTAMP
 		};
 
-		String sortOrder = KPlannerEntry._ID + " DESC";
+		String sortOrder = BaseColumns._ID + " DESC";
 		Cursor c = db.query(
 				KPlannerEntry.INCOME_TABLE_NAME,
 				projection, 
@@ -140,8 +143,9 @@ public class DbEntryConverter {
 			offCampusIncome = new OffCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
-				c.moveToNext();
+				
 			}
+			c.moveToNext();
 		}
 		
 		return offCampusIncome;
