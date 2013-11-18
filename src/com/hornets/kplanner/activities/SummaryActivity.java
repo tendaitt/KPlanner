@@ -37,6 +37,8 @@ public class SummaryActivity extends Activity {
 
 	private void loadIncomeValues() {
 		converter = new DbEntryConverter(getApplicationContext());
+		
+		//DEAL WITH NULL RETURNS
 		String onCampus = converter.getOnCampusIncome().toString();
 		String offCampus = converter.getOffCampusIncome().toString();
 		String otherIncome = converter.getOtherIncome().toString();

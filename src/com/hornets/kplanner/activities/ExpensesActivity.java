@@ -47,7 +47,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 	EditText edittextName;
 	EditText edittextAmount;
 	Spinner spinnerType;
-	
+
 	SQLiteDatabase db;
 
 	Calendar c;
@@ -102,6 +102,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
+			db.close();
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
@@ -115,6 +116,30 @@ implements DatePickerFragment.DatePickerDialogListener{
 	public void showDatePickerDialog(View v){
 		DatePickerFragment datePickerFragment = new DatePickerFragment();
 		datePickerFragment.show(getSupportFragmentManager(), "datePicker");
+	}
+
+
+	/*
+	 * onclick of the add button
+	 */
+	public void onClickAdd(View v) {
+
+		//ADD INPUT TO DATABASE
+		//retrive the values
+		String name = edittextName.getText().toString();
+		String type = spinnerType.getSelectedItem().toString();
+		String amount = edittextAmount.getText().toString();
+		String date = Integer.toString(DAY + MONTH + YEAR);
+
+		//map of values
+		ContentValues values = new ContentValues();
+		values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
+
+		//RESET
+		resetView();
 	}
 
 	/*
@@ -201,29 +226,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 	}
 
 	/*
-	 * onclick of the add button
-	 */
-	public void onClickAdd(View v) {
-
-		//ADD INPUT TO DATABASE
-		//retrive the values
-		String name = edittextName.getText().toString();
-		String type = spinnerType.getSelectedItem().toString();
-		String amount = edittextAmount.getText().toString();
-		String date = Integer.toString(DAY + MONTH + YEAR);
-
-		//map of values
-		ContentValues values = new ContentValues();
-		values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
-
-		//RESET
-		resetView();
-	}
-
-	/*
 	 * onclick of the done button
 	 */
 	public void onClickDone(View v) {
@@ -276,8 +278,10 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//reset the date
 		resetDate();
 		//turn the switch off and remove the reminder layout
-		reminderSwitch.setChecked(false);
-		reminderLinearLayout.removeAllViews();
+		if(reminderSwitch.isChecked() == true){
+			reminderLinearLayout.removeAllViews();
+			reminderSwitch.setChecked(false);		
+		}
 	}
 
 }
