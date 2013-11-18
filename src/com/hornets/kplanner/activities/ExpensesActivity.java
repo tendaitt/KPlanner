@@ -125,14 +125,12 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void onClickAdd(View v) {
 
-		//retrive the values
+		//Retrive the values
 		String name = edittextName.getText().toString();
 		String type = spinnerType.getSelectedItem().toString();
 		String amount = edittextAmount.getText().toString();
 		String date = Integer.toString(DAY + MONTH + YEAR);
 
-//		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
-		
 		if(name.isEmpty())
 		{
 			Toast.makeText(getApplicationContext(), 
@@ -148,7 +146,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			Toast.makeText(getApplicationContext(), 
 					"Please enter an amount.", Toast.LENGTH_SHORT).show();
 		}
-		else
+		else //all input fields are filled
 		{
 			//ADD INPUT TO DATABASE
 			//map of values
@@ -158,6 +156,11 @@ implements DatePickerFragment.DatePickerDialogListener{
 			values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
 			values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
 
+			//DO SOMETHING WITH THE REMINDER
+
+
+			//toast
+			Toast.makeText(getApplicationContext(), "Expense added", Toast.LENGTH_SHORT).show();
 			//RESET
 			resetView();
 		}
@@ -167,7 +170,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 * onclick of the reminders switch
 	 */
 	public void onSwitchClicked(View v) {
-		//test
 
 		reminderLinearLayout = (LinearLayout) findViewById(R.id.expneses_linearayout_reminderentry);
 
@@ -175,7 +177,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 			//switch is turned on
 
 			//ADD REMINDER INPUT LAYOUT ELEMENTS
-
 			//define elements
 			final TextView numberEdit = new TextView(this);
 			Button minusButton = new Button(this);
@@ -296,7 +297,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 		edittextName.setText("");
 		edittextAmount.setText("");
 		spinnerType.setSelection(0);
-		
+
 		//reset the date
 		resetDate();
 		//turn the switch off and remove the reminder layout

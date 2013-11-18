@@ -12,7 +12,7 @@
     <string name="exit">Exit</string>
 
     <!-- Expenses -->
-    <string name="title_activity_expenses">Expenses</string>
+    <string name="title_activity_expenses">Enter Expense</string>
     <string name="expenses_edit_name"> Name</string>
     <string name="expenses_edit_amount"> Amount </string>
     <string name="expenses_text_dollarsign"> $ </string>
@@ -27,15 +27,19 @@
     <string name="expeneses_weeksButton_radio"> Week </string>
     <string-array name="expense_type_array">
         <item>Select type</item>
-        <item>Rent</item>
-        <item>Utilities</item>
+        <item>Food</item>
         <item>Entertainment</item>
-        <item>Insurance</item>
         <item>Transportation</item>
+        <item>Clothes</item>
+        <item>Misc</item>
+        <item>Medical</item>
+        <item>Utilities</item>
+        <item>Rent</item>
+        <item>Insurance</item>
     </string-array>
 
     <!-- Income -->
-    <string name="title_activity_income">Income</string>
+    <string name="title_activity_income">Enter Income</string>
     <string name="income_enter_hour_button">Hours</string>
     <string name="income_enter_rate_button">Rate</string>
     <string name="on_campus_radio_button">On Campus</string>
@@ -59,7 +63,6 @@
 
     <!-- Edit -->
     <string name="title_activity_edit">EditActivity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="title_activity_how_much">HowMuch</string>
 
