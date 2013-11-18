@@ -26,6 +26,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -124,22 +125,43 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void onClickAdd(View v) {
 
-		//ADD INPUT TO DATABASE
-		//retrive the values
+		//toast that will be displayed
+		Toast toast;
+
+		//Retrieve the values
 		String name = edittextName.getText().toString();
 		String type = spinnerType.getSelectedItem().toString();
 		String amount = edittextAmount.getText().toString();
 		String date = Integer.toString(DAY + MONTH + YEAR);
 
-		//map of values
-		ContentValues values = new ContentValues();
-		values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
-		values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
+		if(name == null)
+		{
+			toast = Toast.makeText(getApplicationContext(), "Please enter a name.", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		else if(type == "Select a type")
+		{
+			toast = Toast.makeText(getApplicationContext(), "Please select a type.", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		else if(amount == null)
+		{
+			toast = Toast.makeText(getApplicationContext(), "Please enter an amount.", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		else
+		{
+			//ADD INPUT TO DATABASE
+			//map of values
+			ContentValues values = new ContentValues();
+			values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
+			values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
+			values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
+			values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
 
-		//RESET
-		resetView();
+			//RESET
+			resetView();
+		}
 	}
 
 	/*
