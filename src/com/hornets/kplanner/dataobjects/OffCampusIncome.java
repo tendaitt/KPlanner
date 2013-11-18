@@ -4,7 +4,8 @@ import java.sql.Timestamp;
 
 public class OffCampusIncome extends Income{
 
-	private double amount =0;
+	private double amount = 0.0;
+	
 	public OffCampusIncome(Timestamp date, String rate, String hours) {
 		super(date, rate, hours);
 	}
