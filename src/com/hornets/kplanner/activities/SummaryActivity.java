@@ -1,18 +1,25 @@
 package com.hornets.kplanner.activities;
 
 
+import java.util.ArrayList;
+
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.dataobjects.DbEntryConverter;
+import com.hornets.kplanner.dataobjects.Expense;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /** 
  * 
  * @author Rana Hayajneh
- * @version Nov 14, 2013
+ * @author Mehmet Kologlu
+ * @version Nov 18, 2013
  *
  */
 public class SummaryActivity extends Activity {
@@ -21,31 +28,68 @@ public class SummaryActivity extends Activity {
 	private TextView offCampusView;
 	private TextView otherIncomeView;
 	private DbEntryConverter converter;
+	private ArrayList<Expense> expenseArray;
+	private LinearLayout expenseLinearLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_summary);
-		
-		onCampusView = (TextView) findViewById(R.id.onCampus);
-		offCampusView = (TextView) findViewById(R.id.offCampus);
-		otherIncomeView = (TextView) findViewById(R.id.others);
-		
+
+		onCampusView = (TextView) findViewById(R.id.summary_text_onCampus);
+		offCampusView = (TextView) findViewById(R.id.summary_text_offCampus);
+		otherIncomeView = (TextView) findViewById(R.id.summary_text_others);
+		expenseLinearLayout = (LinearLayout) findViewById(R.id.summary_linear_expenselist);
+
+		converter = new DbEntryConverter(getApplicationContext());
+
 		loadIncomeValues();
-		
+		loadExpenseValues();
 	}
 
 	private void loadIncomeValues() {
-		converter = new DbEntryConverter(getApplicationContext());
-		
+
 		//DEAL WITH NULL RETURNS
 		String onCampus = converter.getOnCampusIncome().toString();
 		String offCampus = converter.getOffCampusIncome().toString();
 		String otherIncome = converter.getOtherIncome().toString();
-		
+
 		onCampusView.setText(onCampus);
 		offCampusView.setText(offCampus);
 		otherIncomeView.setText(otherIncome);
+	}
+
+	private void loadExpenseValues() {
+		expenseArray = converter.getExpenseList();
+		
+		int i=0;
+		
+		for(Expense e: expenseArray)
+		{
+			//a row
+			LinearLayout row = new LinearLayout(getApplicationContext());
+			row.setOrientation(0);
+			
+			//the name of the expense
+			TextView name = new TextView(getApplicationContext());
+			name.setText(e.getName());
+			TextView type = new TextView(getApplicationContext());
+			type.setText(e.getType());
+			TextView date = new TextView(getApplicationContext());
+			type.setText(e.getDate());
+			TextView amount = new TextView(getApplicationContext());
+			type.setText(e.getAmount());
+			
+			row.addView(name);
+			row.addView(type);
+			row.addView(date);
+			row.addView(amount);
+			
+			i++;
+			
+			expenseLinearLayout.addView(row);			
+		}
+		Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -54,68 +98,4 @@ public class SummaryActivity extends Activity {
 		getMenuInflater().inflate(R.menu.summary, menu);
 		return true;
 	}
-	
-	/*public String printDb()
-	{
-	KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(this);
-	SQLiteDatabase dbase = dbHelper.getReadableDatabase();
-	
-	String[] projection = {
-<<<<<<< HEAD
-	KPlannerEntry.COLUMN_INCOME,
-	KPlannerEntry.COLUMN_EXPENSES
-=======
-	KPlannerEntry.COLUMN_USER_NAME,
-	KPlannerEntry.COLUMN_PASSWORD
->>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
-	//KPlannerEntry.Column_saved_data
-	};
- 
-	//how to sort results
-<<<<<<< HEAD
-	// sorting data
-	try {
-		String sortOrder = KPlannerSQLHelper.COLUMN_NAME_CT + " DESC";
-
-		Cursor c = dbase.query(KPlannerSQLHelper.TABLE_NAME, projection, null, null,
-				null, null, sortOrder);
-
-		StringBuilder sb = new StringBuilder();
-		c.moveToFirst();
-		for (String i : c.getColumnNames()) {
-			sb.append(i);
-			sb.append("|");
-		}
-		sb.append("\n");
-
-		while (!c.isAfterLast()) {
-			sb.append(c.getString(0));
-			sb.append("|");
-			for (int i = 1; i < 3; i++) {
-				sb.append(c.getInt(i));
-				sb.append("|");
-			}
-			sb.append(c.getString(3));
-			sb.append("\n");
-			c.moveToNext();
-		}
-		return sb.toString();
-	} catch (Exception e) {
-		return "data is empty";
-	}
-}
-
-public void viewdb(View v) {
-	((TextView) findViewById(R.id.view)).setTextSize(15);
-	((TextView) findViewById(R.id.view)).setText(" " + this.printDb());
-}
-=======
-	try{
-		String sortedOrder="";
-	}
-	
-	
-	}
->>>>>>> a9a3d7a19600476f4eac76e9c1af4862e2c0f40a
-*/
 }

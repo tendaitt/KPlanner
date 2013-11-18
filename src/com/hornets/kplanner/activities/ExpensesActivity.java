@@ -155,6 +155,9 @@ implements DatePickerFragment.DatePickerDialogListener{
 			values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
 			values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
 			values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
+			
+			//Insert the new row
+			db.insert(KPlannerEntry.EXPENSE_TABLE_NAME, null, values);
 
 			//DO SOMETHING WITH THE REMINDER
 
