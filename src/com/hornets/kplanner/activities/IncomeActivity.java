@@ -1,7 +1,10 @@
 package com.hornets.kplanner.activities;
 
+import java.util.Calendar;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -11,23 +14,34 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hornets.kplanner.R;
-import com.hornets.kplanner.database.KPlannerSQLHelper;
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
+import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.fragments.DatePickerFragment;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
 
 @SuppressLint("ShowToast")
-public class IncomeActivity extends FragmentActivity implements HourPickerFragment.IHourPickerListener, RatePickerFragment.IRatePickerListener{
+public class IncomeActivity extends FragmentActivity implements DatePickerFragment.DatePickerDialogListener, HourPickerFragment.IHourPickerListener, RatePickerFragment.IRatePickerListener{
 	private RadioButton onCampusRadioButton;
 	private RadioButton offCampusRadioButton;
 	private RadioButton otherIncomeButton;
 	private TextView hourView;
 	private TextView rateView;
+	private Button dateBtn;
+	private int currentYear;
+	private int currentMonth;
+	private int currentDay;
+	private Calendar c;
+
+	public static int YEAR;
+	public static int MONTH;
+	public static int DAY;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +54,29 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		otherIncomeButton = (RadioButton) findViewById(R.id.otherIncomeButton);
 		hourView = (TextView) findViewById(R.id.incomeHoursView);
 		rateView = (TextView) findViewById(R.id.ratesView);
+		dateBtn = (Button) findViewById(R.id.income_button_datepicker);
 
 
+		//get a calendar
+		c = Calendar.getInstance();
+		currentYear = c.get(Calendar.YEAR);
+		currentMonth = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
+		currentDay = c.get(Calendar.DAY_OF_MONTH);
+		resetDate();
 
+		//update the date picker button to display the date which is the current date
+		updateDateButtonText();
+
+	}
+	private void updateDateButtonText() {
+		dateBtn.setText(MONTH + "/" + DAY + "/" + YEAR);
+
+	}
+	private void resetDate() {
+		YEAR = currentYear;
+		MONTH = currentMonth;
+		DAY = currentDay;
+		updateDateButtonText();		
 	}
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -121,6 +155,16 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 
 	}
 
+	public void showDatePickerDialog(View v){
+		DatePickerFragment datePickerFragment = new DatePickerFragment();
+		datePickerFragment.show(getSupportFragmentManager(), "datePicker");
+	}
+
+	public void done(View view){
+		Intent goHome = new Intent(this, HomeActivity.class);
+		startActivity(goHome);
+
+	}
 	public void onSave(View view) {		
 
 		if(onCampusRadioButton.isChecked()){
@@ -140,14 +184,15 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		Toast toast = Toast.makeText(getApplicationContext(),"Saved!", 2);
 		toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
 		toast.show();
+		//This toast is displayed even when no radio box is checked
 	}
 
 	public void updateDB(String type){
 		//retrive the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		
-		
+
+
 		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -156,7 +201,7 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 			db.execSQL("DELETE FROM " + KPlannerEntry.INCOME_TABLE_NAME +
 					" WHERE " + KPlannerEntry.INCOME_COLUMN_TYPE +" = '" + type+"';");
 		}
-		
+
 		//map of values
 		ContentValues values = new ContentValues();
 		values.put(KPlannerEntry.INCOME_COLUMN_TYPE, type);
@@ -172,5 +217,15 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 
 
 	}
+	@Override
+	public void onDateSelect(DialogFragment dialog, int year, int monthOfYear,
+			int dayOfMonth) {
+		YEAR = year;
+		MONTH = monthOfYear;
+		DAY = dayOfMonth;
+		updateDateButtonText();
+	}
+
+
 
 }

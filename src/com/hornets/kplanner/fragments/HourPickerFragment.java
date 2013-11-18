@@ -40,6 +40,7 @@ public class HourPickerFragment extends DialogFragment {
                     + " must implement IHourPickerListener");
         }
     }
+	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState){
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -59,6 +60,7 @@ public class HourPickerFragment extends DialogFragment {
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int id) {
 				HourPickerFragment.this.getDialog().cancel();
 			}
