@@ -3,8 +3,12 @@ package com.hornets.kplanner.activities;
 import java.util.Calendar;
 
 import com.hornets.kplanner.R;
+import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,13 +23,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version October 28 2013
+ * @version November 17 2013
  *
  */
 
@@ -41,9 +46,12 @@ implements DatePickerFragment.DatePickerDialogListener{
 	Switch reminderSwitch;
 	EditText edittextName;
 	EditText edittextAmount;
+	Spinner spinnerType;
 	
+	SQLiteDatabase db;
+
 	Calendar c;
-	
+
 	int currentYear;
 	int currentMonth;
 	int currentDay;
@@ -58,6 +66,12 @@ implements DatePickerFragment.DatePickerDialogListener{
 		reminderSwitch = (Switch) findViewById(R.id.expenses_switch_reminder);
 		edittextName = (EditText) findViewById(R.id.expenses_edit_name);
 		edittextAmount = (EditText) findViewById(R.id.expenses_edit_amount);
+		spinnerType = (Spinner) findViewById(R.id.expenses_spinner_type);
+
+		//initialize & open database
+		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), "EXPENSES", null, 0);
+		db = dbHelper.getWritableDatabase();
+
 
 		//get a calendar
 		c = Calendar.getInstance();
@@ -192,6 +206,18 @@ implements DatePickerFragment.DatePickerDialogListener{
 	public void onClickAdd(View v) {
 
 		//ADD INPUT TO DATABASE
+		//retrive the values
+		String name = edittextName.getText().toString();
+		String type = spinnerType.getSelectedItem().toString();
+		String amount = edittextAmount.getText().toString();
+		String date = Integer.toString(DAY + MONTH + YEAR);
+
+		//map of values
+		ContentValues values = new ContentValues();
+		values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
+		values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
 
 		//RESET
 		resetView();
@@ -201,6 +227,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 * onclick of the done button
 	 */
 	public void onClickDone(View v) {
+		db.close();
 		NavUtils.navigateUpFromSameTask(this);
 	}
 
@@ -211,7 +238,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 	{
 		dateBtn.setText(MONTH + "/" + DAY + "/" + YEAR);
 	}
-	
+
 	/*
 	 * sets the text of the pick a date button to the current date
 	 */
@@ -239,7 +266,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 	}
 
 	/*
-	 * 
+	 * removes all the values entered
 	 */
 	public void resetView() {
 		//clear the data entered

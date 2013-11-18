@@ -140,6 +140,7 @@ public class IncomeActivity extends FragmentActivity implements HourPickerFragme
 		Toast toast = Toast.makeText(getApplicationContext(),"Saved!", 2);
 		toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
 		toast.show();
+		//This toast is displayed even when no radio box is checked
 	}
 
 	public void updateDB(String type){
