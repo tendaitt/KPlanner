@@ -26,6 +26,7 @@
     <string name="expeneses_daysButton_radio"> Day </string>
     <string name="expeneses_weeksButton_radio"> Week </string>
     <string-array name="expense_type_array">
+        <item>Select type</item>
         <item>Rent</item>
         <item>Utilities</item>
         <item>Entertainment</item>

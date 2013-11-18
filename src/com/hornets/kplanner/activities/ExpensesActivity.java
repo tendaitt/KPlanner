@@ -125,29 +125,28 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 */
 	public void onClickAdd(View v) {
 
-		//toast that will be displayed
-		Toast toast;
-
-		//Retrieve the values
+		//retrive the values
 		String name = edittextName.getText().toString();
 		String type = spinnerType.getSelectedItem().toString();
 		String amount = edittextAmount.getText().toString();
 		String date = Integer.toString(DAY + MONTH + YEAR);
 
-		if(name == null)
+//		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
+		
+		if(name.isEmpty())
 		{
-			toast = Toast.makeText(getApplicationContext(), "Please enter a name.", Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(getApplicationContext(), 
+					"Please enter a name.", Toast.LENGTH_SHORT).show();
 		}
-		else if(type == "Select a type")
+		else if(type.equals("Select type"))
 		{
-			toast = Toast.makeText(getApplicationContext(), "Please select a type.", Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(getApplicationContext(), 
+					"Please select a type.", Toast.LENGTH_SHORT).show();
 		}
-		else if(amount == null)
+		else if(amount.isEmpty())
 		{
-			toast = Toast.makeText(getApplicationContext(), "Please enter an amount.", Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(getApplicationContext(), 
+					"Please enter an amount.", Toast.LENGTH_SHORT).show();
 		}
 		else
 		{
@@ -296,7 +295,8 @@ implements DatePickerFragment.DatePickerDialogListener{
 		//clear the data entered
 		edittextName.setText("");
 		edittextAmount.setText("");
-
+		spinnerType.setSelection(0);
+		
 		//reset the date
 		resetDate();
 		//turn the switch off and remove the reminder layout
