@@ -17,7 +17,6 @@ import com.hornets.kplanner.R;
  * 
  * @author Rana Hayajneh
  * @version Oct 30, 2013
-<<<<<<< HEAD
  * 
  *          EditActivity allows the user to access their saved data and change
  *          it or delete it.
@@ -85,4 +84,7 @@ public class EditActivity extends Activity {
 		Intent intent = new Intent(this, ExpensesActivity.class);
 		startActivity(intent);
 	}
+	
+	//view all entries 
+	
 }
