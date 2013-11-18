@@ -17,6 +17,6 @@ public class OnCampusIncome extends Income{
 	@Override
 	public String toString(){
 		
-		return "On Campus Income:"+'\t'+ this.getRate()+'\n';
+		return "On Campus Income:"+'\t'+ amount+'\n';
 	}
 }
