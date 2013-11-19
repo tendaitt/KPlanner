@@ -8,10 +8,6 @@ public class OnCampusIncome extends Income{
 	public OnCampusIncome(String date, String rate, String hours,String recurrence) {
 		super(date, rate, hours,recurrence);
 	}
-
-	public double getAmount(){
-		return amount;
-	}
 	
 	@Override
 	public String toString(){

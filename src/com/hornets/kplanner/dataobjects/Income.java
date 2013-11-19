@@ -1,12 +1,12 @@
 package com.hornets.kplanner.dataobjects;
 
-
 public abstract class Income {
 
 	private String date;
 	private String rate;
 	private String hours;
 	private String recurrence;
+	private double amount;
 
 	public Income(String date, String rate, String hours, String recurrence) {
 
@@ -14,6 +14,7 @@ public abstract class Income {
 		this.rate = rate;
 		this.hours = hours;
 		this.recurrence = recurrence;
+		amount = 0.0;
 	}
 
 	public String getDate() {
@@ -32,12 +33,20 @@ public abstract class Income {
 	public double getRate() {
 		return Double.parseDouble(rate);
 	}
+	
+	public double getAmount(){
+		long currentTime= System.currentTimeMillis();
+		double payDate = 
+		return amount;
+		
+	}
 
 	public String getSummary() {
 
-		return new String("Type:" + '\t' + "Off Campus" + '\n' + "Rate: "
-				+ '\t' + this.getRate() + '\n' + "Hours: " + '\t'
-				+ this.getHours() + '\n' + "Recurrence: " + '\n' + this.getRecurrence()
-				+ '\n');
+		return new String("Type: " + '\t' + "Off Campus" + '\n' + 
+						  "Rate: "+ '\t'  + this.getRate() + '\n'+
+						  "Hours: " + '\t'+ this.getHours() + '\n'+ 
+						  "Recurrence: " + '\t' + this.getRecurrence()+ '\n'+
+						  "Total: " + '\t' + this.getAmount() +'\n');
 	}
 }

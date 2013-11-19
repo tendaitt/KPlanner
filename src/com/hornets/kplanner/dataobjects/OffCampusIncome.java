@@ -9,15 +9,6 @@ public class OffCampusIncome extends Income {
 		super(date, rate, hours, recurrence);
 	}
 
-	public double getAmount() {
-		// get current date
-		// get previous date
-		// check two week schedule
-		// calculate amount
-
-		return amount;
-	}
-
 	@Override
 	public String toString() {
 

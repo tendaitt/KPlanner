@@ -1,6 +1,10 @@
 package com.hornets.kplanner.activities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -214,10 +218,18 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		//retrieve the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		String date = ""+YEAR+"/" +MONTH +"/"+DAY;
+		String input = MONTH+" "+DAY+" "+YEAR;
+
 		String recurrence = recurrenceSpinner.getSelectedItem().toString();
-
-
+		
+		Date enterDate;
+		String date = "";
+		try {
+			enterDate = new SimpleDateFormat("MM dd yyyy", Locale.ENGLISH).parse(input);
+			date  = enterDate.getTime()+"";
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
