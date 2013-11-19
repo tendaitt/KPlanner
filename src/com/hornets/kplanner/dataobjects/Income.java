@@ -1,27 +1,29 @@
 package com.hornets.kplanner.dataobjects;
 
+import android.util.Log;
+
 public abstract class Income {
 
-	private String date;
-	private String rate;
-	private String hours;
+	private long payDate;
+	private double rate;
+	private double hours;
 	private String recurrence;
 	private double amount;
 
-	public Income(String date, String rate, String hours, String recurrence) {
+	public Income(String payDate, String rate, String hours, String recurrence) {
 
-		this.date = date;
-		this.rate = rate;
-		this.hours = hours;
+		this.payDate = Long.parseLong(payDate);
+		this.rate = Double.parseDouble(rate);
+		this.hours = Double.parseDouble(hours);
 		this.recurrence = recurrence;
 		amount = 0.0;
 	}
 
-	public String getDate() {
-		return date;
+	public long getpayDate() {
+		return payDate;
 	}
 
-	public String getHours() {
+	public double getHours() {
 		// Integer myHour = new Integer(hours);
 		return hours;
 	}
@@ -31,12 +33,37 @@ public abstract class Income {
 	}
 
 	public double getRate() {
-		return Double.parseDouble(rate);
+		return rate;
 	}
 	
 	public double getAmount(){
+		
 		long currentTime= System.currentTimeMillis();
-		double payDate;
+		long timeElapsed = currentTime - payDate;
+		Log.i("Current Time", ""+currentTime);
+		Log.i("Pay Date", ""+payDate);
+		Log.i("Time Elapse", ""+timeElapsed);
+		int weeks = (int) (timeElapsed / (1000*60*60*24*7));
+		
+		//calculate the amount money in a week
+		long weeklyAmount = (long) Math.floor(rate*hours);
+		long monthlyAmount = 4 * weeklyAmount;
+		long fortnightAmount = 2*weeklyAmount;
+		int numPeriods;
+		
+		//calculate amount of money they have
+		
+		if(recurrence.equalsIgnoreCase("Bi-Weekly")){
+			amount = Math.floor(weeklyAmount*weeks);
+		}
+		else if(recurrence.equalsIgnoreCase("monthly")){
+			numPeriods = weeks/4;
+			amount = numPeriods * monthlyAmount;
+		}
+		else{
+			numPeriods = weeks/2;
+			amount = numPeriods * fortnightAmount;
+		}
 		return amount;
 		
 	}
@@ -47,6 +74,6 @@ public abstract class Income {
 						  "Rate: "+ '\t'  + this.getRate() + '\n'+
 						  "Hours: " + '\t'+ this.getHours() + '\n'+ 
 						  "Recurrence: " + '\t' + this.getRecurrence()+ '\n'+
-						  "Total: " + '\t' + this.getAmount() +'\n');
+						  "Total: " + '\t' +"$"+ this.getAmount() +'\n');
 	}
 }

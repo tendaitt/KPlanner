@@ -46,7 +46,6 @@
     <string name="rate">0.00</string>
       <string-array name="income_recurrence_array">
         <item>Recurrence</item>
-        <item>Daily</item>
         <item>Weekly</item>
         <item>Bi-Weekly</item>
         <item>Monthly</item>

@@ -13,6 +13,6 @@ public class OtherIncome extends Income {
 	@Override
 	public String toString(){
 
-		return "Other Income:"+'\t'+ amount+'\n';
+		return "Other Income:"+'\t'+ this.getAmount()+'\n';
 	}
 }
