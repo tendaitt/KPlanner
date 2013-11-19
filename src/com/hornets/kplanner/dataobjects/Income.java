@@ -36,7 +36,7 @@ public abstract class Income {
 	
 	public double getAmount(){
 		long currentTime= System.currentTimeMillis();
-		double payDate = 
+		double payDate;
 		return amount;
 		
 	}
