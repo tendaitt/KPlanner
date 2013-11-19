@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.dataobjects.DbEntryConverter;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
@@ -40,10 +41,11 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 	private int currentDay;
 	private Calendar c;
 	private String type;
-
+	private Intent editIntent;
 	public static int YEAR;
 	public static int MONTH;
 	public static int DAY;
+	public DbEntryConverter converter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,13 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		initializeCalendar();
 	}
 	private void checkEdit() {
+		editIntent = getIntent();
+		try{
+			converter = new DbEntryConverter(getApplicationContext());
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
 		
 	}
 	private void initializeCalendar() {
@@ -191,6 +200,9 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		}
 		else if(rateView.getText().toString().equals("0.00")){
 			Toast.makeText(getApplicationContext(), "Please enter rate!", 4).show();
+		}
+		else if(recurrenceSpinner.getSelectedItem().equals("Recurrence")){
+			Toast.makeText(getApplicationContext(), "Please select recurrence!",4).show();
 		}
 		else{
 			updateDB(type);
