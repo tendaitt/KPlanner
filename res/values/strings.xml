@@ -48,6 +48,13 @@
     <string name="save_income_button">Save</string>
     <string name="hours">0</string>
     <string name="rate">0.00</string>
+      <string-array name="income_recurrence_array">
+        <item>Recurrence</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Bi-Weekly</item>
+        <item>Monthly</item>
+    </string-array>
 
     <!-- Fragments -->
     <string name="ok">OK</string>

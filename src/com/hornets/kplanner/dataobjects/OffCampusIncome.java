@@ -1,13 +1,12 @@
 package com.hornets.kplanner.dataobjects;
 
-import java.sql.Timestamp;
 
 public class OffCampusIncome extends Income {
 
 	private double amount = 0.0;
 
-	public OffCampusIncome(Timestamp date, String rate, String hours) {
-		super(date, rate, hours);
+	public OffCampusIncome(String date, String rate, String hours, String recurrence) {
+		super(date, rate, hours, recurrence);
 	}
 
 	public double getAmount() {

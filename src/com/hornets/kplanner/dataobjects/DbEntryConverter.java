@@ -1,6 +1,5 @@
 package com.hornets.kplanner.dataobjects;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -57,13 +56,14 @@ public class DbEntryConverter {
 	public OtherIncome getOtherIncome(){
 		OtherIncome otherIncome = null;
 		//Columns required
-				String[] projection = {
-						BaseColumns._ID,
-						KPlannerEntry.INCOME_COLUMN_TYPE,
-						KPlannerEntry.INCOME_COLUMN_HOUR,
-						KPlannerEntry.INCOME_COLUMN_RATE,
-						KPlannerEntry.TIMESTAMP
-				};
+		String[] projection = {
+				BaseColumns._ID,
+				KPlannerEntry.INCOME_COLUMN_TYPE,
+				KPlannerEntry.INCOME_COLUMN_HOUR,
+				KPlannerEntry.INCOME_COLUMN_RATE,
+				KPlannerEntry.INCOME_COLUMN_DATE,
+				KPlannerEntry.INCOME_COLUMN_RECURRENCE,
+		};
 
 				String sortOrder = BaseColumns._ID + " DESC";
 				Cursor c = db.query(
@@ -76,9 +76,10 @@ public class DbEntryConverter {
 				while(!c.isAfterLast()){
 					if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("other")){
 						
-					otherIncome = new OtherIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+					otherIncome = new OtherIncome(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_DATE)),
 							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
-							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
+							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)),
+							c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RECURRENCE)));
 						
 					}
 					c.moveToNext();
@@ -95,7 +96,8 @@ public class DbEntryConverter {
 				KPlannerEntry.INCOME_COLUMN_TYPE,
 				KPlannerEntry.INCOME_COLUMN_HOUR,
 				KPlannerEntry.INCOME_COLUMN_RATE,
-				KPlannerEntry.TIMESTAMP
+				KPlannerEntry.INCOME_COLUMN_DATE,
+				KPlannerEntry.INCOME_COLUMN_RECURRENCE,
 		};
 
 		String sortOrder = BaseColumns._ID + " DESC";
@@ -108,10 +110,10 @@ public class DbEntryConverter {
 		while(!c.isAfterLast()){
 			if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("on")){
 				
-			onCampusIncome = new OnCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+			onCampusIncome = new OnCampusIncome(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_DATE)),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
-					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
-				
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RECURRENCE)));
 			}
 			c.moveToNext();
 		}
@@ -127,7 +129,8 @@ public class DbEntryConverter {
 				KPlannerEntry.INCOME_COLUMN_TYPE,
 				KPlannerEntry.INCOME_COLUMN_HOUR,
 				KPlannerEntry.INCOME_COLUMN_RATE,
-				KPlannerEntry.TIMESTAMP
+				KPlannerEntry.INCOME_COLUMN_DATE,
+				KPlannerEntry.INCOME_COLUMN_RECURRENCE,
 		};
 
 		String sortOrder = BaseColumns._ID + " DESC";
@@ -140,14 +143,14 @@ public class DbEntryConverter {
 		while(!c.isAfterLast()){
 			if(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_TYPE)).equalsIgnoreCase("off")){
 				
-			offCampusIncome = new OffCampusIncome(Timestamp.valueOf(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.TIMESTAMP))),
+			offCampusIncome = new OffCampusIncome(c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_DATE)),
 					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RATE)), 
-					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)));
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_HOUR)),
+					c.getString(c.getColumnIndexOrThrow(KPlannerEntry.INCOME_COLUMN_RECURRENCE)));
 				
 			}
 			c.moveToNext();
 		}
-		
 		return offCampusIncome;
 	}
 

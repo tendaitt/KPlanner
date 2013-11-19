@@ -1,28 +1,32 @@
 package com.hornets.kplanner.dataobjects;
 
-import java.sql.Timestamp;
 
 public abstract class Income {
 
-	private Timestamp date;
+	private String date;
 	private String rate;
-	@SuppressWarnings("unused")
 	private String hours;
+	private String recurrence;
 
-	public Income(Timestamp date, String rate, String hours) {
+	public Income(String date, String rate, String hours, String recurrence) {
 
 		this.date = date;
 		this.rate = rate;
 		this.hours = hours;
+		this.recurrence = recurrence;
 	}
 
-	public Timestamp getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public int getHours() {
+	public String getHours() {
 		// Integer myHour = new Integer(hours);
-		return 0;
+		return hours;
+	}
+
+	public String getRecurrence() {
+		return recurrence;
 	}
 
 	public double getRate() {
@@ -33,7 +37,7 @@ public abstract class Income {
 
 		return new String("Type:" + '\t' + "Off Campus" + '\n' + "Rate: "
 				+ '\t' + this.getRate() + '\n' + "Hours: " + '\t'
-				+ this.getHours() + '\n' + "Recurrence: " + '\n' + "Weekly"
+				+ this.getHours() + '\n' + "Recurrence: " + '\n' + this.getRecurrence()
 				+ '\n');
 	}
 }

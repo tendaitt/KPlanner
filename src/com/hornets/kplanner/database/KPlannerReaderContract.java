@@ -17,7 +17,9 @@ public class KPlannerReaderContract {
 			public static final String INCOME_COLUMN_TYPE = "type";
 			public static final String INCOME_COLUMN_RATE = "rate";
 			public static final String INCOME_COLUMN_HOUR = "hour";
-			public static final String TIMESTAMP = "date";
+			public static final String INCOME_COLUMN_DATE = "date";
+			public static final String INCOME_COLUMN_RECURRENCE = "recurrence";
+			
 			
 			//Expense table
 			public static final String EXPENSE_TABLE_NAME= "expense";
