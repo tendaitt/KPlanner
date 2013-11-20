@@ -10,13 +10,9 @@ public class OtherIncome extends Income {
 		super(date, rate, hours, recurrence);
 	}
 
-	public double getAmount(){
-		return amount;
-	}
-
 	@Override
 	public String toString(){
 
-		return "Other Income:"+'\t'+ amount+'\n';
+		return "Other Income:"+'\t'+ this.getAmount()+'\n';
 	}
 }

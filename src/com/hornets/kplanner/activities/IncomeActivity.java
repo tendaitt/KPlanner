@@ -1,6 +1,10 @@
 package com.hornets.kplanner.activities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -22,6 +26,7 @@ import android.widget.Toast;
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.database.KPlannerSQLHelper;
+import com.hornets.kplanner.dataobjects.DbEntryConverter;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
@@ -40,10 +45,11 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 	private int currentDay;
 	private Calendar c;
 	private String type;
-
+	private Intent editIntent;
 	public static int YEAR;
 	public static int MONTH;
 	public static int DAY;
+	public DbEntryConverter converter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,13 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		initializeCalendar();
 	}
 	private void checkEdit() {
+		editIntent = getIntent();
+		try{
+			converter = new DbEntryConverter(getApplicationContext());
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
 		
 	}
 	private void initializeCalendar() {
@@ -192,6 +205,9 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		else if(rateView.getText().toString().equals("0.00")){
 			Toast.makeText(getApplicationContext(), "Please enter rate!", 4).show();
 		}
+		else if(recurrenceSpinner.getSelectedItem().equals("Recurrence")){
+			Toast.makeText(getApplicationContext(), "Please select recurrence!",4).show();
+		}
 		else{
 			updateDB(type);
 			Toast.makeText(getApplicationContext(),"Saved!", 2).show();
@@ -202,10 +218,18 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		//retrieve the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		String date = ""+YEAR+"/" +MONTH +"/"+DAY;
+		String input = MONTH+" "+DAY+" "+YEAR;
+
 		String recurrence = recurrenceSpinner.getSelectedItem().toString();
-
-
+		
+		Date enterDate;
+		String date = "";
+		try {
+			enterDate = new SimpleDateFormat("MM dd yyyy", Locale.ENGLISH).parse(input);
+			date  = enterDate.getTime()+"";
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
