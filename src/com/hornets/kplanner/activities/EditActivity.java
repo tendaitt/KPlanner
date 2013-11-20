@@ -1,10 +1,13 @@
 package com.hornets.kplanner.activities;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.dataobjects.DbEntryConverter;
+import com.hornets.kplanner.dataobjects.Expense;
 
 /**
  * 
@@ -29,6 +33,8 @@ public class EditActivity extends Activity {
 	private TextView offCampusView;
 	private TextView otherIncomeView;
 	private DbEntryConverter converter;
+	private ArrayList<Expense> expenseArray;
+	private LinearLayout expenseLinearLayout;
 
 	public static boolean editOnCampus = false;
 	public static boolean editOffCampus = false;
@@ -51,6 +57,7 @@ public class EditActivity extends Activity {
 		onCampusView = (TextView) findViewById(R.id.onCampus);
 		offCampusView = (TextView) findViewById(R.id.offCampus);
 		otherIncomeView = (TextView) findViewById(R.id.other);
+		expenseLinearLayout = (LinearLayout) findViewById(R.id.view_linear_expense);
 
 		//instantiate the converter
 		converter = new DbEntryConverter(getApplicationContext());
@@ -58,20 +65,46 @@ public class EditActivity extends Activity {
 		tabHost.setup();
 		switchTabs(tabHost);
 
-		loadIncomTextView();
-		loadExpensesTextView();
+		loadIncomeTextView();
+		loadExpensesList();
 
 	}
 
-	private void loadExpensesTextView() {
+	private void loadExpensesList() {
+		expenseArray = converter.getExpenseList();
 
+		if(! (expenseArray.isEmpty()))
+		{
+			for(Expense e: expenseArray)
+			{
+				//a row
+				LinearLayout row = new LinearLayout(getApplicationContext());
+				row.setOrientation(0);
 
+				TextView name = new TextView(getApplicationContext());
+				name.setText(e.getName());
+				name.setPadding(5, 5, 5, 5);
+				TextView type = new TextView(getApplicationContext());
+				type.setText(e.getType());
+				type.setPadding(5, 5, 5, 5);
+				TextView date = new TextView(getApplicationContext());
+				type.setText(e.getDate());
+				date.setPadding(5, 5, 5, 5);
+				TextView amount = new TextView(getApplicationContext());
+				type.setText("$ " + e.getAmount());
 
+				row.addView(name);
+				row.addView(type);
+				row.addView(date);
+				row.addView(amount);
+
+				expenseLinearLayout.addView(row);		
+			}
+		}
 	}
 
-	private void loadIncomTextView(){ 
+	private void loadIncomeTextView(){ 
 		try{
-
 			String onCampus = converter.getOnCampusIncome().getSummary();
 			String offCampus = converter.getOffCampusIncome().getSummary();
 			String other = converter.getOtherIncome().getSummary();
