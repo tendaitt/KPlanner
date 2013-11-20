@@ -37,58 +37,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/onCampus"
+<TextView
+                      android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:onClick="editOnCampus"
+                        android:clickable="true"
                         android:text="@string/onCampus"
                         android:paddingTop="10sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+  
 
-                    <TextView
-                        android:id="@+id/offCampus"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
-                        android:onClick="editOffCampus"
-                        android:text="@string/offCampus"
-                        android:paddingTop="20sp"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
 
+<TextView
+    android:id="@+id/offCampus"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="80dp"
+    android:clickable="true"
+    android:onClick="editOffCampus"
+    android:paddingTop="20sp"
+    android:text="@string/offCampus"
+    android:textSize="14sp"
+    android:textStyle="bold" />
+
+                    
                     <TextView
                         android:id="@+id/other"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="80dp"
                         android:onClick="editOther"
+                        android:clickable="true"
                         android:text="@string/other"
                         android:paddingTop="20sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-                </LinearLayout>
+               
+                   
+                    </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/Expenses"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/expenses"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:onClick="EditExpenses" />
-
-                   
+                                      
                     <ScrollView
                         android:id="@+id/view_scroll_expense"
                         android:layout_width="match_parent"
