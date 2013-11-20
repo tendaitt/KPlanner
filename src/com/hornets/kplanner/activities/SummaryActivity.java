@@ -102,4 +102,13 @@ public class SummaryActivity extends Activity {
 		getMenuInflater().inflate(R.menu.summary, menu);
 		return true;
 	}
+<<<<<<< HEAD
+	
+
+/*public void viewdb(View v) {
+	((TextView) findViewById(R.id.view)).setTextSize(15);
+	((TextView) findViewById(R.id.view)).setText(" " + this.printDb());
+}*/
+=======
+>>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
 }
