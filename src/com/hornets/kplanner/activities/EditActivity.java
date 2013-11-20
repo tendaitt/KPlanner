@@ -47,13 +47,13 @@ public class EditActivity extends Activity {
 
 		final TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 
-
-		//instantiate the converter
+		//instantiate the view elements
 		onCampusView = (TextView) findViewById(R.id.onCampus);
 		offCampusView = (TextView) findViewById(R.id.offCampus);
 		otherIncomeView = (TextView) findViewById(R.id.other);
-		converter = new DbEntryConverter(getApplicationContext());
 
+		//instantiate the converter
+		converter = new DbEntryConverter(getApplicationContext());
 
 		tabHost.setup();
 		switchTabs(tabHost);
@@ -129,7 +129,6 @@ public class EditActivity extends Activity {
 			}
 		});
 		setTabColor(tabHost);
-
 	}
 
 	public void setTabColor(TabHost tabhost) {
@@ -137,7 +136,6 @@ public class EditActivity extends Activity {
 			tabhost.getTabWidget().getChildAt(i)
 			.findViewById(android.R.id.title);
 		}
-
 	}
 
 	@Override
@@ -146,8 +144,4 @@ public class EditActivity extends Activity {
 		getMenuInflater().inflate(R.menu.edit, menu);
 		return true;
 	}
-
-	//view all entries 
-	// get an expense list, use an arrayList with an extense opject that get amount date and string
-
 }
