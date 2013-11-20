@@ -12,13 +12,12 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /** 
  * 
  * @author Rana Hayajneh
  * @author Mehmet Kologlu
- * @version Nov 18, 2013
+ * @version Nov 20, 2013
  *
  */
 public class SummaryActivity extends Activity {
@@ -73,34 +72,32 @@ public class SummaryActivity extends Activity {
 	private void loadExpenseValues() {
 		expenseArray = converter.getExpenseList();
 
-		int i=0;
-
-		for(Expense e: expenseArray)
+		if(! (expenseArray.isEmpty()))
 		{
-			//a row
-			LinearLayout row = new LinearLayout(getApplicationContext());
-			row.setOrientation(0);
+			for(Expense e: expenseArray)
+			{
+				//a row
+				LinearLayout row = new LinearLayout(getApplicationContext());
+				row.setOrientation(0);
 
-			//the name of the expense
-			TextView name = new TextView(getApplicationContext());
-			name.setText(e.getName());
-			TextView type = new TextView(getApplicationContext());
-			type.setText(e.getType());
-			TextView date = new TextView(getApplicationContext());
-			type.setText(e.getDate());
-			TextView amount = new TextView(getApplicationContext());
-			type.setText(e.getAmount());
+				//the name of the expense
+				TextView name = new TextView(getApplicationContext());
+				name.setText(e.getName());
+				TextView type = new TextView(getApplicationContext());
+				type.setText(e.getType());
+				TextView date = new TextView(getApplicationContext());
+				type.setText(e.getDate());
+				TextView amount = new TextView(getApplicationContext());
+				type.setText(e.getAmount());
 
-			row.addView(name);
-			row.addView(type);
-			row.addView(date);
-			row.addView(amount);
+				row.addView(name);
+				row.addView(type);
+				row.addView(date);
+				row.addView(amount);
 
-			i++;
-
-			expenseLinearLayout.addView(row);			
+				expenseLinearLayout.addView(row);			
+			}
 		}
-		Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
 	}
 
 	@Override
