@@ -113,7 +113,7 @@ public class EditActivity extends Activity {
 		}
 	}
 
-	private void loadIncomTextView(){ 
+	private void loadIncomeTextView(){ 
 	try{
 		
 		String onCampus = converter.getOnCampusIncome().getSummary();
