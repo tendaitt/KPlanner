@@ -14,9 +14,9 @@
         android:id="@+id/summary_text_income_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/summary_text_income_title" 
-        android:textStyle="bold"
-        android:textSize="38sp"/>
+        android:text="@string/summary_text_income_title"
+        android:textSize="38sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/summary_text_onCampus"
@@ -35,14 +35,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/summary_text_offCampus" />
-    
+
     <TextView
         android:id="@+id/summary_text_expense_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/summary_text_expense_title" 
-        android:textStyle="bold"
-        android:textSize="38sp"/>
+        android:text="@string/summary_text_expense_title"
+        android:textSize="38sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:id="@+id/summary_scroll_expenselist"
@@ -57,8 +57,4 @@
         </LinearLayout>
     </ScrollView>
 
-<<<<<<< HEAD
-</RelativeLayout>
-=======
 </LinearLayout>
->>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
