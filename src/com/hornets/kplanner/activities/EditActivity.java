@@ -76,6 +76,9 @@ public class EditActivity extends Activity {
 		String onCampus = converter.getOnCampusIncome().getSummary();
 		String offCampus = converter.getOffCampusIncome().getSummary();
 		String other = converter.getOtherIncome().getSummary();
+		onCampusView.setText(onCampus);
+		offCampusView.setText(offCampus);
+		otherIncomeView.setText(other);
 	}
 	catch(NullPointerException e)
 	{
