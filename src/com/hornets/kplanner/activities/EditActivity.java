@@ -113,18 +113,22 @@ public class EditActivity extends Activity {
 		}
 	}
 
-	private void loadIncomeTextView(){ 
-		try{
-			String onCampus = converter.getOnCampusIncome().getSummary();
-			String offCampus = converter.getOffCampusIncome().getSummary();
-			String other = converter.getOtherIncome().getSummary();
-		}
-		catch(NullPointerException e)
-		{
-			e.printStackTrace();
-		}
+	private void loadIncomTextView(){ 
+	try{
+		
+		String onCampus = converter.getOnCampusIncome().getSummary();
+		String offCampus = converter.getOffCampusIncome().getSummary();
+		String other = converter.getOtherIncome().getSummary();
+		onCampusView.setText(onCampus);
+		offCampusView.setText(offCampus);
+		otherIncomeView.setText(other);
 	}
-
+	catch(NullPointerException e)
+	{
+		e.printStackTrace();
+	}
+}
+	
 	// create an on click for textviews, and pass in the parameters 
 	public void editOnCampus(View view)
 	{
@@ -177,7 +181,7 @@ public class EditActivity extends Activity {
 	public void setTabColor(TabHost tabhost) {
 		for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
 			tabhost.getTabWidget().getChildAt(i)
-			.findViewById(android.R.id.title);
+					.findViewById(android.R.id.title);
 		}
 	}
 
