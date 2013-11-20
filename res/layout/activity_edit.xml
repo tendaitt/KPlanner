@@ -35,41 +35,39 @@
                 <LinearLayout
                     android:id="@+id/Income"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" 
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:onClick="editOffCampus"
+                        android:paddingTop="10sp"
                         android:text="OnCampus"
                         android:textSize="14sp"
-                        android:textStyle="bold" 
-                        android:paddingTop="10sp"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/offCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:onClick="editOnCampus"
+                        android:paddingTop="20sp"
                         android:text="OffCampus"
                         android:textSize="14sp"
-                        android:textStyle="bold" 
-                        android:paddingTop="20sp" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/other"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:onClick="editOther"
+                        android:paddingTop="20sp"
                         android:text="Other"
                         android:textSize="14sp"
-                        android:textStyle="bold" 
-                        android:paddingTop="20sp" />
-
+                        android:textStyle="bold" />
                 </LinearLayout>
-
 
                 <RelativeLayout
                     android:id="@+id/Expenses"
@@ -80,18 +78,17 @@
                         android:id="@+id/view_scroll_expense"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
-                        <LinearLayout 
+
+                        <LinearLayout
                             android:id="@+id/view_linear_expense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical" >
                         </LinearLayout>
-                    </ScrollView>    
-
-                   
+                    </ScrollView>
                 </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>
-<!-- R -->
+
 </RelativeLayout>
