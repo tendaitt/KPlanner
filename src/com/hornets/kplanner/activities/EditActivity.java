@@ -20,7 +20,8 @@ import com.hornets.kplanner.dataobjects.Expense;
 /**
  * 
  * @author Rana Hayajneh
- * @version Oct 30, 2013
+ * @author Mehmet Kologlu
+ * @version Nov 20, 2013
  * 
  *          EditActivity allows the user to access their saved data and change
  *          it or delete it.
@@ -44,7 +45,6 @@ public class EditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit);
-
 
 		/*
 		 * final TabWidget tabWidge = tabHost.getTabWidget(); final FrameLayout
@@ -71,39 +71,45 @@ public class EditActivity extends Activity {
 	}
 
 	private void loadExpensesList() {
+		//get the expenses array
 		expenseArray = converter.getExpenseList();
 
-		if(! (expenseArray.isEmpty()))
+		if(! (expenseArray.isEmpty())) //is there anything to display in the expense list
 		{
 			for(Expense e: expenseArray)
 			{
-				//a row
 				LinearLayout row = new LinearLayout(getApplicationContext());
 				row.setOrientation(0);
 
 				TextView summary = new TextView(getApplicationContext());
 				summary.setText(e.getSummary());
 				row.addView(summary);
-				
-//				TextView name = new TextView(getApplicationContext());
-//				name.setText(e.getName());
-//				name.setPadding(5, 5, 5, 5);
-//				TextView type = new TextView(getApplicationContext());
-//				type.setText(e.getType());
-//				type.setPadding(5, 5, 5, 5);
-//				TextView date = new TextView(getApplicationContext());
-//				type.setText(e.getDate());
-//				date.setPadding(5, 5, 5, 5);
-//				TextView amount = new TextView(getApplicationContext());
-//				type.setText("$ " + e.getAmount());
-//
-//				row.addView(name);
-//				row.addView(type);
-//				row.addView(date);
-//				row.addView(amount);
+
+				//				TextView name = new TextView(getApplicationContext());
+				//				name.setText(e.getName());
+				//				name.setPadding(5, 5, 5, 5);
+				//				TextView type = new TextView(getApplicationContext());
+				//				type.setText(e.getType());
+				//				type.setPadding(5, 5, 5, 5);
+				//				TextView date = new TextView(getApplicationContext());
+				//				type.setText(e.getDate());
+				//				date.setPadding(5, 5, 5, 5);
+				//				TextView amount = new TextView(getApplicationContext());
+				//				type.setText("$ " + e.getAmount());
+				//
+				//				row.addView(name);
+				//				row.addView(type);
+				//				row.addView(date);
+				//				row.addView(amount);
 
 				expenseLinearLayout.addView(row);		
 			}
+		}
+		else //if no expense are entered
+		{
+			TextView emptyListText = new TextView(getApplicationContext());
+			emptyListText.setText("You have no expense entered.");
+			expenseLinearLayout.addView(emptyListText);
 		}
 	}
 
