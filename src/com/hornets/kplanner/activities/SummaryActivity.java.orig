@@ -71,12 +71,23 @@ public class SummaryActivity extends Activity {
 
 	private void loadExpenseValues() {
 		expenseArray = converter.getExpenseList();
+<<<<<<< HEAD
 		
+=======
+
+		int i=0;
+
+>>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
 		for(Expense e: expenseArray)
 		{
 			//a row
 			LinearLayout row = new LinearLayout(getApplicationContext());
+<<<<<<< HEAD
 			
+=======
+			row.setOrientation(0);
+
+>>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
 			//the name of the expense
 			TextView name = new TextView(getApplicationContext());
 			name.setText(e.getName());
@@ -86,12 +97,18 @@ public class SummaryActivity extends Activity {
 			type.setText(e.getDate());
 			TextView amount = new TextView(getApplicationContext());
 			type.setText(e.getAmount());
-			
+
 			row.addView(name);
 			row.addView(type);
 			row.addView(date);
 			row.addView(amount);
+<<<<<<< HEAD
 			
+=======
+
+			i++;
+
+>>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
 			expenseLinearLayout.addView(row);			
 		}
 	}
