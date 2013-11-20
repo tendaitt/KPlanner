@@ -54,8 +54,6 @@ public class SummaryActivity extends Activity {
 
 		if(!(converter==null)){
 			try{
-
-
 				String onCampus = converter.getOnCampusIncome().toString();
 				String offCampus = converter.getOffCampusIncome().toString();
 				String otherIncome = converter.getOtherIncome().toString();
