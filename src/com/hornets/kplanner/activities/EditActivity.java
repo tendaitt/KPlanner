@@ -81,22 +81,26 @@ public class EditActivity extends Activity {
 				LinearLayout row = new LinearLayout(getApplicationContext());
 				row.setOrientation(0);
 
-				TextView name = new TextView(getApplicationContext());
-				name.setText(e.getName());
-				name.setPadding(5, 5, 5, 5);
-				TextView type = new TextView(getApplicationContext());
-				type.setText(e.getType());
-				type.setPadding(5, 5, 5, 5);
-				TextView date = new TextView(getApplicationContext());
-				type.setText(e.getDate());
-				date.setPadding(5, 5, 5, 5);
-				TextView amount = new TextView(getApplicationContext());
-				type.setText("$ " + e.getAmount());
-
-				row.addView(name);
-				row.addView(type);
-				row.addView(date);
-				row.addView(amount);
+				TextView summary = new TextView(getApplicationContext());
+				summary.setText(e.getSummary());
+				row.addView(summary);
+				
+//				TextView name = new TextView(getApplicationContext());
+//				name.setText(e.getName());
+//				name.setPadding(5, 5, 5, 5);
+//				TextView type = new TextView(getApplicationContext());
+//				type.setText(e.getType());
+//				type.setPadding(5, 5, 5, 5);
+//				TextView date = new TextView(getApplicationContext());
+//				type.setText(e.getDate());
+//				date.setPadding(5, 5, 5, 5);
+//				TextView amount = new TextView(getApplicationContext());
+//				type.setText("$ " + e.getAmount());
+//
+//				row.addView(name);
+//				row.addView(type);
+//				row.addView(date);
+//				row.addView(amount);
 
 				expenseLinearLayout.addView(row);		
 			}
