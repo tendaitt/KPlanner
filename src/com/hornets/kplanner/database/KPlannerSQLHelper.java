@@ -26,7 +26,8 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 					KPlannerEntry.INCOME_COLUMN_TYPE + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.INCOME_COLUMN_HOUR + TEXT_TYPE + COMMA_SEP +
 					KPlannerEntry.INCOME_COLUMN_RATE + TEXT_TYPE + COMMA_SEP +
-					KPlannerEntry.TIMESTAMP +" TIMESTAMP DEFAULT CURRENT_TIMESTAMP"+")";
+					KPlannerEntry.INCOME_COLUMN_DATE + TEXT_TYPE + COMMA_SEP +
+					KPlannerEntry.INCOME_COLUMN_RECURRENCE +TEXT_TYPE+")";
 	
 	//SQL command to create EXPENSE table
 	private static final String SQL_CREATE_EXPENSE=
@@ -45,8 +46,8 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 	private static final String SQL_DELETE_EXPENSE =
 			"DROP TABLE IF EXISTS " + KPlannerEntry.EXPENSE_TABLE_NAME;
 
-	private static final String DATABASE_NAME = "KPlannerUsers.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final String DATABASE_NAME = "KPlanner.db";
+	private static final int DATABASE_VERSION = 1;
 	
 	/**
 	 * @param context

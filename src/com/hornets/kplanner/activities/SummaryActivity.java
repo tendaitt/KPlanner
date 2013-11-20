@@ -1,18 +1,24 @@
 package com.hornets.kplanner.activities;
 
 
+import java.util.ArrayList;
+
 import com.hornets.kplanner.R;
 import com.hornets.kplanner.dataobjects.DbEntryConverter;
+import com.hornets.kplanner.dataobjects.Expense;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /** 
  * 
  * @author Rana Hayajneh
- * @version Nov 14, 2013
+ * @author Mehmet Kologlu
+ * @version Nov 18, 2013
  *
  */
 public class SummaryActivity extends Activity {
@@ -21,31 +27,80 @@ public class SummaryActivity extends Activity {
 	private TextView offCampusView;
 	private TextView otherIncomeView;
 	private DbEntryConverter converter;
+	private ArrayList<Expense> expenseArray;
+	private LinearLayout expenseLinearLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_summary);
-		
-		onCampusView = (TextView) findViewById(R.id.onCampus);
-		offCampusView = (TextView) findViewById(R.id.offCampus);
-		otherIncomeView = (TextView) findViewById(R.id.others);
-		
+
+		onCampusView = (TextView) findViewById(R.id.summary_text_onCampus);
+		offCampusView = (TextView) findViewById(R.id.summary_text_offCampus);
+		otherIncomeView = (TextView) findViewById(R.id.summary_text_others);
+		expenseLinearLayout = (LinearLayout) findViewById(R.id.summary_linear_expenselist);
+
+		try{
+			converter = new DbEntryConverter(getApplicationContext());
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
+
 		loadIncomeValues();
-		
+		loadExpenseValues();
 	}
 
 	private void loadIncomeValues() {
-		converter = new DbEntryConverter(getApplicationContext());
-		
-		//DEAL WITH NULL RETURNS
-		String onCampus = converter.getOnCampusIncome().toString();
-		String offCampus = converter.getOffCampusIncome().toString();
-		String otherIncome = converter.getOtherIncome().toString();
-		
-		onCampusView.setText(onCampus);
-		offCampusView.setText(offCampus);
-		otherIncomeView.setText(otherIncome);
+
+		if(!(converter==null)){
+			try{
+
+
+				String onCampus = converter.getOnCampusIncome().toString();
+				String offCampus = converter.getOffCampusIncome().toString();
+				String otherIncome = converter.getOtherIncome().toString();
+				onCampusView.setText(onCampus);
+				offCampusView.setText(offCampus);
+				otherIncomeView.setText(otherIncome);
+			}
+			catch(NullPointerException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void loadExpenseValues() {
+		expenseArray = converter.getExpenseList();
+
+		int i=0;
+
+		for(Expense e: expenseArray)
+		{
+			//a row
+			LinearLayout row = new LinearLayout(getApplicationContext());
+			row.setOrientation(0);
+
+			//the name of the expense
+			TextView name = new TextView(getApplicationContext());
+			name.setText(e.getName());
+			TextView type = new TextView(getApplicationContext());
+			type.setText(e.getType());
+			TextView date = new TextView(getApplicationContext());
+			type.setText(e.getDate());
+			TextView amount = new TextView(getApplicationContext());
+			type.setText(e.getAmount());
+
+			row.addView(name);
+			row.addView(type);
+			row.addView(date);
+			row.addView(amount);
+
+			i++;
+
+			expenseLinearLayout.addView(row);			
+		}
+		Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -54,10 +109,13 @@ public class SummaryActivity extends Activity {
 		getMenuInflater().inflate(R.menu.summary, menu);
 		return true;
 	}
+<<<<<<< HEAD
 	
 
 /*public void viewdb(View v) {
 	((TextView) findViewById(R.id.view)).setTextSize(15);
 	((TextView) findViewById(R.id.view)).setText(" " + this.printDb());
 }*/
+=======
+>>>>>>> 20da5e85f9459af7b404116300de9f34ca9d4ec2
 }
