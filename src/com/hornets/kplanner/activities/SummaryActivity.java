@@ -12,7 +12,6 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /** 
  * 
@@ -61,13 +60,10 @@ public class SummaryActivity extends Activity {
 	private void loadExpenseValues() {
 		expenseArray = converter.getExpenseList();
 		
-		int i=0;
-		
 		for(Expense e: expenseArray)
 		{
 			//a row
 			LinearLayout row = new LinearLayout(getApplicationContext());
-			row.setOrientation(0);
 			
 			//the name of the expense
 			TextView name = new TextView(getApplicationContext());
@@ -84,11 +80,8 @@ public class SummaryActivity extends Activity {
 			row.addView(date);
 			row.addView(amount);
 			
-			i++;
-			
 			expenseLinearLayout.addView(row);			
 		}
-		Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
 	}
 
 	@Override
