@@ -50,6 +50,7 @@
                         android:layout_marginTop="75dp"
                         android:onClick="editOffCampus"
                         android:text="OffCampus"
+                        android:clickable="true"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -61,6 +62,7 @@
                         android:layout_below="@+id/TextView02"
                         android:layout_marginTop="22dp"
                         android:onClick="editOnCampus"
+                        android:clickable="true"
                         android:text="OnCampus"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -73,6 +75,7 @@
                         android:layout_below="@+id/offCampus"
                         android:layout_marginTop="38dp"
                         android:onClick="editOther"
+                        android:clickable="true"
                         android:text="Other"
                         android:textSize="14sp"
                         android:textStyle="bold" />
