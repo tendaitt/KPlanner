@@ -33,7 +33,7 @@ public class EditActivity extends Activity {
 	public static boolean editOnCampus = false;
 	public static boolean editOffCampus = false;
 	public static boolean editOther = false;
-
+//rana 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
