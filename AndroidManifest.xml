@@ -38,11 +38,7 @@
             android:name="com.hornets.kplanner.activities.EditActivity"
             android:label="@string/title_activity_edit" >
         </activity>
-        <activity
-            android:name="com.hornets.kplanner.activities.SummaryActivity"
-            android:label="@string/title_activity_summary" >
-        </activity>
-        <activity
+         <activity
             android:name="com.hornets.kplanner.activities.HowMuch"
             android:label="@string/title_activity_how_much" >
         </activity>

@@ -42,26 +42,25 @@
                     android:layout_height="match_parent" >
 
                     <TextView
-                        android:id="@+id/offCampus"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/TextView02"
-                        android:layout_marginTop="75dp"
-                        android:onClick="editOffCampus"
-                        android:text="OffCampus"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
                         android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/TextView02"
                         android:layout_marginTop="22dp"
                         android:onClick="editOnCampus"
-                        android:text="OnCampus"
+                        android:text="@string/onCampus"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/offCampus"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/onCampus"
+                        android:layout_marginTop="80dp"
+                        android:onClick="editOffCampus"
+                        android:text="@string/offCampus"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -71,9 +70,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/offCampus"
-                        android:layout_marginTop="38dp"
+                        android:layout_marginTop="80dp"
                         android:onClick="editOther"
-                        android:text="Other"
+                        android:text="@string/other"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -92,7 +91,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="Expenses"
+                        android:text="@string/expenses"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:onClick="EditExpenses" />
