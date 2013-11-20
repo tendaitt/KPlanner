@@ -129,7 +129,9 @@ implements DatePickerFragment.DatePickerDialogListener{
 		String name = edittextName.getText().toString();
 		String type = spinnerType.getSelectedItem().toString();
 		String amount = edittextAmount.getText().toString();
-		String date = Integer.toString(DAY + MONTH + YEAR);
+		String date = Integer.toString(DAY) + "/" + 
+				Integer.toString(MONTH) + "/" +
+				Integer.toString(YEAR);
 
 		if(name.isEmpty())
 		{

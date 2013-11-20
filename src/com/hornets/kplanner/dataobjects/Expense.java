@@ -25,4 +25,8 @@ public class Expense {
 	public String getAmount() {
 		return amount;
 	}
+	public String getSummary() {
+		return name + " | " + type + " | " + date + " | " + "$" + amount; 
+	}
+//asdlkas;dla
 }

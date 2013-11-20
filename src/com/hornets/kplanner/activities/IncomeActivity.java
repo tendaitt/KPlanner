@@ -17,6 +17,7 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -27,6 +28,7 @@ import com.hornets.kplanner.R;
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.database.KPlannerSQLHelper;
 import com.hornets.kplanner.dataobjects.DbEntryConverter;
+import com.hornets.kplanner.dataobjects.Income;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
@@ -45,7 +47,6 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 	private int currentDay;
 	private Calendar c;
 	private String type;
-	private Intent editIntent;
 	public static int YEAR;
 	public static int MONTH;
 	public static int DAY;
@@ -58,19 +59,71 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		// Show the Up button in the action bar.
 		setupActionBar();
 		retrieveViews();
-		checkEdit();
+		converter = new DbEntryConverter(getApplicationContext());
 		//get a calendar
 		initializeCalendar();
+		checkEdit();
 	}
+	
 	private void checkEdit() {
-		editIntent = getIntent();
 		try{
-			converter = new DbEntryConverter(getApplicationContext());
+			
+		
+		Income income = null;
+		if(EditActivity.editOffCampus)
+		{
+			EditActivity.editOffCampus = false;
+			offCampusRadioButton.setChecked(true);
+			income = converter.getOnCampusIncome();
+			hourView.setText(""+income.getHours());
+			rateView.setText(""+income.getRate());
+			dateBtn.setText(getDate(income.getpayDate()));
+			
+			@SuppressWarnings("unchecked")
+			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
+			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
+			recurrenceSpinner.setSelection(spinnerPosition);
+			
+		}
+		else if(EditActivity.editOnCampus)
+		{
+			EditActivity.editOnCampus = false;
+			onCampusRadioButton.setChecked(true);
+			income = converter.getOnCampusIncome();
+			hourView.setText(""+income.getHours());
+			rateView.setText(""+income.getRate());
+			dateBtn.setText(getDate(income.getpayDate()));
+			
+			@SuppressWarnings("unchecked")
+			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
+			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
+			recurrenceSpinner.setSelection(spinnerPosition);
+		}
+		else if(EditActivity.editOther)
+		{
+			EditActivity.editOther = false;
+			otherIncomeButton.setChecked(true);
+			income = converter.getOtherIncome();
+			hourView.setText(""+income.getHours());
+			rateView.setText(""+income.getRate());
+			dateBtn.setText(getDate(income.getpayDate()));
+			
+			@SuppressWarnings("unchecked")
+			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
+			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
+			recurrenceSpinner.setSelection(spinnerPosition);
+		}
+		
 		}
 		catch(NullPointerException e){
 			e.printStackTrace();
 		}
 		
+	}
+	private String getDate(long getpayDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH); 
+		String dateString = formatter.format(new Date(getpayDate));
+		return dateString;
 	}
 	private void initializeCalendar() {
 		c = Calendar.getInstance();

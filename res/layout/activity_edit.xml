@@ -9,14 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-
     <TabHost
         android:id="@+id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,26 +27,24 @@
                 android:layout_height="wrap_content" >
             </TabWidget>
 
-
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/Income"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="22dp"
                         android:onClick="editOnCampus"
                         android:text="@string/onCampus"
+                        android:paddingTop="10sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -56,11 +52,10 @@
                         android:id="@+id/offCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/onCampus"
                         android:layout_marginTop="80dp"
                         android:onClick="editOffCampus"
                         android:text="@string/offCampus"
+                        android:paddingTop="20sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -68,16 +63,13 @@
                         android:id="@+id/other"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/offCampus"
                         android:layout_marginTop="80dp"
                         android:onClick="editOther"
                         android:text="@string/other"
+                        android:paddingTop="20sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-
-                </RelativeLayout>
-
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/Expenses"
@@ -97,6 +89,18 @@
                         android:onClick="EditExpenses" />
 
                    
+                    <ScrollView
+                        android:id="@+id/view_scroll_expense"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <LinearLayout
+                            android:id="@+id/view_linear_expense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </ScrollView>
                 </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
