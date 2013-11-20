@@ -95,7 +95,7 @@ public class SummaryActivity extends Activity {
 				row.addView(date);
 				row.addView(amount);
 
-				expenseLinearLayout.addView(row);			
+				expenseLinearLayout.addView(row);		
 			}
 		}
 	}
