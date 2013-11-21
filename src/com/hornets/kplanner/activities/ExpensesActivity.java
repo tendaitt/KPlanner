@@ -8,6 +8,7 @@ import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -42,47 +43,63 @@ implements DatePickerFragment.DatePickerDialogListener{
 	public static int MONTH;
 	public static int DAY;
 
-	Button dateBtn;
-	LinearLayout reminderLinearLayout;
-	Switch reminderSwitch;
-	EditText edittextName;
-	EditText edittextAmount;
-	Spinner spinnerType;
+	private Button dateBtn;
+	private LinearLayout reminderLinearLayout;
+	private Switch reminderSwitch;
+	private EditText edittextName;
+	private EditText edittextAmount;
+	private Spinner spinnerType;
 
-	SQLiteDatabase db;
+	private SQLiteDatabase db;
 
-	Calendar c;
+	private Calendar c;
 
-	int currentYear;
-	int currentMonth;
-	int currentDay;
+	private int currentYear;
+	private int currentMonth;
+	private int currentDay;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_expenses);
 
-		//initializing the layout elements
-		dateBtn = (Button) findViewById(R.id.expenses_button_datepicker);
-		reminderSwitch = (Switch) findViewById(R.id.expenses_switch_reminder);
-		edittextName = (EditText) findViewById(R.id.expenses_edit_name);
-		edittextAmount = (EditText) findViewById(R.id.expenses_edit_amount);
-		spinnerType = (Spinner) findViewById(R.id.expenses_spinner_type);
+		initializeLayoutElements();
+		initializeAndOpenDatabase();
+		initializeCalendar();
+		//update the date picker button to display the date which is the current date
+		updateDateButtonText();
+		
+		Bundle extras= getIntent().getExtras();
+		if(extras != null){
+			edittextName.setText(extras.getString("name"));
+			
+			//FIX THIS
+			spinnerType.setSelection(1);
+			dateBtn.setText(extras.getString("date"));
+			edittextAmount.setText(extras.getString("amount"));
+		}
+	}
 
-		//initialize & open database
-		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), "EXPENSES", null, 0);
-		db = dbHelper.getWritableDatabase();
-
-
-		//get a calendar
+	private void initializeCalendar() {
 		c = Calendar.getInstance();
 		currentYear = c.get(Calendar.YEAR);
 		currentMonth = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
 		currentDay = c.get(Calendar.DAY_OF_MONTH);
 		resetDate();
+	}
 
-		//update the date picker button to display the date which is the current date
-		updateDateButtonText();
+	private void initializeAndOpenDatabase() {
+		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), "EXPENSES", null, 0);
+		db = dbHelper.getWritableDatabase();
+	}
+
+	private void initializeLayoutElements() {
+		dateBtn = (Button) findViewById(R.id.expenses_button_datepicker);
+		reminderSwitch = (Switch) findViewById(R.id.expenses_switch_reminder);
+		edittextName = (EditText) findViewById(R.id.expenses_edit_name);
+		edittextAmount = (EditText) findViewById(R.id.expenses_edit_amount);
+		spinnerType = (Spinner) findViewById(R.id.expenses_spinner_type);
 	}
 
 	@Override
@@ -157,7 +174,7 @@ implements DatePickerFragment.DatePickerDialogListener{
 			values.put(KPlannerEntry.EXPENSE_COLUMN_TYPE, type);
 			values.put(KPlannerEntry.EXPENSE_COLUMN_DATE, date);
 			values.put(KPlannerEntry.EXPENSE_COLUMN_AMOUNT, amount);
-			
+
 			//Insert the new row
 			db.insert(KPlannerEntry.EXPENSE_TABLE_NAME, null, values);
 
@@ -249,7 +266,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 		{
 			reminderLinearLayout.removeAllViews();
 		}
-
 	}
 
 	/*

@@ -70,22 +70,16 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/Expenses"
+                    android:id="@+id/view_relative_expense"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-
-                    <ScrollView
-                        android:id="@+id/view_scroll_expense"
+                    
+                    <ListView 
+                        android:id="@+id/view_list_expense"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
-
-                        <LinearLayout
-                            android:id="@+id/view_linear_expense"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </ScrollView>
+                    </ListView>
+                   
                 </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
