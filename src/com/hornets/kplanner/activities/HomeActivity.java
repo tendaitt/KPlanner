@@ -56,12 +56,6 @@ public class HomeActivity extends Activity {
 		startActivity(intent);
 	}
 
-	// summary activity
-	public void LoadSummary(View view) {
-		Intent intent = new Intent(this, SummaryActivity.class);
-		startActivity(intent);
-	}
-
 	// HowMuch Activity
 	public void LoadHowMuch(View view) {
 		Intent intent = new Intent(this, HowMuch.class);
