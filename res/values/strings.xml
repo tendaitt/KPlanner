@@ -18,7 +18,7 @@
     <string name="expenses_text_dollarsign"> $ </string>
     <string name="expenses_text_reminder"> Reminders </string>
     <string name="expenses_button_datepicker"> Date</string>
-    <string name="expenses_button_add"> Add </string>
+    <string name="expenses_button_add"> Save </string>
     <string name="expenses_button_done"> Done </string>
     <string name="expenses_edit_reminder"> 1 </string>
     <string name="expenses_button_plus"> + </string>
@@ -36,6 +36,7 @@
         <item>Utilities</item>
         <item>Rent</item>
         <item>Insurance</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Income -->
