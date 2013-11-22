@@ -32,63 +32,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/Income"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
-<TextView
-                      android:id="@+id/onCampus"
+
+                    <TextView
+                        android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="editOnCampus"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="15dp"
                         android:clickable="true"
-                        android:text="@string/onCampus"
+                        android:onClick="editOnCampus"
                         android:paddingTop="10sp"
+                        android:text="@string/onCampus"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-  
 
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/onCampus" />
 
-<TextView
-    android:id="@+id/offCampus"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="80dp"
-    android:clickable="true"
-    android:onClick="editOffCampus"
-    android:paddingTop="20sp"
-    android:text="@string/offCampus"
-    android:textSize="14sp"
-    android:textStyle="bold" />
-
-                    
                     <TextView
                         android:id="@+id/other"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
-                        android:onClick="editOther"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="76dp"
                         android:clickable="true"
-                        android:text="@string/other"
+                        android:onClick="editOther"
                         android:paddingTop="20sp"
+                        android:text="@string/other"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-               
-                   
-                    </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/offCampus"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/other"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="86dp"
+                        android:clickable="true"
+                        android:onClick="editOffCampus"
+                        android:paddingTop="20sp"
+                        android:text="@string/offCampus"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignTop="@+id/offCampus"
+                        android:text="@string/offCampus" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignTop="@+id/other"
+                        android:text="@string/other" />
+
+</RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/view_relative_expense"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    
-                    <ListView 
+
+                    <ListView
                         android:id="@+id/view_list_expense"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
                     </ListView>
-                   
                 </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
