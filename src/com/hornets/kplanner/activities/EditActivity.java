@@ -156,7 +156,7 @@ public class EditActivity extends Activity {
 	private void switchTabs(final TabHost tabHost) {
 
 		TabSpec spec1 = tabHost.newTabSpec("Tab1");
-		spec1.setContent(R.id.Income);
+		spec1.setContent(R.id.edit_linear_income);
 		spec1.setIndicator("Income", null);
 
 		TabSpec spec2 = tabHost.newTabSpec("Tab2");
