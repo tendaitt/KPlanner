@@ -43,15 +43,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/onCampus" 
-                        android:layout_marginTop="1sp"
+                        android:layout_marginTop="1dip"
                         android:textStyle="bold" />
                      
                     <TextView
                         android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5sp"
-                        android:layout_marginLeft="5sp"
+                        android:layout_marginTop="5dip"
+                        android:layout_marginLeft="5dip"
                         android:clickable="true"
                         android:onClick="editOnCampus"
                         android:text="@string/onCampus"
@@ -61,7 +61,7 @@
                         android:id="@+id/edit_text_offCampusTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10sp"
+                        android:layout_marginTop="10dip"
                         android:text="@string/offCampus" 
                         android:textStyle="bold"  />
                     
@@ -73,14 +73,14 @@
                         android:onClick="editOffCampus"
                         android:text="@string/offCampus"
                         android:textSize="14sp"
-                        android:layout_marginTop="5sp" 
-                        android:layout_marginLeft="5sp" />
+                        android:layout_marginTop="5dip" 
+                        android:layout_marginLeft="5dip" />
 
                     <TextView
                         android:id="@+id/edit_text_otherTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10sp"
+                        android:layout_marginTop="10dip"
                         android:text="@string/other" 
                         android:textStyle="bold" />
                     
@@ -91,9 +91,9 @@
                         android:clickable="true"
                         android:onClick="editOther"
                         android:text="@string/other"
-                        android:layout_marginTop="5sp"
+                        android:layout_marginTop="5dip"
                         android:textSize="14sp" 
-                        android:layout_marginLeft="5sp" />
+                        android:layout_marginLeft="5dip" />
                     
                 </LinearLayout>
 

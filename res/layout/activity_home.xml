@@ -10,20 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2" >
+        android:layout_weight="1" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/home_button_income"
             android:layout_width="0dip"
-            android:layout_height="233dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1.00"
             android:onClick="LoadIncome"
             android:text="@string/incomeButton" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/home_button_expense"
             android:layout_width="0dip"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1.00"
             android:onClick="LoadExpenses"
             android:text="@string/expensesButton" />
@@ -33,20 +33,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2" >
+        android:layout_weight="1" >
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/home_button_summary"
             android:layout_width="0dip"
-            android:layout_height="229dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1.00"
             android:onClick="LoadEdit"
             android:text="@string/summary" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/home_button_howmuch"
             android:layout_width="0dip"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1.00"
             android:onClick="LoadHowMuch"
             android:text="@string/howMuch" />
