@@ -41,7 +41,7 @@
             android:layout_height="150dp"
             android:layout_weight="1"
             android:onClick="LoadEdit"
-            android:text="@string/edit" />
+            android:text="@string/summary" />
 
         <Button
             android:id="@+id/button4"

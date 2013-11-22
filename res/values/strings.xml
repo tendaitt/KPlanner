@@ -62,7 +62,7 @@
     <string name="enterRate">Rate per Hour</string>
 
     <!-- Edit -->
-    <string name="title_activity_edit">Edit</string>
+    <string name="title_activity_edit">Summary</string>
     <string name="onCampus">OnCampus</string>
     <string name="offCampus">OffCampus</string>
     <string name="other">Other</string>
