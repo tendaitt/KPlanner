@@ -57,14 +57,13 @@ public class EditActivity extends Activity {
 
 		final TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 
-		//instantiate the view elements
+		// instantiate the view elements
 		onCampusView = (TextView) findViewById(R.id.onCampus);
 		offCampusView = (TextView) findViewById(R.id.offCampus);
 		otherIncomeView = (TextView) findViewById(R.id.other);
 		expenseListView = (ListView) findViewById(R.id.view_list_expense);
 
-
-		//instantiate the converter
+		// instantiate the converter
 		converter = new DbEntryConverter(getApplicationContext());
 
 		tabHost.setup();
@@ -76,82 +75,89 @@ public class EditActivity extends Activity {
 	}
 
 	/**
-	 * loads the expenses in the database to the expense tab as a list view
-	 * with onclick's taking the user to the edit page for that entry
+	 * loads the expenses in the database to the expense tab as a list view with
+	 * onclick's taking the user to the edit page for that entry
 	 */
 	private void loadExpensesList() {
-		//get the expenses array
+		// get the expenses array
 		expenseArray = converter.getExpenseList();
-		if(! (expenseArray.isEmpty()))
-		{
+		if (!(expenseArray.isEmpty())) {
 
-			//make adapter
-			ArrayAdapter<Expense> arrayAdapter = new ArrayAdapter<Expense>(this, 
-					android.R.layout.simple_list_item_1, expenseArray);
+			// make adapter
+			ArrayAdapter<Expense> arrayAdapter = new ArrayAdapter<Expense>(
+					this, android.R.layout.simple_list_item_1, expenseArray);
 
-			//set adapter
+			// set adapter
 			expenseListView.setAdapter(arrayAdapter);
 
-			//create the onclick listener
+			// create the onclick listener
 			mMessageClickedHandler = new OnItemClickListener() {
-				public void onItemClick(AdapterView parent, View v, int position, long id) {
-					Intent expenseIntent = new Intent(getApplicationContext(), ExpensesActivity.class);
-					expenseIntent.putExtra("name", expenseArray.get(position).getName());
-					expenseIntent.putExtra("type", expenseArray.get(position).getType());
-					expenseIntent.putExtra("date", expenseArray.get(position).getDate());
-					expenseIntent.putExtra("amount", expenseArray.get(position).getAmount());
+				public void onItemClick(AdapterView parent, View v,
+						int position, long id) {
+					Intent expenseIntent = new Intent(getApplicationContext(),
+							ExpensesActivity.class);
+					expenseIntent.putExtra("name", expenseArray.get(position)
+							.getName());
+					expenseIntent.putExtra("type", expenseArray.get(position)
+							.getType());
+					expenseIntent.putExtra("date", expenseArray.get(position)
+							.getDate());
+					expenseIntent.putExtra("amount", expenseArray.get(position)
+							.getAmount());
 					startActivity(expenseIntent);
 				}
 			};
-			//set the onclick listener
+			// set the onclick listener
 			expenseListView.setOnItemClickListener(mMessageClickedHandler);
-		}
-		else //if no expense are entered
+		} else // if no expense are entered
 		{
 			TextView emptyListText = new TextView(getApplicationContext());
 			emptyListText.setText("You have no expense entered.");
 		}
 	}
 
-	private void loadIncomeTextView(){ 
-		try{
+	private void loadIncomeTextView() {
+		try {
 
 			String onCampus = converter.getOnCampusIncome().getSummary();
-			String offCampus = converter.getOffCampusIncome().getSummary();
-			String other = converter.getOtherIncome().getSummary();
 			onCampusView.setText(onCampus);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		try {
+			String offCampus = converter.getOffCampusIncome().getSummary();
 			offCampusView.setText(offCampus);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		try {
+			String other = converter.getOtherIncome().getSummary();
 			otherIncomeView.setText(other);
 		}
-		catch(NullPointerException e)
-		{
+
+		catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
 
-	// create an on click for textviews, and pass in the parameters 
-	public void editOnCampus(View view)
-	{
-		editOnCampus = true; 
+	// create an on click for textviews, and pass in the parameters
+	public void editOnCampus(View view) {
+		editOnCampus = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
 
-
-	public void editOffCampus(View view)
-	{
+	public void editOffCampus(View view) {
 		editOffCampus = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
 
-	public void editOther(View view)
-	{
+	public void editOther(View view) {
 		editOther = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
-
 
 	private void switchTabs(final TabHost tabHost) {
 
@@ -180,7 +186,7 @@ public class EditActivity extends Activity {
 	public void setTabColor(TabHost tabhost) {
 		for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
 			tabhost.getTabWidget().getChildAt(i)
-			.findViewById(android.R.id.title);
+					.findViewById(android.R.id.title);
 		}
 	}
 
