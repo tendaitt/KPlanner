@@ -1,9 +1,6 @@
 package com.hornets.kplanner.dataobjects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class Expense implements Parcelable{
+public class Expense{
 
 	private String name;
 	private String type;
@@ -30,18 +27,6 @@ public class Expense implements Parcelable{
 		return amount;
 	}
 	public String toString() {
-		return name + " | " + type + " | " + date + " | " + "$" + amount; 
-	}
-
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
-		
+		return name + " - " + "$" + amount + " \n " + type + " - "  + date; 
 	}
 }
