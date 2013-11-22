@@ -70,8 +70,7 @@ public abstract class Income {
 
 	public String getSummary() {
 
-		return new String("Type: " + '\t' + "Off Campus" + '\n' + 
-						  "Rate: "+ '\t'  + this.getRate() + '\n'+
+		return new String("Rate: "+ '\t'  + this.getRate() + '\n'+
 						  "Hours: " + '\t'+ this.getHours() + '\n'+ 
 						  "Recurrence: " + '\t' + this.getRecurrence()+ '\n'+
 						  "Total: " + '\t' +"$"+ this.getAmount() +'\n');
