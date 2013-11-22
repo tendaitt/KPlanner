@@ -1,11 +1,12 @@
 package com.hornets.kplanner.dataobjects;
 
-public class Expense {
+public class Expense{
 
 	private String name;
 	private String type;
 	private String date;
 	private String amount;
+	
 	public Expense(String n, String t, String d, String a) {
 		name = n;
 		type = t;
@@ -25,8 +26,7 @@ public class Expense {
 	public String getAmount() {
 		return amount;
 	}
-	public String getSummary() {
-		return name + " | " + type + " | " + date + " | " + "$" + amount; 
+	public String toString() {
+		return name + " - " + "$" + amount + " \n " + type + " - "  + date; 
 	}
-//asdlkas;dla
 }

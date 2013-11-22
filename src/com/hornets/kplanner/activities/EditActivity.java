@@ -7,8 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -35,7 +40,8 @@ public class EditActivity extends Activity {
 	private TextView otherIncomeView;
 	private DbEntryConverter converter;
 	private ArrayList<Expense> expenseArray;
-	private LinearLayout expenseLinearLayout;
+	private ListView expenseListView;
+	private AdapterView.OnItemClickListener mMessageClickedHandler;
 
 	public static boolean editOnCampus = false;
 	public static boolean editOffCampus = false;
@@ -57,7 +63,8 @@ public class EditActivity extends Activity {
 		onCampusView = (TextView) findViewById(R.id.onCampus);
 		offCampusView = (TextView) findViewById(R.id.offCampus);
 		otherIncomeView = (TextView) findViewById(R.id.other);
-		expenseLinearLayout = (LinearLayout) findViewById(R.id.view_linear_expense);
+		expenseListView = (ListView) findViewById(R.id.view_list_expense);
+
 
 		//instantiate the converter
 		converter = new DbEntryConverter(getApplicationContext());
@@ -70,65 +77,60 @@ public class EditActivity extends Activity {
 
 	}
 
+	/**
+	 * loads the expenses in the database to the expense tab as a list view
+	 * with onclick's taking the user to the edit page for that entry
+	 */
 	private void loadExpensesList() {
 		//get the expenses array
 		expenseArray = converter.getExpenseList();
-
-		if(! (expenseArray.isEmpty())) //is there anything to display in the expense list
+		if(! (expenseArray.isEmpty()))
 		{
-			for(Expense e: expenseArray)
-			{
-				LinearLayout row = new LinearLayout(getApplicationContext());
-				row.setOrientation(0);
 
-				TextView summary = new TextView(getApplicationContext());
-				summary.setText(e.getSummary());
-				row.addView(summary);
+			//make adapter
+			ArrayAdapter<Expense> arrayAdapter = new ArrayAdapter<Expense>(this, 
+					android.R.layout.simple_list_item_1, expenseArray);
 
-				//				TextView name = new TextView(getApplicationContext());
-				//				name.setText(e.getName());
-				//				name.setPadding(5, 5, 5, 5);
-				//				TextView type = new TextView(getApplicationContext());
-				//				type.setText(e.getType());
-				//				type.setPadding(5, 5, 5, 5);
-				//				TextView date = new TextView(getApplicationContext());
-				//				type.setText(e.getDate());
-				//				date.setPadding(5, 5, 5, 5);
-				//				TextView amount = new TextView(getApplicationContext());
-				//				type.setText("$ " + e.getAmount());
-				//
-				//				row.addView(name);
-				//				row.addView(type);
-				//				row.addView(date);
-				//				row.addView(amount);
+			//set adapter
+			expenseListView.setAdapter(arrayAdapter);
 
-				expenseLinearLayout.addView(row);		
-			}
+			//create the onclick listener
+			mMessageClickedHandler = new OnItemClickListener() {
+				public void onItemClick(AdapterView parent, View v, int position, long id) {
+					Intent expenseIntent = new Intent(getApplicationContext(), ExpensesActivity.class);
+					expenseIntent.putExtra("name", expenseArray.get(position).getName());
+					expenseIntent.putExtra("type", expenseArray.get(position).getType());
+					expenseIntent.putExtra("date", expenseArray.get(position).getDate());
+					expenseIntent.putExtra("amount", expenseArray.get(position).getAmount());
+					startActivity(expenseIntent);
+				}
+			};
+			//set the onclick listener
+			expenseListView.setOnItemClickListener(mMessageClickedHandler);
 		}
 		else //if no expense are entered
 		{
 			TextView emptyListText = new TextView(getApplicationContext());
 			emptyListText.setText("You have no expense entered.");
-			expenseLinearLayout.addView(emptyListText);
 		}
 	}
 
 	private void loadIncomeTextView(){ 
-	try{
-		
-		String onCampus = converter.getOnCampusIncome().getSummary();
-		String offCampus = converter.getOffCampusIncome().getSummary();
-		String other = converter.getOtherIncome().getSummary();
-		onCampusView.setText(onCampus);
-		offCampusView.setText(offCampus);
-		otherIncomeView.setText(other);
+		try{
+
+			String onCampus = converter.getOnCampusIncome().getSummary();
+			String offCampus = converter.getOffCampusIncome().getSummary();
+			String other = converter.getOtherIncome().getSummary();
+			onCampusView.setText(onCampus);
+			offCampusView.setText(offCampus);
+			otherIncomeView.setText(other);
+		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 	}
-	catch(NullPointerException e)
-	{
-		e.printStackTrace();
-	}
-}
-	
+
 	// create an on click for textviews, and pass in the parameters 
 	public void editOnCampus(View view)
 	{
@@ -150,7 +152,6 @@ public class EditActivity extends Activity {
 		editOther = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
-
 	}
 
 
@@ -161,7 +162,7 @@ public class EditActivity extends Activity {
 		spec1.setIndicator("Income", null);
 
 		TabSpec spec2 = tabHost.newTabSpec("Tab2");
-		spec2.setContent(R.id.Expenses);
+		spec2.setContent(R.id.view_relative_expense);
 		spec2.setIndicator("Expenses", null);
 
 		tabHost.addTab(spec1);
@@ -181,7 +182,7 @@ public class EditActivity extends Activity {
 	public void setTabColor(TabHost tabhost) {
 		for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
 			tabhost.getTabWidget().getChildAt(i)
-					.findViewById(android.R.id.title);
+			.findViewById(android.R.id.title);
 		}
 	}
 

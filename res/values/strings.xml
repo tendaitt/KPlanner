@@ -63,16 +63,13 @@
 
     <!-- Edit -->
     <string name="title_activity_edit">Edit</string>
+    <string name="onCampus">OnCampus</string>
+    <string name="offCampus">OffCampus</string>
+    <string name="other">Other</string>
 
     <!-- HowMuch -->
     <string name="value_Of_HowMuch">HowMuch$</string>
     <string name="title_activity_how_much">HowMuch</string>
 
-    <!-- Summary -->
-    <string name="title_activity_summary">Summary</string>
-    <string name="summary_text_onCampusValue">OnCampusVal</string>
-    <string name="summary_text_offCampus">OffCampusVal</string>
-    <string name="summary_text_othersValue">OthersVal</string>
-    <string name="summary_text_income_title">INCOME</string>
-    <string name="summary_text_expense_title">EXPENSE</string>
+  
 </resources>

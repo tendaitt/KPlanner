@@ -37,55 +37,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/onCampus"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="editOffCampus"
-                        android:paddingTop="10sp"
-                        android:text="OnCampus"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/offCampus"
+<TextView
+                      android:id="@+id/onCampus"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:onClick="editOnCampus"
-                        android:paddingTop="20sp"
-                        android:text="OffCampus"
+                        android:clickable="true"
+                        android:text="@string/onCampus"
+                        android:paddingTop="10sp"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+  
 
+
+<TextView
+    android:id="@+id/offCampus"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="80dp"
+    android:clickable="true"
+    android:onClick="editOffCampus"
+    android:paddingTop="20sp"
+    android:text="@string/offCampus"
+    android:textSize="14sp"
+    android:textStyle="bold" />
+
+                    
                     <TextView
                         android:id="@+id/other"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
                         android:onClick="editOther"
+                        android:clickable="true"
+                        android:text="@string/other"
                         android:paddingTop="20sp"
-                        android:text="Other"
                         android:textSize="14sp"
                         android:textStyle="bold" />
-                </LinearLayout>
+               
+                   
+                    </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/Expenses"
+                    android:id="@+id/view_relative_expense"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-
-                    <ScrollView
-                        android:id="@+id/view_scroll_expense"
+                    
+                    <ListView 
+                        android:id="@+id/view_list_expense"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
-
-                        <LinearLayout
-                            android:id="@+id/view_linear_expense"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </ScrollView>
+                    </ListView>
+                   
                 </RelativeLayout>
             </FrameLayout>
         </LinearLayout>

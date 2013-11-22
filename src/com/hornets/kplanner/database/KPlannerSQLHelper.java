@@ -74,4 +74,15 @@ public class KPlannerSQLHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_INCOME);
 		db.execSQL(SQL_DELETE_EXPENSE);
 	}
+	
+	public void delete(SQLiteDatabase db, String name, String type, String date, String amount) {
+		db.execSQL("DELETE FROM users WHERE " 
+				+ KPlannerEntry.EXPENSE_COLUMN_NAME + '=' + name + " AND "
+				+ KPlannerEntry.EXPENSE_COLUMN_TYPE + '=' + type + " AND "
+				+ KPlannerEntry.EXPENSE_COLUMN_DATE + '=' + date + " AND "
+				+ KPlannerEntry.EXPENSE_COLUMN_AMOUNT + '=' + amount
+				);
+	}
+	
+	
 }
