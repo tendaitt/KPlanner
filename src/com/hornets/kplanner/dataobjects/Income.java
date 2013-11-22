@@ -1,7 +1,12 @@
 package com.hornets.kplanner.dataobjects;
 
 import android.util.Log;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @version November 22 2013
+ *
+ */
 public abstract class Income {
 
 	private long payDate;
