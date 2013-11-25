@@ -35,6 +35,7 @@ import android.widget.Toast;
  * @author Mehmet Kologlu
  * @version November 17 2013
  *
+ * Class for the Expense Activity of KPlanner
  */
 
 public class ExpensesActivity extends FragmentActivity
@@ -246,7 +247,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 	}
 
 	private void addToDatabase(String name, String type, String amount, String date) {
-		// TODO Auto-generated method stub
 		//map of values
 		ContentValues values = new ContentValues();
 		values.put(KPlannerEntry.EXPENSE_COLUMN_NAME, name);
@@ -277,7 +277,6 @@ implements DatePickerFragment.DatePickerDialogListener{
 	 * populates the reminder layout with views to be used to set up a reminder
 	 */
 	private void populateReminderLayout() {
-		// TODO Auto-generated method stub
 		//ADD REMINDER INPUT LAYOUT ELEMENTS
 		//define elements
 		final TextView numberEdit = new TextView(this);

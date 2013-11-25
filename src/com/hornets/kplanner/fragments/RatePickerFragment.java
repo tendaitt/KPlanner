@@ -11,10 +11,24 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.hornets.kplanner.R;
-
+/**
+ * 
+ * @author Tendai T.T Mudyiwa
+ * @version November 24 2013
+ *
+ *RatePickerFragment implements the rate picker dialog for the KPlanner
+ */
 public class RatePickerFragment extends DialogFragment {
 
 	private EditText rateEditText;
+	
+	/**
+	 * 
+	 * @author Tendai T.T. Mudyiwa
+	 * @version November 24 2013
+	 *IRatePickerListener is required to implement the 
+	 *RatePickerFragment
+	 */
 	public interface IRatePickerListener {
         public void onRateSet(String rate);
         public void onRateCancel(DialogFragment dialog);

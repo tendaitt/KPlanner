@@ -24,11 +24,11 @@ import com.hornets.kplanner.dataobjects.Expense;
  * 
  * @author Rana Hayajneh
  * @author Mehmet Kologlu
- * @version Nov 20, 2013
+ * @author Tendai T.T. Mudyiwa
+ * @version Nov 24, 2013
  * 
  *          EditActivity allows the user to access their saved data and change
  *          it or delete it.
- * 
  */
 
 public class EditActivity extends Activity {
@@ -49,11 +49,6 @@ public class EditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit);
-
-		/*
-		 * final TabWidget tabWidge = tabHost.getTabWidget(); final FrameLayout
-		 * tabContent = tabHost.getTabContentView();
-		 */
 
 		final TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 
@@ -92,6 +87,8 @@ public class EditActivity extends Activity {
 
 			// create the onclick listener
 			mMessageClickedHandler = new OnItemClickListener() {
+				@Override
+				@SuppressWarnings("rawtypes")
 				public void onItemClick(AdapterView parent, View v,
 						int position, long id) {
 					Intent expenseIntent = new Intent(getApplicationContext(),
@@ -116,9 +113,11 @@ public class EditActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Method that loads the Income View on the webpage
+	 */
 	private void loadIncomeTextView() {
 		try {
-
 			String onCampus = converter.getOnCampusIncome().getSummary();
 			onCampusView.setText(onCampus);
 		} catch (NullPointerException e) {
@@ -139,26 +138,42 @@ public class EditActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-
-	// create an on click for textviews, and pass in the parameters
+	
+	
+	/**
+	 * Switches to the Income page to edit on campus data
+	 * @param view
+	 */
 	public void editOnCampus(View view) {
 		editOnCampus = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
 
+	/**
+	 * Switches to the Income page to edit off campus data
+	 * @param view
+	 */
 	public void editOffCampus(View view) {
 		editOffCampus = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
 
+	/**
+	 * Switches to the Income page to edit other income data
+	 * @param view
+	 */
 	public void editOther(View view) {
 		editOther = true;
 		Intent intent = new Intent(this, IncomeActivity.class);
 		startActivity(intent);
 	}
 
+	/**
+	 * Enables the user to switch tabs
+	 * @param tabHost
+	 */
 	private void switchTabs(final TabHost tabHost) {
 
 		TabSpec spec1 = tabHost.newTabSpec("Tab1");
@@ -186,7 +201,7 @@ public class EditActivity extends Activity {
 	public void setTabColor(TabHost tabhost) {
 		for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
 			tabhost.getTabWidget().getChildAt(i)
-					.findViewById(android.R.id.title);
+			.findViewById(android.R.id.title);
 		}
 	}
 

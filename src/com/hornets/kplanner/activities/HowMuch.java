@@ -6,6 +6,14 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/**
+ * 
+ * @author Rana Hayajneh
+ * @version November 24 2013
+ * 
+ * Class for the HowMuch? activity of KPlanner
+ *
+ */
 public class HowMuch extends Activity {
 
 	@Override

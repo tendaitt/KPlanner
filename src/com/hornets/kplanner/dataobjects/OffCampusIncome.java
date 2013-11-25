@@ -1,5 +1,12 @@
 package com.hornets.kplanner.dataobjects;
 
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @version November 24 2013
+ *
+ * Defines an OffCampusIncome object
+ */
 
 public class OffCampusIncome extends Income {
 

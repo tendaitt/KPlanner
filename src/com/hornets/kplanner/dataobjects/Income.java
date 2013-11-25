@@ -5,7 +5,9 @@ import android.util.Log;
  * 
  * @author Tendai T.T. Mudyiwa
  * @version November 22 2013
- *
+ * 
+ * {@link Income} defines a generic Income object
+ * and the basic method it can use
  */
 public abstract class Income {
 
@@ -41,6 +43,10 @@ public abstract class Income {
 		return rate;
 	}
 	
+	/**
+	 * Calculates the amount earned
+	 * @return the amount earned
+	 */
 	public double getAmount(){
 		
 		long currentTime= System.currentTimeMillis();

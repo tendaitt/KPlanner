@@ -1,7 +1,14 @@
 package com.hornets.kplanner.database;
 
 import android.provider.BaseColumns;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @author Mehmet Kologlu
+ * @version November 24 2013
+ * 
+ * {@link KPlannerReaderContract} provides the database contract
+ */
 public class KPlannerReaderContract {
 
 	//To prevent someone from accidentally instantiating the contract

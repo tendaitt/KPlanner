@@ -9,7 +9,16 @@ import android.provider.BaseColumns;
 
 import com.hornets.kplanner.database.KPlannerReaderContract.KPlannerEntry;
 import com.hornets.kplanner.database.KPlannerSQLHelper;
-
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @author Mehmet Kologlu
+ * @version November 2013
+ * 
+ * {@link DbEntryConverter} converts a database entry
+ * into an appropriate Java Object
+ *
+ */
 public class DbEntryConverter {
 
 	private KPlannerSQLHelper dbHelper;
@@ -22,6 +31,10 @@ public class DbEntryConverter {
 		this.expenseArray = new ArrayList<Expense>();
 	}
 
+	/**
+	 * Retrieves the stored expenses
+	 * @return an arrayList of expenses
+	 */
 	public ArrayList<Expense> getExpenseList(){
 
 		//Columns required
@@ -52,7 +65,10 @@ public class DbEntryConverter {
 		
 		return expenseArray;
 	}
-	
+	/**
+	 * Retrieved the stored other income values
+	 * @return an OtherIncome object
+	 */
 	public OtherIncome getOtherIncome(){
 		OtherIncome otherIncome = null;
 		//Columns required
@@ -88,6 +104,10 @@ public class DbEntryConverter {
 				return otherIncome;
 	}
 
+	/**
+	 * Retrieves the store on campus information
+	 * @return an OnCampus object
+	 */
 	public OnCampusIncome getOnCampusIncome(){
 		OnCampusIncome onCampusIncome = null;
 		//Columns required
@@ -121,6 +141,10 @@ public class DbEntryConverter {
 		return onCampusIncome;
 	}
 	
+	/**
+	 * 	Retrieves the stored off campus object
+	 * @return an off campus object
+	 */
 	public OffCampusIncome getOffCampusIncome(){
 		OffCampusIncome offCampusIncome = null;
 		//Columns required

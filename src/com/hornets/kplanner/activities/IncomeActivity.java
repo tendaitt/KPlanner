@@ -32,9 +32,21 @@ import com.hornets.kplanner.dataobjects.Income;
 import com.hornets.kplanner.fragments.DatePickerFragment;
 import com.hornets.kplanner.fragments.HourPickerFragment;
 import com.hornets.kplanner.fragments.RatePickerFragment;
+/**
+ * 
+ * @author Tendai T.T. Mudyiwa
+ * @author Rana Hayajneh
+ * @author Mehmet Kologlu
+ * @version November 24 2013
+ * 
+ * Class for the Income Activity of KPlanner
+ *
+ */
 
-@SuppressLint("ShowToast")
-public class IncomeActivity extends FragmentActivity implements DatePickerFragment.DatePickerDialogListener, HourPickerFragment.IHourPickerListener, RatePickerFragment.IRatePickerListener{
+public class IncomeActivity extends FragmentActivity implements
+		DatePickerFragment.DatePickerDialogListener,
+		HourPickerFragment.IHourPickerListener,
+		RatePickerFragment.IRatePickerListener {
 	private RadioButton onCampusRadioButton;
 	private RadioButton offCampusRadioButton;
 	private RadioButton otherIncomeButton;
@@ -58,85 +70,105 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		setContentView(R.layout.activity_income);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		retrieveViews();
+		loadViews();
 		converter = new DbEntryConverter(getApplicationContext());
-		//get a calendar
+		// get a calendar
 		initializeCalendar();
 		checkEdit();
 	}
-	
+
+	/**
+	 * Checks to see if the user is viewing the income page in Edit mode
+	 */
 	private void checkEdit() {
-		try{
-			
-		
-		Income income = null;
-		if(EditActivity.editOffCampus)
-		{
-			EditActivity.editOffCampus = false;
-			offCampusRadioButton.setChecked(true);
-			income = converter.getOnCampusIncome();
-			hourView.setText(""+income.getHours());
-			rateView.setText(""+income.getRate());
-			dateBtn.setText(getDate(income.getpayDate()));
-			
-			@SuppressWarnings("unchecked")
-			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
-			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
-			recurrenceSpinner.setSelection(spinnerPosition);
-			
-		}
-		else if(EditActivity.editOnCampus)
-		{
-			EditActivity.editOnCampus = false;
-			onCampusRadioButton.setChecked(true);
-			income = converter.getOnCampusIncome();
-			hourView.setText(""+income.getHours());
-			rateView.setText(""+income.getRate());
-			dateBtn.setText(getDate(income.getpayDate()));
-			
-			@SuppressWarnings("unchecked")
-			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
-			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
-			recurrenceSpinner.setSelection(spinnerPosition);
-		}
-		else if(EditActivity.editOther)
-		{
-			EditActivity.editOther = false;
-			otherIncomeButton.setChecked(true);
-			income = converter.getOtherIncome();
-			hourView.setText(""+income.getHours());
-			rateView.setText(""+income.getRate());
-			dateBtn.setText(getDate(income.getpayDate()));
-			
-			@SuppressWarnings("unchecked")
-			ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner.getAdapter(); //cast to an ArrayAdapter
-			int spinnerPosition = myAdap.getPosition(income.getRecurrence());
-			recurrenceSpinner.setSelection(spinnerPosition);
-		}
-		
-		}
-		catch(NullPointerException e){
+		try {
+
+			Income income = null;
+			if (EditActivity.editOffCampus) {
+				EditActivity.editOffCampus = false;
+				offCampusRadioButton.setChecked(true);
+				income = converter.getOnCampusIncome();
+				hourView.setText("" + income.getHours());
+				rateView.setText("" + income.getRate());
+				dateBtn.setText(getDate(income.getpayDate()));
+
+				@SuppressWarnings("unchecked")
+				ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner
+						.getAdapter(); // cast to an ArrayAdapter
+				int spinnerPosition = myAdap
+						.getPosition(income.getRecurrence());
+				recurrenceSpinner.setSelection(spinnerPosition);
+
+			} else if (EditActivity.editOnCampus) {
+				EditActivity.editOnCampus = false;
+				onCampusRadioButton.setChecked(true);
+				income = converter.getOnCampusIncome();
+				hourView.setText("" + income.getHours());
+				rateView.setText("" + income.getRate());
+				dateBtn.setText(getDate(income.getpayDate()));
+
+				@SuppressWarnings("unchecked")
+				ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner
+						.getAdapter(); // cast to an ArrayAdapter
+				int spinnerPosition = myAdap
+						.getPosition(income.getRecurrence());
+				recurrenceSpinner.setSelection(spinnerPosition);
+			} else if (EditActivity.editOther) {
+				EditActivity.editOther = false;
+				otherIncomeButton.setChecked(true);
+				income = converter.getOtherIncome();
+				hourView.setText("" + income.getHours());
+				rateView.setText("" + income.getRate());
+				dateBtn.setText(getDate(income.getpayDate()));
+
+				@SuppressWarnings("unchecked")
+				ArrayAdapter<String> myAdap = (ArrayAdapter<String>) recurrenceSpinner
+						.getAdapter(); // cast to an ArrayAdapter
+				int spinnerPosition = myAdap
+						.getPosition(income.getRecurrence());
+				recurrenceSpinner.setSelection(spinnerPosition);
+			}
+
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
+
+	/**
+	 * Converts the date in milliseconds to date in dd/MM/yyyy format
+	 * 
+	 * @param paydate
+	 *            the originally entered date in milliseconds
+	 * @return the originally entered date in dd/MM/yyyy format
+	 */
 	private String getDate(long getpayDate) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH); 
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy",
+				Locale.ENGLISH);
 		String dateString = formatter.format(new Date(getpayDate));
 		return dateString;
 	}
+
+	/**
+	 * Initializes the calendar
+	 */
 	private void initializeCalendar() {
 		c = Calendar.getInstance();
 		currentYear = c.get(Calendar.YEAR);
-		currentMonth = c.get(Calendar.MONTH)+1; //+1 to compensate for 0 indexing
+		currentMonth = c.get(Calendar.MONTH) + 1; // +1 to compensate for 0
+													// indexing
 		currentDay = c.get(Calendar.DAY_OF_MONTH);
 		resetDate();
 
-		//update the date picker button to display the date which is the current date
+		// update the date picker button to display the date which is the
+		// current date
 		updateDateButtonText();
 	}
 
-	private void retrieveViews() {
+	/**
+	 * loads the views on the page
+	 */
+	private void loadViews() {
 		onCampusRadioButton = (RadioButton) findViewById(R.id.onCampusIncomeButton);
 		offCampusRadioButton = (RadioButton) findViewById(R.id.offCampusIncomeButton);
 		otherIncomeButton = (RadioButton) findViewById(R.id.otherIncomeButton);
@@ -147,18 +179,24 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 
 	}
 
+	/**
+	 * updates the date on the date button
+	 */
 	private void updateDateButtonText() {
 		dateBtn.setText(MONTH + "/" + DAY + "/" + YEAR);
 
 	}
 
+	/**
+	 * Resets the date on the date button
+	 */
 	private void resetDate() {
 		YEAR = currentYear;
 		MONTH = currentMonth;
 		DAY = currentDay;
-		updateDateButtonText();		
+		updateDateButtonText();
 	}
-	
+
 	private void setupActionBar() {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -189,110 +227,164 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onCampus(View view){
+	/**
+	 * Checks the on campus radio button and unchecks the previously checked one
+	 * 
+	 * @param view
+	 */
+	public void onCampus(View view) {
 		offCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 		type = "ON";
 	}
 
-	public void offCampus(View view){
+	/**
+	 * Checks the off campus radio button and unchecks the previously checked
+	 * one
+	 * 
+	 * @param view
+	 */
+	public void offCampus(View view) {
 		onCampusRadioButton.setChecked(false);
 		otherIncomeButton.setChecked(false);
 		type = "OFF";
 	}
 
-	public void otherIncome(View view){
+	/**
+	 * Checks the other income radio button and unchecks the previously checked
+	 * one
+	 * 
+	 * @param view
+	 */
+	public void otherIncome(View view) {
 		onCampusRadioButton.setChecked(false);
 		offCampusRadioButton.setChecked(false);
 		type = "OTHER";
 	}
 
-	public void onHourClicked(View view){
+	/**
+	 * Display the Hour Picker Dialog
+	 * 
+	 * @param view
+	 */
+	public void onHourClicked(View view) {
 		HourPickerFragment hourPicker = new HourPickerFragment();
 		hourPicker.show(getSupportFragmentManager(), "hourpicker");
 	}
 
+	/**
+	 * Displays the Rate Picker when the user clicks the rate button
+	 * 
+	 * @param view
+	 */
 	public void enterRate(View view) {
 		RatePickerFragment ratePicker = new RatePickerFragment();
 		ratePicker.show(getSupportFragmentManager(), "rate_dialog");
 
 	}
-	
+
 	@Override
 	public void onHourSet(int value) {
-		hourView.setText(""+value);
+		hourView.setText("" + value);
 	}
-	
+
 	@Override
 	public void onHourCancel(DialogFragment dialog) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	public void onRateSet(String rate) {
 		rateView.setText(rate);
 	}
-	
+
 	@Override
 	public void onRateCancel(DialogFragment dialog) {
 
 	}
 
-	public void showDatePickerDialog(View v){
+	/**
+	 * Displays the Date Picker dialog when the user click on the date button
+	 * 
+	 * @param view
+	 */
+	public void showDatePickerDialog(View v) {
 		DatePickerFragment datePickerFragment = new DatePickerFragment();
 		datePickerFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 
-	public void done(View view){
+	/**
+	 * Takes the user back to the home page
+	 * 
+	 * @param view
+	 */
+	public void done(View view) {
 		Intent goHome = new Intent(this, HomeActivity.class);
 		startActivity(goHome);
 
 	}
-	
-	public void onSave(View view) {		
-				
-		if(!(onCampusRadioButton.isChecked()||offCampusRadioButton.isChecked()||otherIncomeButton.isChecked())){
-			Toast.makeText(getApplicationContext(), "Please check an income type!", 4).show();
-		}
-		else if(rateView.getText().toString().equals("0.00")){
-			Toast.makeText(getApplicationContext(), "Please enter rate!", 4).show();
-		}
-		else if(recurrenceSpinner.getSelectedItem().equals("Recurrence")){
-			Toast.makeText(getApplicationContext(), "Please select recurrence!",4).show();
-		}
-		else{
+
+	/**
+	 * Saves the information entered by the user
+	 * 
+	 * @param view
+	 */
+	@SuppressLint("ShowToast")
+	public void onSave(View view) {
+
+		if (!(onCampusRadioButton.isChecked()
+				|| offCampusRadioButton.isChecked() || otherIncomeButton
+					.isChecked())) {
+			Toast.makeText(getApplicationContext(),
+					"Please check an income type!", 4).show();
+		} else if (rateView.getText().toString().equals("0.00")) {
+			Toast.makeText(getApplicationContext(), "Please enter rate!", 4)
+					.show();
+		} else if (recurrenceSpinner.getSelectedItem().equals("Recurrence")) {
+			Toast.makeText(getApplicationContext(),
+					"Please select recurrence!", 4).show();
+		} else {
 			updateDB(type);
-			Toast.makeText(getApplicationContext(),"Saved!", 2).show();
+			Toast.makeText(getApplicationContext(), "Saved!", 2).show();
 		}
 	}
 
-	public void updateDB(String type){
-		//retrieve the values
+	/**
+	 * Updates the income table in the database with the income data.
+	 * 
+	 * @param type
+	 *            this represents the type of income
+	 */
+	public void updateDB(String type) {
+		// retrieve the values
 		String hours = hourView.getText().toString();
 		String rate = rateView.getText().toString();
-		String input = MONTH+" "+DAY+" "+YEAR;
+		String input = MONTH + " " + DAY + " " + YEAR;
 
 		String recurrence = recurrenceSpinner.getSelectedItem().toString();
-		
+
 		Date enterDate;
 		String date = "";
 		try {
-			enterDate = new SimpleDateFormat("MM dd yyyy", Locale.ENGLISH).parse(input);
-			date  = enterDate.getTime()+"";
+			enterDate = new SimpleDateFormat("MM dd yyyy", Locale.ENGLISH)
+					.parse(input);
+			date = enterDate.getTime() + "";
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(getApplicationContext(), type, null, 0);
+		KPlannerSQLHelper dbHelper = new KPlannerSQLHelper(
+				getApplicationContext(), type, null, 0);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-		//remove previous entries
-		if(KPlannerSQLHelper.INITIALIZED){
-			db.execSQL("DELETE FROM " + KPlannerEntry.INCOME_TABLE_NAME +
-					" WHERE " + KPlannerEntry.INCOME_COLUMN_TYPE +" = '" + type+"';");
+		// remove previous entries
+		if (KPlannerSQLHelper.INITIALIZED) {
+			db.execSQL("DELETE FROM " + KPlannerEntry.INCOME_TABLE_NAME
+					+ " WHERE " + KPlannerEntry.INCOME_COLUMN_TYPE + " = '"
+					+ type + "';");
 		}
 
-		//map of values
+		// map of values
 		ContentValues values = new ContentValues();
 		values.put(KPlannerEntry.INCOME_COLUMN_TYPE, type);
 		values.put(KPlannerEntry.INCOME_COLUMN_RATE, rate);
@@ -300,13 +392,13 @@ public class IncomeActivity extends FragmentActivity implements DatePickerFragme
 		values.put(KPlannerEntry.INCOME_COLUMN_DATE, date);
 		values.put(KPlannerEntry.INCOME_COLUMN_RECURRENCE, recurrence);
 
-		//Insert the new row
+		// Insert the new row
 		@SuppressWarnings("unused")
 		long newRowId;
 		newRowId = db.insert(KPlannerEntry.INCOME_TABLE_NAME, null, values);
 		KPlannerSQLHelper.INITIALIZED = true;
 	}
-	
+
 	@Override
 	public void onDateSelect(DialogFragment dialog, int year, int monthOfYear,
 			int dayOfMonth) {
